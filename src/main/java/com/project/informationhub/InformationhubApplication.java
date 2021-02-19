@@ -9,4 +9,5 @@ public class InformationhubApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(InformationhubApplication.class, args);
 	}
+
 }
