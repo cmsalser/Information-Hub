@@ -1,24 +1,36 @@
 package com.project.informationhub;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @Column(name = "id")
+    private int id;
 
+    @Column(name = "username")
     private String username;
+
+    @Column(name = "firstname")
     private String firstname;
+
+    @Column(name = "lastname")
     private String lastname;
+
+    @Column(name = "password")
     private String password;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "phone_number")
     private String phoneNumber;
-    private Date dob;
+
+    @Column(name = "birthday")
+    private Date birthday;
 
     public String getUsername() {
         return username;
@@ -44,12 +56,11 @@ public class User {
         return phoneNumber;
     }
 
-    public Date getDob() {
-        return dob;
+    public Date getBirthday() {
+        return birthday;
     }
 
-    @Id
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
@@ -77,11 +88,11 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public void setDob(Date dob) {
-        this.dob = dob;
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 }
