@@ -2,17 +2,19 @@ package com.project.informationhub.FAQ;
 
 import java.util.List;
 
+// import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PutMapping;
 
 
 @RestController
-// @RequestMapping(value = "/FAQForm")
+@RequestMapping(value = "/FAQ")
 public class FAQController {
 
     private final FAQRepository repository;
@@ -21,23 +23,24 @@ public class FAQController {
         this.repository = repository;
     }
 
-    @GetMapping("/FAQ")
+    // @GetMapping("/FAQ")
+    @GetMapping("")
     public List<FAQ> all() {
         return repository.findAll();
     }
 
-    @PostMapping("/FAQ")
+    @PostMapping("")
     public FAQ newFAQ(@RequestBody FAQ newFAQ) {
         return repository.save(newFAQ);
     }
 
-    @GetMapping("/FAQ/{id}")
+    @GetMapping("/{id}")
     public FAQ one(@PathVariable Long id) {
         return repository.findById(id)
                     .orElseThrow(() -> new FAQNotFoundException(id));
     }
 
-    @PutMapping(value="/FAQ/{id}")
+    @PutMapping(value="/{id}")
     public FAQ putMethodName(@PathVariable Long id, @RequestBody FAQ newFAQ) {
         return repository.findById(id)
                     .map(FAQ -> {
@@ -51,23 +54,9 @@ public class FAQController {
                     });
     }
 
-    @DeleteMapping("/FAQ/{id}")
-    public void deleteFAQ(@PathVariable Long Id) {
-        repository.deleteById(Id);
+    @DeleteMapping("/{id}")
+    public void deleteFAQ(@PathVariable Long id) {
+        repository.deleteById(id);
     }
-
-    // -------------------------------------------------------------------------------------------------
-
-    // MUST IMPLEMENT DELETE AND UPDATE
-
-    // --------------------------------------------------------------------------------------------------
-    
-    // @RequestMapping(method=RequestMethod.GET)
-    // public String requestMethodName(Map<String, Object> model) {
-    //     FAQ faq = new FAQ();
-    //     model.put("FAQForm", faq);
-
-    //     return "FAQForm";
-    // }
     
 }
