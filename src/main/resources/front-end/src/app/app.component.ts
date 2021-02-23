@@ -18,4 +18,8 @@ export class AppComponent {
     this.AuthService.logout();
     this.router.navigateByUrl('/auth');
   }
+
+  authenticated() {
+    return this.AuthService.authenticated;
+  }
 }
