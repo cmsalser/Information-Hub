@@ -2,6 +2,8 @@ package com.project.informationhub.FAQ;
 
 import java.util.List;
 
+import com.project.informationhub.NotFoundException;
+
 // import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,7 +39,7 @@ public class FAQController {
     @GetMapping("/{id}")
     public FAQ one(@PathVariable Long id) {
         return repository.findById(id)
-                    .orElseThrow(() -> new FAQNotFoundException(id));
+                    .orElseThrow(() -> new NotFoundException(id));
     }
 
     @PutMapping(value="/{id}")

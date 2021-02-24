@@ -56,4 +56,9 @@ public class ContactUs {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    @Override
+    public String toString() {
+        return "Id: " + id + " Email : (" + email + ") Description : (" + description + ")" + " Phone : (" + phone + ")";
+    }
 }

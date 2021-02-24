@@ -2,6 +2,8 @@ package com.project.informationhub.ContactUs;
 
 import java.util.List;
 
+import com.project.informationhub.NotFoundException;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/ContactUs")
+@RequestMapping("/contactUs")
 public class ContactUsController {
     
     private final ContactUsRepository repository;
@@ -34,7 +36,7 @@ public class ContactUsController {
     @GetMapping("/{id}")
     public ContactUs one(@PathVariable Long id) {
         return repository.findById(id)
-                    .orElseThrow(() -> new ContactUsNotFoundException(id));
+                    .orElseThrow(() -> new NotFoundException(id));
     }
 
     @PutMapping(value="/{id}")
