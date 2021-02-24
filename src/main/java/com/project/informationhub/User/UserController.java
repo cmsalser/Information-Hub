@@ -17,11 +17,6 @@ public class UserController {
         this.repository = repository;
     }
 
-    @GetMapping("")
-    public List<User> index() {
-        return repository.findAll();
-    }
-
     @GetMapping("/{id}")
     public User show(@PathVariable Integer id) {
         return repository.findById(id).get();
