@@ -44,13 +44,13 @@ public class FAQController {
     public FAQ putMethodName(@PathVariable Long id, @RequestBody FAQ newFAQ) {
         return repository.findById(id)
                     .map(FAQ -> {
-                    FAQ.setQuestion(newFAQ.getQuesiton());
-                    FAQ.setAnswer(newFAQ.getAnswer());
-                    return repository.save(FAQ);
+                        FAQ.setQuestion(newFAQ.getQuesiton());
+                        FAQ.setAnswer(newFAQ.getAnswer());
+                        return repository.save(FAQ);
                     })
                     .orElseGet(() -> {
-                    newFAQ.setId(id);
-                    return repository.save(newFAQ);
+                        newFAQ.setId(id);
+                        return repository.save(newFAQ);
                     });
     }
 
@@ -58,5 +58,4 @@ public class FAQController {
     public void deleteFAQ(@PathVariable Long id) {
         repository.deleteById(id);
     }
-    
 }
