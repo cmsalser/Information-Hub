@@ -1,0 +1,26 @@
+<div class="container-fluid" style="background-color: rgb(95, 158, 160);">
+  <header>
+    <div class="row align-items-center">
+
+    <div class="col">
+      <h1>Webpage</h1>
+    </div>
+
+    <div class="col text-right">
+      <div *ngIf="authenticated(); then thenBlock else elseBlock"></div>
+      <ng-template #thenBlock><a class="btn btn-outline-secondary" (click)="logout()">Logout</a></ng-template>
+      <ng-template #elseBlock><a class="btn btn-outline-secondary" routerLinkActive="active" routerLink="/auth">Login</a></ng-template>
+    </div>
+
+    </div>
+  </header>
+</div>
+
+
+<div>
+  <ul>
+    <li><a routerLinkActive="active" routerLink="/home">Home</a></li>
+    <li><a routerLinkActive="active" routerLink="/faq">Faq</a></li>
+  </ul>
+</div>
+<router-outlet></router-outlet>
