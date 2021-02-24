@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -27,12 +28,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-                .antMatchers("/user").authenticated()
+                .antMatchers("/users").denyAll()
+                .antMatchers("/users/{userId}/**").access("@userSecurity.hasUserId(authentication, #userId)")
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()
-                .defaultSuccessUrl("/user")
+                .successHandler(loginUrlAuthenticationSuccessHandler())
                 .permitAll();
+    }
+
+    @Bean
+    public AuthenticationSuccessHandler loginUrlAuthenticationSuccessHandler(){
+        return new LoginUrlAuthenticationSuccessHandler();
     }
 
     @Bean
