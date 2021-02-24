@@ -6,6 +6,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 })
 export class AuthService {
   authenticated = true;
+  adminStatus = true;
   
   constructor(private http: HttpClient) { }
 
