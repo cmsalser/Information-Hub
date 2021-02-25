@@ -11,4 +11,8 @@ export class FaqService {
   getFAQ(){
     return this.http.get('https://jsonplaceholder.typicode.com/posts');
   }
+
+  getFaqByID(id) {
+    return this.http.get('https://jsonplaceholder.typicode.com/posts/' + id);
+  }
 }

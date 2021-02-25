@@ -10,7 +10,8 @@
                 </div>
                 <div class="col-2">
                     <div class="text-right" *ngIf="isAdmin(); then thenBlock"></div>
-                    <ng-template #thenBlock><a class="btn btn-outline-secondary" (click)="deleteFaq(faq.id)">Delete</a>
+                    <ng-template #thenBlock><a class="btn btn-sm btn-outline-secondary" (click)="deleteFaq(faq.id)">Delete</a>
+                                            <a class="btn btn-sm btn-outline-secondary" [routerLink]="['/faq/edit/',faq.id]">Edit</a>
                     </ng-template>
                 </div>
             </div>

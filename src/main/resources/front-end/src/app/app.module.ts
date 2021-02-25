@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
 import { HomeComponent } from './home/home.component';
 import { FaqComponent } from './faq/faq.component';
+import { FaqEditComponent } from './faq/faq-edit/faq-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
     HomeComponent,
-    FaqComponent
+    FaqComponent,
+    FaqEditComponent
   ],
   imports: [
     BrowserModule,
