@@ -1,5 +1,7 @@
 package com.project.informationhub.User;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -30,7 +32,23 @@ public class User {
     private String phoneNumber;
 
     @Column(name = "birthday")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date birthday;
+
+    public User() {
+
+    }
+
+    public User(String username, String firstname, String lastname,
+                String password, String email, String phoneNumber, Date birthday) {
+        this.username = username;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.password = password;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.birthday = birthday;
+    }
 
     public String getUsername() {
         return username;
