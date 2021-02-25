@@ -10,28 +10,20 @@ import java.util.Date;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
     private int id;
 
-    @Column(name = "username")
     private String username;
 
-    @Column(name = "firstname")
     private String firstname;
 
-    @Column(name = "lastname")
     private String lastname;
 
-    @Column(name = "password")
     private String password;
 
-    @Column(name = "email")
     private String email;
 
-    @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(name = "birthday")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date birthday;
 
@@ -39,8 +31,8 @@ public class User {
 
     }
 
-    public User(String username, String firstname, String lastname,
-                String password, String email, String phoneNumber, Date birthday) {
+    public User(String username, String firstname, String lastname, String password, String email, String phoneNumber
+                , Date birthday) {
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
