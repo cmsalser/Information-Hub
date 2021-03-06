@@ -2,15 +2,26 @@
   <header>
     <div class="row align-items-center">
 
-    <div class="col">
-      <h1>Webpage</h1>
-    </div>
+      <div class="col">
+        <h1>Webpage</h1>
+      </div>
 
-    <div class="col text-right">
-      <div *ngIf="authenticated(); then thenBlock else elseBlock"></div>
-      <ng-template #thenBlock><a class="btn btn-outline-secondary" (click)="logout()">Logout</a></ng-template>
-      <ng-template #elseBlock><a class="btn btn-outline-secondary" routerLinkActive="active" routerLink="/auth">Login</a></ng-template>
-    </div>
+      <div class="col text-right">
+        <div *ngIf="authenticated(); then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock>
+          <div class="dropdown">
+            <a class="btn btn0secondary dropdown-toggle" role="button" id="dropdownMenuLink"
+              data-toggle="dropdown">Profile</a>
+
+            <div class="dropdown-menu">
+              <a class="dropdown-item" (click)="logout()">Logout</a>
+              <a class="dropdown-item" routerLinkActive="active" routerLink="/user">Profile</a>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template #elseBlock><a class="btn btn-outline-secondary" routerLinkActive="active"
+            routerLink="/auth">Login</a></ng-template>
+      </div>
 
     </div>
   </header>

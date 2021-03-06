@@ -1,33 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { User } from "../models/user.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  authenticated = true;
+  authenticated = false;
   adminStatus = true;
-  
+  user; 
+
   constructor(private http: HttpClient) { }
 
     authenticate(credentials, callback) {
 
-      const headers = new HttpHeaders({
-        username: credentials.username,
-        password: credentials.password,
-    });
-
-      console.log(headers);
-
-      this.http.get('user', {headers: headers}).subscribe(response => {
-          if (response['name']) {
-              this.authenticated = true;
-              console.log(response);
-          } else {
-              this.authenticated = false;
-              console.log(response);
-          }
-          return callback && callback();
+      this.http.get('https://jsonplaceholder.typicode.com/users?username=' + credentials.username).subscribe((response: User) => {
+          this.user = response;
+          this.authenticated = true;
+          console.log(this.user);
+        return callback && callback();
       });
 
     }
