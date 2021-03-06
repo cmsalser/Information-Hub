@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <header class="border-bottom border-light">
   <div class="container">
     <div class="row justify-content-around">
@@ -27,3 +28,49 @@
 </nav>
 
 <router-outlet></router-outlet>
+=======
+<div style="background-color: rgb(177, 189, 182);">
+  <div class="container-fluid">
+    <header>
+      <div class="row align-items-center">
+
+        <div class="col">
+          <h1>Webpage</h1>
+        </div>
+
+        <div class="col text-right">
+          <div *ngIf="authenticated(); then thenBlock else elseBlock"></div>
+          <ng-template #thenBlock>
+            <div class="dropdown">
+              <a class="btn btn0secondary dropdown-toggle" role="button" id="dropdownMenuLink"
+                data-toggle="dropdown">Profile</a>
+
+              <div class="dropdown-menu">
+                <a class="dropdown-item" (click)="logout()">Logout</a>
+                <a class="dropdown-item" routerLinkActive="active" routerLink="/user">Profile</a>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template #elseBlock><a class="btn btn-outline-secondary" routerLinkActive="active"
+              routerLink="/auth">Login</a></ng-template>
+        </div>
+
+      </div>
+    </header>
+  </div>
+
+  <nav class="navbar navbar-expand navbar-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" routerLinkActive="active" routerLink="/home">Home</a>
+        <a class="nav-link" routerLinkActive="active" routerLink="/faq">Faq</a>
+      </div>
+    </div>
+  </nav>
+</div>
+<router-outlet></router-outlet>
+>>>>>>> Stashed changes
