@@ -44,4 +44,9 @@ public class UserPreferance {
     public void setDarkMode(boolean darkMode) {
         this.darkMode = darkMode;
     }
+
+    @Override
+    public String toString() {
+        return "Id: " + id + " Email? : (" + emailNotifiation + ") DarkMode? : (" + darkMode + ")";
+    }
 }

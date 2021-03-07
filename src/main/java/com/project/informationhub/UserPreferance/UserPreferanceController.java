@@ -2,6 +2,8 @@ package com.project.informationhub.UserPreferance;
 
 import java.util.List;
 
+import com.project.informationhub.NotFoundException;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,8 +35,8 @@ public class UserPreferanceController {
 
     @GetMapping("/{id}")
     public UserPreferance one(@PathVariable Long id) {
-        return repository.findById(id).get();
-                    // .orElseThrow(() -> new UserPreferanceNotFoundException(id));
+        return repository.findById(id)
+                .orElseThrow(() -> new NotFoundException(id));
     }
 
     @PutMapping(value="/{id}")

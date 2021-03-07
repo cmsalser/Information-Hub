@@ -2,6 +2,8 @@ package com.project.informationhub.FAQ;
 
 import java.util.List;
 
+import com.project.informationhub.NotFoundException;
+
 // import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,20 +39,20 @@ public class FAQController {
     @GetMapping("/{id}")
     public FAQ one(@PathVariable Long id) {
         return repository.findById(id)
-                    .orElseThrow(() -> new FAQNotFoundException(id));
+                    .orElseThrow(() -> new NotFoundException(id));
     }
 
     @PutMapping(value="/{id}")
     public FAQ putMethodName(@PathVariable Long id, @RequestBody FAQ newFAQ) {
         return repository.findById(id)
                     .map(FAQ -> {
-                    FAQ.setQuestion(newFAQ.getQuesiton());
-                    FAQ.setAnswer(newFAQ.getAnswer());
-                    return repository.save(FAQ);
+                        FAQ.setQuestion(newFAQ.getQuesiton());
+                        FAQ.setAnswer(newFAQ.getAnswer());
+                        return repository.save(FAQ);
                     })
                     .orElseGet(() -> {
-                    newFAQ.setId(id);
-                    return repository.save(newFAQ);
+                        newFAQ.setId(id);
+                        return repository.save(newFAQ);
                     });
     }
 
@@ -58,5 +60,4 @@ public class FAQController {
     public void deleteFAQ(@PathVariable Long id) {
         repository.deleteById(id);
     }
-    
 }
