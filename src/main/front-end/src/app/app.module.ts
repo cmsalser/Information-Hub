@@ -9,6 +9,14 @@ import { HomeComponent } from './home/home.component';
 import { FaqComponent } from './faq/faq.component';
 import { FaqEditComponent } from './faq/faq-edit/faq-edit.component';
 import { UserComponent } from './user/user.component';
+import {RouterModule, Routes} from "@angular/router";
+
+const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'home'},
+  { path: 'home', component: HomeComponent},
+  { path: 'auth', component: AuthComponent},
+  { path: 'faq', component: FaqComponent}
+];
 
 @NgModule({
   declarations: [
@@ -21,9 +29,9 @@ import { UserComponent } from './user/user.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    RouterModule.forRoot(routes),
     FormsModule,
-    HttpClientModule 
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
