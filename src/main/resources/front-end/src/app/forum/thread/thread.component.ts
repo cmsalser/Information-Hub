@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Thread } from '../../models/thread.model';
-import { Comment } from '../../models/comment.model';
+import { Post } from '../../models/post.model';
 import { ActivatedRoute, Params, Router} from "@angular/router";
 import { ForumService } from '../forum.service';
 
@@ -11,7 +11,7 @@ import { ForumService } from '../forum.service';
 })
 export class ThreadComponent implements OnInit {
   thread = {} as Thread;
-  comments: Comment[] = [];
+  posts: Post[] = [];
 
   constructor(private ForumService: ForumService, private Route: ActivatedRoute, private Router: Router) { }
 
@@ -24,10 +24,10 @@ export class ThreadComponent implements OnInit {
             this.thread = data;
           })
 
-          this.ForumService.getComments(+params['id'])
+          this.ForumService.getPosts(+params['id'])
           .subscribe(
             (comments: any[]) => {
-              this.comments = comments;
+              this.posts = comments;
             })
       })
   }

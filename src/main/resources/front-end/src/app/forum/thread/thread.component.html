@@ -2,13 +2,14 @@
     <div class="jumbotron">
         <h1>{{ thread.title }}</h1>
         <p>{{ thread.body }}</p>
+        <a class="btn btn-sm btn-outline-secondary"  [routerLink]="['/thread/edit/', thread.id]">Edit</a>
     </div>
-    <li *ngFor="let comment of comments" class="list-group-item clearfix">
+    <li *ngFor="let post of posts" class="list-group-item clearfix">
         <div class="row">
-            <p>{{ comment.body }}</p>
+            <p>{{ post.body }}</p>
         </div>
         <div class="row">
-            <p style="font-size: smaller">{{ comment.email }}</p>
+            <p style="font-size: smaller">{{ post.email }}</p>
         </div>
     </li>
 </div>

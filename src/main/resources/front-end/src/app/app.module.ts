@@ -11,6 +11,7 @@ import { FaqEditComponent } from './faq/faq-edit/faq-edit.component';
 import { UserComponent } from './user/user.component';
 import { ForumComponent } from './forum/forum.component';
 import { ThreadComponent } from './forum/thread/thread.component';
+import { ThreadEditComponent } from './forum/thread-edit/thread-edit.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ThreadComponent } from './forum/thread/thread.component';
     FaqEditComponent,
     UserComponent,
     ForumComponent,
-    ThreadComponent
+    ThreadComponent,
+    ThreadEditComponent
   ],
   imports: [
     BrowserModule,

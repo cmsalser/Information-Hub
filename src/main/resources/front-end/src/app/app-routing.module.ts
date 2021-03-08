@@ -7,16 +7,18 @@ import { FaqEditComponent } from './faq/faq-edit/faq-edit.component';
 import { UserComponent } from "./user/user.component";
 import { ForumComponent } from './forum/forum.component';
 import { ThreadComponent } from './forum/thread/thread.component';
+import { ThreadEditComponent } from './forum/thread-edit/thread-edit.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home'},
   { path: 'forum', component: ForumComponent },
-  { path: 'forum/:id', component: ThreadComponent },
+  { path: 'thread/:id', component: ThreadComponent },
+  { path: 'thread/edit/:id', component: ThreadEditComponent },
   { path: 'user', component: UserComponent },
+  { path: 'faq', component: FaqComponent },
   { path: 'faq/edit/:id', component: FaqEditComponent },
-  { path: 'home', component: HomeComponent},
-  { path: 'auth', component: AuthComponent},
-  { path: 'faq', component: FaqComponent}
+  { path: 'home', component: HomeComponent },
+  { path: 'auth', component: AuthComponent }
 ];
 
 @NgModule({

@@ -16,7 +16,7 @@ export class ForumService {
     return this.Http.get('https://jsonplaceholder.typicode.com/posts/' + id);
   }
 
-  getComments(id) {
+  getPosts(id) {
     return this.Http.get('https://jsonplaceholder.typicode.com/comments?postId=' + id);
   }
 }
