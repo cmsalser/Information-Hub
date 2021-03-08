@@ -1,0 +1,14 @@
+<div class="container">
+    <ul class="list-group">
+        <li *ngFor="let thread of threads" class="list-group-item clearfix" id="postsList">
+            <div class="row">
+                <h3>{{thread.title}}</h3>
+            </div>
+            <div class="row">
+                <div class="ml-auto">
+                    <a class="btn btn-sm btn-outline-secondary"  [routerLink]="['/forum/', thread.id]">View</a>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

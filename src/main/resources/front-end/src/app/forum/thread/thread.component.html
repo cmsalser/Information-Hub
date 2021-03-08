@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="jumbotron">
+        <h1>{{ thread.title }}</h1>
+        <p>{{ thread.body }}</p>
+    </div>
+    <li *ngFor="let comment of comments" class="list-group-item clearfix">
+        <div class="row">
+            <p>{{ comment.body }}</p>
+        </div>
+        <div class="row">
+            <p style="font-size: smaller">{{ comment.email }}</p>
+        </div>
+    </li>
+</div>

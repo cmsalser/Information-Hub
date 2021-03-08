@@ -9,6 +9,8 @@ import { HomeComponent } from './home/home.component';
 import { FaqComponent } from './faq/faq.component';
 import { FaqEditComponent } from './faq/faq-edit/faq-edit.component';
 import { UserComponent } from './user/user.component';
+import { ForumComponent } from './forum/forum.component';
+import { ThreadComponent } from './forum/thread/thread.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { UserComponent } from './user/user.component';
     HomeComponent,
     FaqComponent,
     FaqEditComponent,
-    UserComponent
+    UserComponent,
+    ForumComponent,
+    ThreadComponent
   ],
   imports: [
     BrowserModule,
