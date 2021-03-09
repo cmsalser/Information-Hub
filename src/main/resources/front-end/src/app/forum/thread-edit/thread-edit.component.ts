@@ -26,5 +26,20 @@ export class ThreadEditComponent implements OnInit {
 
   sendEdit() {
     console.log(this.editedThread);
+    const body = JSON.stringify(this.editedThread);
+
+    this.ForumService.editThread(body, this.editedThread.id)
+      .subscribe(
+        (data) => {
+          console.log(data);
+        });
+
+    this.Router.navigateByUrl('/thread/' + this.editedThread.id);
+  }
+
+  deleteThread() {
+    this.ForumService.deleteThread(this.editedThread.id);
+    console.log("Thread id: " + this.editedThread.id + " deleted");
+    this.Router.navigateByUrl('/forum');
   }
 }
