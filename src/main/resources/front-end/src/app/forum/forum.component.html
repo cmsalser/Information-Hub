@@ -1,5 +1,8 @@
 <div class="container">
     <ul class="list-group">
+        <div class="row">
+            <a class="nav-link" routerLinkActive="active" routerLink="/thread-add">Add Thread</a>
+        </div>
         <li *ngFor="let thread of threads" class="list-group-item clearfix">
             <div class="row">
                 <a class="btn btn-lg" [routerLink]="['/thread/', thread.id]">

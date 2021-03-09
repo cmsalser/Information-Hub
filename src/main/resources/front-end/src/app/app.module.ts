@@ -13,6 +13,7 @@ import { ForumComponent } from './forum/forum.component';
 import { ThreadComponent } from './forum/thread/thread.component';
 import { ThreadEditComponent } from './forum/thread-edit/thread-edit.component';
 import { PostEditComponent } from './forum/post-edit/post-edit.component';
+import { ThreadAddComponent } from './forum/thread-add/thread-add.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { PostEditComponent } from './forum/post-edit/post-edit.component';
     ForumComponent,
     ThreadComponent,
     ThreadEditComponent,
-    PostEditComponent
+    PostEditComponent,
+    ThreadAddComponent
   ],
   imports: [
     BrowserModule,

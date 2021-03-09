@@ -24,6 +24,10 @@ export class ForumService {
     return this.Http.patch('https://jsonplaceholder.typicode.com/posts/' + id, body);
   }
 
+  addThread(body, id) {
+    console.log(body + " " + id)
+  }
+
   getPosts(id) {
     return this.Http.get('https://jsonplaceholder.typicode.com/comments?postId=' + id);
   }
