@@ -19,6 +19,5 @@ export class AuthComponent implements OnInit {
     this.AuthService.authenticate(this.credentials, () => {
         this.router.navigateByUrl('/');
     });
-    return false;
   }
 }
