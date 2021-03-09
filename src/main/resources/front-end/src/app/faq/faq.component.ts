@@ -25,9 +25,4 @@ export class FaqComponent implements OnInit {
   isAdmin() {
     return this.AuthService.adminStatus;
   }
-
-  deleteFaq(id) {
-    this.faqs = this.faqs.filter(
-        faq => faq.id !== id);
-  }
 }

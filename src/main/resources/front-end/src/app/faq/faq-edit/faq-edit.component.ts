@@ -10,15 +10,13 @@ import { FaqService } from '../faq.service';
 })
 export class FaqEditComponent implements OnInit {
   faq = {} as Faq;
-  id: number;
 
   constructor(private FaqService: FaqService, private Route: ActivatedRoute, private Router: Router) { }
 
   ngOnInit(): void {
     this.Route.params.subscribe(
       (params: Params) => {
-        this.id = +params['id'];
-        this.FaqService.getFaqByID(this.id)
+        this.FaqService.getFaqByID(+params['id'])
           .subscribe(
             (data: Faq) => {
               this.faq = data;
@@ -26,4 +24,22 @@ export class FaqEditComponent implements OnInit {
       })
   }
 
+  sendEdit() {
+    console.log(this.faq);
+    const body = JSON.stringify(this.faq);
+
+    this.FaqService.editFaq(body, this.faq.id)
+      .subscribe(
+        (data) => {
+          console.log(data);
+        });
+
+    this.Router.navigateByUrl('/faq');
+  }
+
+  deleteFaq() {
+    this.FaqService.deleteFaq(this.faq.id);
+    console.log("Faq id: " + this.faq.id + " deleted");
+    this.Router.navigateByUrl('/faq');
+  }
 }

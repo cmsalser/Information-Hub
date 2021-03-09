@@ -15,4 +15,12 @@ export class FaqService {
   getFaqByID(id) {
     return this.http.get('https://jsonplaceholder.typicode.com/posts/' + id);
   }
+
+  editFaq(body, id) {
+    return this.http.patch('https://jsonplaceholder.typicode.com/posts/' + id, body);
+  }
+
+  deleteFaq(id) {
+    return this.http.delete('https://jsonplaceholder.typicode.com/posts/' + id);
+  }
 }
