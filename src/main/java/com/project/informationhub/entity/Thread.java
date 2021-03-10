@@ -1,23 +1,31 @@
-package com.project.informationhub;
+package com.project.informationhub.model;
 
 import java.util.Date;
 /**
  * 
- * Class maintaing information about a post
+ * @author Class for storing information about threads
  *
  */
-public class Post {
+public class Thread {
+	
+	private int accountID;
 	private int threadID;
-	private String commentID;
 	private String title;
 	private String description;
+	private String newDesc;
+	private boolean anonymous;
 	private Date timestampCreated;
 	private Date timestampEdited;
 	private boolean stickied;
 	
-	public boolean createPost(int threadID, String commentID, String title,String description) {
-		///TODO
+	public boolean createThread(int threadID,int accountID,String title,String description) {
 		return true;
+	
+	}
+	
+	public boolean createPost(String title,String description) {
+		return true;
+		
 	}
 	
 	public void setTitle(String title) {
@@ -37,14 +45,13 @@ public class Post {
 	}
 	
 	public void updatePost(String newDesc, String description) {
-		///TODO
+		
 	}
 	
 	public void deletePost(int threadID) {
-		// Delete post for that threadID in database
-		///TODO
+		
 	}
-	
+
 	public boolean getStickied() {
 		return stickied;
 	}
@@ -53,5 +60,7 @@ public class Post {
 	public void setStickied(boolean stickied) {
 		this.stickied = stickied;
 	}
+	
+	
 
 }
