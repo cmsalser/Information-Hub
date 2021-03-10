@@ -25,11 +25,11 @@ class LoadDatabase {
   CommandLineRunner initDatabase(FAQRepository FAQRepo, ContactUsRepository ContactUsRepo, UserPreferanceRepository UserPreferanceRepo) {
 
     return args -> {
-      log.info("Preloading " + FAQRepo.save(new FAQ("Q1", "yes")));
+      // log.info("Preloading " + FAQRepo.save(new FAQ("Q1", "yes")));
       
-      log.info("Preloading " + ContactUsRepo.save(new ContactUs("u@gmail.com", "A contact", "9013")));
+      // log.info("Preloading " + ContactUsRepo.save(new ContactUs("u@gmail.com", "A contact", "9013")));
 
-      log.info("Preloading " + UserPreferanceRepo.save(new UserPreferance(true, false)));
+      // log.info("Preloading " + UserPreferanceRepo.save(new UserPreferance(true, false)));
     };
   }
 }
