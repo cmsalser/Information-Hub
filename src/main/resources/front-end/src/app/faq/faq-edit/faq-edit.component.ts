@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { FaqService } from '../faq/faq.service';
-import { Faq } from '../models/faq.model';
+import { FaqService } from '../faq.service';
+import { Faq } from '../../models/faq.model';
 
 @Component({
   selector: 'app-faq-edit',

@@ -8,7 +8,7 @@ import { AuthComponent } from './auth/auth.component';
 import { HomeComponent } from './home/home.component';
 import { FaqComponent } from './faq/faq.component';
 import { UserComponent } from './user/user.component';
-import { FaqEditComponent } from './faq-edit/faq-edit.component';
+import { FaqEditComponent } from './faq/faq-edit/faq-edit.component';
 
 @NgModule({
   declarations: [
