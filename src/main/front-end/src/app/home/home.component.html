@@ -8,30 +8,13 @@
 
     <!-- Navigation Bar-->
   <nav class="navbar navbar-dark bg-primary">
-    <a href="#" class="navbar-brand"> InformationHub</a> 
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"> About Us</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"> Information and Support</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"> Discussion Forum</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"> Calendar and Events</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"> FAQ</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"> Contact Us</a>
-      </li>
 
+    <a href="#" class="navbar-brand">InformationHub</a> 
+
+    <ul class="navbar-nav mr-auto">
+      <li *ngFor="let items of menuItems" class="nav-item">
+        <a class="nav-link" href="#"> {{items.linkName}} <span class="sr-only">(current)</span></a>
+      </li>
       <!-- User : drop down button in navigation bar-->
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
