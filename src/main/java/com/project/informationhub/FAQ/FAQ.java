@@ -24,7 +24,7 @@ public class FAQ {
         this.answer = answer;
     }
 
-    public String getQuesiton() {
+    public String getQuestion() {
         return question;
     }
 
