@@ -7,9 +7,9 @@ import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
 import { HomeComponent } from './home/home.component';
 import { FaqComponent } from './faq/faq.component';
-import { FaqEditComponent } from './faq/faq-edit/faq-edit.component';
 import { UserComponent } from './user/user.component';
 import {AuthService} from "./auth/auth.service";
+import { FaqEditComponent } from './faq/faq-edit/faq-edit.component';
 
 @NgModule({
   declarations: [
@@ -17,8 +17,8 @@ import {AuthService} from "./auth/auth.service";
     AuthComponent,
     HomeComponent,
     FaqComponent,
+    UserComponent,
     FaqEditComponent,
-    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +26,7 @@ import {AuthService} from "./auth/auth.service";
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

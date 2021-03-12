@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.project.informationhub.NotFoundException;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 // import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 
 @RestController
+// @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(value = "/FAQ")
 public class FAQController {
 
@@ -46,7 +48,7 @@ public class FAQController {
     public FAQ putMethodName(@PathVariable Long id, @RequestBody FAQ newFAQ) {
         return repository.findById(id)
                     .map(FAQ -> {
-                        FAQ.setQuestion(newFAQ.getQuesiton());
+                        FAQ.setQuestion(newFAQ.getQuestion());
                         FAQ.setAnswer(newFAQ.getAnswer());
                         return repository.save(FAQ);
                     })
