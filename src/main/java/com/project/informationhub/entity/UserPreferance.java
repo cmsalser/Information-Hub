@@ -1,4 +1,4 @@
-package com.project.informationhub.UserPreferance;
+package com.project.informationhub.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

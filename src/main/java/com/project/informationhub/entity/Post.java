@@ -1,12 +1,19 @@
-package com.project.informationhub.model;
+package com.project.informationhub.entity;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Temporal;
 /**
@@ -18,8 +25,9 @@ import javax.persistence.Temporal;
 public class Post {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "COMMENT_ID")
-	private int commentId;
+	private long id;
 	
 	@Column(name = "THREAD_ID")
 	//@PrimaryKeyJoinColumn
@@ -38,14 +46,21 @@ public class Post {
 	private Date timestampEdited;
 	
 	@Column(name = "STICKIED")
-	boolean stickied;
+	private boolean stickied;
 	
-	public int getCommentId() {
-		return commentId;
+	@JoinColumn(name = "PARENT_POST_ID")
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Post post;	
+	
+	@OneToMany(mappedBy = "post")
+	private Set<PostUpvotes> upvotes= new HashSet<>();
+
+	public long getId() {
+		return id;
 	}
 
-	public void setCommentId(int commentId) {
-		this.commentId = commentId;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public int getThreadID() {
@@ -95,7 +110,22 @@ public class Post {
 	public void setStickied(boolean stickied) {
 		this.stickied = stickied;
 	}
-	
+
+	public Post getPost() {
+		return post;
+	}
+
+	public void setPost(Post post) {
+		this.post = post;
+	}
+
+	public Set<PostUpvotes> getUpvotes() {
+		return upvotes;
+	}
+
+	public void setUpvotes(Set<PostUpvotes> upvotes) {
+		this.upvotes = upvotes;
+	}
 	
 	
 	

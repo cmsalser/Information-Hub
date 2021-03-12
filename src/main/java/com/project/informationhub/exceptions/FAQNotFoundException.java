@@ -1,4 +1,4 @@
-package com.project.informationhub.FAQ;
+package com.project.informationhub.exceptions;
 
 public class FAQNotFoundException extends RuntimeException{
     

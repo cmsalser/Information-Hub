@@ -1,6 +1,8 @@
-package com.project.informationhub.User;
+package com.project.informationhub.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.project.informationhub.entity.User;
 
 import java.util.Optional;
 

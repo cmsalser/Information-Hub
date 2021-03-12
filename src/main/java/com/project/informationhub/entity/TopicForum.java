@@ -1,4 +1,4 @@
-package com.project.informationhub;
+package com.project.informationhub.entity;
 
 /**
  * Class for storing information about a TopicForum

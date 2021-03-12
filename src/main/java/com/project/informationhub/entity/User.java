@@ -1,4 +1,4 @@
-package com.project.informationhub.User;
+package com.project.informationhub.entity;
 
 import javax.persistence.*;
 import java.util.Date;

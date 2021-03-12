@@ -1,4 +1,4 @@
-package com.project.informationhub.FAQ;
+package com.project.informationhub.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;

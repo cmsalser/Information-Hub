@@ -1,4 +1,4 @@
-package com.project.informationhub.model;
+package com.project.informationhub.entity;
 
 import java.util.Date;
 /**

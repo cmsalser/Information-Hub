@@ -2,14 +2,19 @@ package com.project.informationhub.service;
 
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.informationhub.model.Post;
+import com.project.informationhub.dto.ResponseDto;
+import com.project.informationhub.entity.Post;
+import com.project.informationhub.entity.PostUpvotes;
 import com.project.informationhub.repository.PostRepository;
+import com.project.informationhub.repository.PostUpvotesRepository;
+import com.project.informationhub.utils.Constants;
 
 
 
@@ -20,36 +25,91 @@ public class PostService {
 	@Autowired
 	private PostRepository postRepository;
 	
-	public int createPost(Post post)
+	@Autowired
+	private PostUpvotesRepository postUpvotesRepository;
+	
+	public long createPost(Post post)
 	{
 		Post newPost = postRepository.save(post);
 		
-		return newPost.getCommentId();
+		return newPost.getId();
 	}
 	
-	public int updatePost(Post post)
+	public long updatePost(Post post)
 	{
-		if(post.getCommentId() == 0) {
+		if(post.getId() == 0) {
 			return 0;
 		}
 		Post updatedPost = postRepository.save(post);
 		
-		return updatedPost.getCommentId();
+		return updatedPost.getId();
 		
 		
 	}
 	
-	public Optional<Post> get(int postId)
+	public Optional<Post> get(long postId)
 	{
+		
 		return postRepository.findById(postId);
 	}
 	
-	public void delete(int postId)
+	public ResponseDto getPostByThread(int threadId)
+	{	
+		ResponseDto responseDto = new ResponseDto();
+		responseDto.setCode(200);
+		responseDto.setStatus(Constants.STATUS_SUCCESS);
+		List<Post> posts = postRepository.findByThreadID(threadId);
+		posts.sort((Post p1, Post p2)-> Integer.compare(p1.getUpvotes().size(), p2.getUpvotes().size()));
+		responseDto.setData(posts);
+		return responseDto;
+		
+	}
+	
+	public ResponseDto upvotePost(long postId, long userId)
+	{	
+		ResponseDto responseDto = new ResponseDto();
+		
+		Optional<Post> isPost = get(postId);
+		if(isPost.isPresent()) {
+			PostUpvotes postUpvotes = postUpvotesRepository.findByUserIdAndPostId(userId, isPost.get());
+			if(Objects.isNull(postUpvotes)) {
+				responseDto.setStatus(Constants.STATUS_SUCCESS);
+				responseDto.setCode(200);
+				PostUpvotes updatePostVotes = new PostUpvotes();
+				updatePostVotes.setPost(isPost.get());
+				updatePostVotes.setUserId(userId);
+				postUpvotesRepository.save(updatePostVotes);
+			} 
+			else {
+				responseDto.setStatus(Constants.STATUS_IGNORED);
+				responseDto.setCode(201);
+				responseDto.setMessage("already upvoted");
+			}
+			
+			
+		} 
+		else {
+			responseDto.setStatus(Constants.STATUS_FAILED);
+			responseDto.setCode(404);
+		}
+		return responseDto;
+	}
+	
+	public ResponseDto delete(long postId)
 	{
+		ResponseDto response = new ResponseDto();
 		Optional<Post>  optionalPost = get(postId);
 		if(optionalPost.isPresent()) {
+			response.setCode(200);
+			response.setStatus(Constants.STATUS_SUCCESS);
 			 postRepository.deleteById(postId);
+		} 
+		else {
+			response.setCode(404);
+			response.setMessage("Post id incorrect");
+			response.setStatus(Constants.STATUS_FAILED);
 		}
+		return response;
 		
 	}
 	
