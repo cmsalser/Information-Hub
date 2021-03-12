@@ -9,15 +9,29 @@ import { Router } from "@angular/router";
 })
 export class AuthComponent implements OnInit {
   credentials = {username: '', password: ''};
+  //
+  // constructor(private authService: AuthService, private router: Router) {}
+  //
+  // ngOnInit(): void {
+  // }
+  //
+  // login() {
+  //   this.authService.authenticate(this.credentials, () => {
+  //     this.router.navigateByUrl('/');
+  //   });
+  //   return false;
+  // }
 
-  constructor(private AuthService: AuthService, private router: Router) { }
+  constructor(private router: Router,
+              private loginservice: AuthService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
   login() {
-    this.AuthService.authenticate(this.credentials, () => {
-        this.router.navigateByUrl('/');
-    });
+    if (this.loginservice.authenticate(this.credentials.username, this.credentials.password)
+    ) {
+      this.router.navigate([''])
+    }
   }
 }
