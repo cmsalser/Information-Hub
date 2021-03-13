@@ -36,9 +36,6 @@ public class Role {
         this.id = my_tag_id;
         this.user_id = my_user_id;
         this.name = name;
-
-
-
     }
 
 
