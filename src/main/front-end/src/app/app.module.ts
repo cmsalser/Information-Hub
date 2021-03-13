@@ -28,6 +28,9 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     FormsModule,
     HttpClientModule
   ],
+ // exports: [
+  //  SignUpComponent
+//  ],
   providers: [],
   bootstrap: [AppComponent]
 })

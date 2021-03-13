@@ -38,6 +38,9 @@
     </li>
   </ul>
   <div class="nav-item">
+    <a class="btn btn-outline-secondary" routerLinkActive="active" routerLink="/sign-up">Sign Up</a> 
+  </div>
+  <div class="nav-item">
     <div *ngIf="authenticated(); then thenBlock else elseBlock"></div>
     <ng-template #thenBlock><a class="btn btn-outline-secondary" (click)="logout()">Logout</a></ng-template>
     <ng-template #elseBlock><a class="btn btn-outline-secondary" routerLinkActive="active" routerLink="/auth">Login</a></ng-template>
