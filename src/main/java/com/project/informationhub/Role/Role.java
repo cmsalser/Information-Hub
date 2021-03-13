@@ -36,6 +36,9 @@ public class Role {
         this.id = my_tag_id;
         this.user_id = my_user_id;
         this.name = name;
+
+
+
     }
 
 
@@ -67,6 +70,6 @@ public class Role {
         if (!(o instanceof Role))
             return false;
         Role other = (Role)o;
-        return (other.user_id.equals(this.user_id) && other.name == this.name);
+        return (other.user_id.equals(this.user_id) && other.name.equals(this.name));
     }
 }
