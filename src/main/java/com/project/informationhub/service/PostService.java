@@ -1,5 +1,6 @@
 package com.project.informationhub.service;
 
+import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
@@ -30,6 +31,8 @@ public class PostService {
 	
 	public long createPost(Post post)
 	{
+		post.setTimestampCreated(new Date());
+		post.setTimestampEdited(new Date());
 		Post newPost = postRepository.save(post);
 		
 		return newPost.getId();
@@ -40,6 +43,8 @@ public class PostService {
 		if(post.getId() == 0) {
 			return 0;
 		}
+		post.setTimestampCreated(new Date());
+		post.setTimestampEdited(new Date());
 		Post updatedPost = postRepository.save(post);
 		
 		return updatedPost.getId();
@@ -71,7 +76,7 @@ public class PostService {
 		
 		Optional<Post> isPost = get(postId);
 		if(isPost.isPresent()) {
-			PostUpvotes postUpvotes = postUpvotesRepository.findByUserIdAndPostId(userId, isPost.get());
+			PostUpvotes postUpvotes = postUpvotesRepository.findByUserIdAndPost(userId, isPost.get());
 			if(Objects.isNull(postUpvotes)) {
 				responseDto.setStatus(Constants.STATUS_SUCCESS);
 				responseDto.setCode(200);

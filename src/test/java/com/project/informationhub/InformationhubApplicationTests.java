@@ -34,7 +34,7 @@ class InformationhubApplicationTests {
 	@Test
 	void createPost() {
 		post = new Post();
-		post.setId(1);
+		post.setId(1l);
 		post.setDescription("My post");
 		post.setTitle("My post title");
 		post.setThreadID(1);
@@ -45,12 +45,39 @@ class InformationhubApplicationTests {
 	
 	@Test
 	void fetchPost() {
-		Optional<Post> isPost= postservice.get(1);
+		Optional<Post> isPost= postservice.get(10);
 		System.out.println("Do we have post with id 1? "+ isPost.isPresent());
-		assertEquals(true, isPost.isPresent());
+		assertEquals(false, isPost.isPresent());
 		ResponseDto response = postservice.getPostByThread(1);
 		System.out.println("with standard response "+ response);
 		assertEquals(200, response.getCode());
+	}
+	
+	@Test
+	void upVotePost() {
+		ResponseDto response =postservice.upvotePost(3l, 2l);
+		
+		System.out.println("upvote response "+response);
+		assertEquals(200, response.getCode());
+		ResponseDto response1 =postservice.upvotePost(3l, 2l);
+		System.out.println("upvote duplicate "+response1);
+		assertEquals(201, response1.getCode());
+	}
+	
+	@Test
+	void deletePost() {
+		ResponseDto response =postservice.delete(12l);
+		System.out.println("delete incorrect response "+response);
+		assertEquals(404, response.getCode());
+		post = new Post();
+		post.setId(1l);
+		post.setDescription("My post");
+		post.setTitle("My post title");
+		post.setThreadID(1);
+		long postId = postservice.createPost(post);
+		ResponseDto response1 =postservice.delete(postId);
+		System.out.println("delete correct response "+response1);
+		assertEquals(200, response1.getCode());
 	}
 	
 

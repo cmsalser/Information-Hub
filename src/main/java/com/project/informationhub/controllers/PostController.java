@@ -23,8 +23,6 @@ import com.project.informationhub.service.PostService;
 @RequestMapping("post")
 public class PostController {
 	
-	
-	
 	@Autowired
 	private PostService postService;
 	
@@ -37,7 +35,7 @@ public class PostController {
 	@PutMapping
 	public long updatePost(@RequestBody Post post)
 	{
-		return postService.createPost(post);
+		return postService.updatePost(post);
 			
 	}
 	

@@ -7,6 +7,6 @@ import com.project.informationhub.entity.PostUpvotes;
 
 public interface PostUpvotesRepository extends JpaRepository<PostUpvotes, Long>{
 	
-	PostUpvotes findByUserIdAndPostId(long userId, Post post);
+	PostUpvotes findByUserIdAndPost(long userId, Post post);
 
 }

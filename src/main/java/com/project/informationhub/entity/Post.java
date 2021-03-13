@@ -27,7 +27,7 @@ public class Post {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "COMMENT_ID")
-	private long id;
+	private Long id;
 	
 	@Column(name = "THREAD_ID")
 	//@PrimaryKeyJoinColumn
@@ -48,18 +48,18 @@ public class Post {
 	@Column(name = "STICKIED")
 	private boolean stickied;
 	
-	@JoinColumn(name = "PARENT_POST_ID")
-	@ManyToOne(cascade = CascadeType.ALL)
-	private Post post;	
+	//@JoinColumn(name = "PARENT_POST_ID", nullable = true)
+	//@ManyToOne(cascade = CascadeType.ALL)
+	//private Post post;
 	
 	@OneToMany(mappedBy = "post")
 	private Set<PostUpvotes> upvotes= new HashSet<>();
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -111,13 +111,13 @@ public class Post {
 		this.stickied = stickied;
 	}
 
-	public Post getPost() {
-		return post;
-	}
-
-	public void setPost(Post post) {
-		this.post = post;
-	}
+//	public Post getPost() {
+//		return post;
+//	}
+//
+//	public void setPost(Post post) {
+//		this.post = post;
+//	}
 
 	public Set<PostUpvotes> getUpvotes() {
 		return upvotes;
