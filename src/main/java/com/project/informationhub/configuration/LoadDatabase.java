@@ -19,14 +19,14 @@ class LoadDatabase {
   private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
   @Bean
-  CommandLineRunner initDatabase(FAQRepository FAQRepo, ContactUsRepository ContactUsRepo, UserPreferenceRepository UserPreferanceRepo) {
+  CommandLineRunner initDatabase(FAQRepository FAQRepo, ContactUsRepository ContactUsRepo, UserPreferenceRepository UserPreferenceRepo) {
 
     return args -> {
       // log.info("Preloading " + FAQRepo.save(new FAQ("Q1", "yes")));
       
       // log.info("Preloading " + ContactUsRepo.save(new ContactUs("u@gmail.com", "A contact", "9013")));
 
-      // log.info("Preloading " + UserPreferanceRepo.save(new UserPreferance(true, false)));
+      // log.info("Preloading " + UserPreferenceRepo.save(new UserPreferance(true, false)));
     };
   }
 }
