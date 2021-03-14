@@ -10,6 +10,7 @@ import { FaqComponent } from './faq/faq.component';
 import { UserComponent } from './user/user.component';
 import {AuthService} from "./auth/auth.service";
 import { FaqEditComponent } from './faq/faq-edit/faq-edit.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { FaqEditComponent } from './faq/faq-edit/faq-edit.component';
     FaqComponent,
     UserComponent,
     FaqEditComponent,
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,6 +28,9 @@ import { FaqEditComponent } from './faq/faq-edit/faq-edit.component';
     FormsModule,
     HttpClientModule
   ],
+ // exports: [
+  //  SignUpComponent
+//  ],
   providers: [],
   bootstrap: [AppComponent]
 })
