@@ -7,7 +7,7 @@ import java.util.Collection;
 
 public class CustomUserDetails implements UserDetails {
 
-    private int id;
+    private long id;
     private String username;
     private String password;
 
@@ -17,7 +17,7 @@ public class CustomUserDetails implements UserDetails {
         this.password = user.getPassword();
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

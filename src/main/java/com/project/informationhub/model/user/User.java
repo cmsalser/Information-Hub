@@ -9,31 +9,34 @@ import java.util.Date;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
 
     private String username;
+
     private String firstname;
     private String lastname;
     private String password;
+
+    @Column(unique=true)
     private String email;
+
     private String phoneNumber;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date birthday;
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+//    private Date birthday;
 
     public User() {
 
     }
 
-    public User(String username, String firstname, String lastname, String password, String email, String phoneNumber
-                , Date birthday) {
+    public User(String username, String firstname, String lastname, String password, String email, String phoneNumber) {
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
         this.password = password;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.birthday = birthday;
+//        this.birthday = birthday;
     }
 
     public String getUsername() {
@@ -60,11 +63,11 @@ public class User {
         return phoneNumber;
     }
 
-    public Date getBirthday() {
-        return birthday;
-    }
+//    public Date getBirthday() {
+//        return birthday;
+//    }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -92,11 +95,11 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
+//    public void setBirthday(Date birthday) {
+//        this.birthday = birthday;
+//    }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 }

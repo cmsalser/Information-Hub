@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/userPreferance")
+@RequestMapping(value = "/userPreference")
 public class UserPreferenceController {
     
     private final UserPreferenceRepository repository;

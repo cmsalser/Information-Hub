@@ -15,7 +15,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public User show(@PathVariable Integer id) {
+    public User show(@PathVariable long id) {
         return repository.findById(id).get();
     }
 
