@@ -1,5 +1,6 @@
 package com.project.informationhub;
 
+import com.project.informationhub.repository.UserRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
