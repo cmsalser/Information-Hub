@@ -33,7 +33,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user/{userId}/**").access("@userSecurity.hasUserId(authentication, #userId)")
                 .and()
                 .formLogin()
-                .successHandler(loginUrlAuthenticationSuccessHandler())
+                // commented line below does redirect to user/id of the authenticated user.
+                // uncomment if you want this functionality on the backend
+                //.successHandler(loginUrlAuthenticationSuccessHandler())
                 .and()
                 .logout();
     }
