@@ -1,4 +1,4 @@
-package com.project.informationhub.FAQ;
+package com.project.informationhub.model;
 
 import java.util.Objects;
 

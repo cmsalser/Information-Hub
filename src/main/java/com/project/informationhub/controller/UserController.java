@@ -1,8 +1,8 @@
-package com.project.informationhub.User;
+package com.project.informationhub.controller;
 
+import com.project.informationhub.model.user.User;
+import com.project.informationhub.repository.UserRepository;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/users")

@@ -1,8 +1,7 @@
-package com.project.informationhub;
+package com.project.informationhub.handler;
 
-import com.project.informationhub.User.CustomUserDetails;
+import com.project.informationhub.model.user.CustomUserDetails;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import javax.servlet.FilterChain;

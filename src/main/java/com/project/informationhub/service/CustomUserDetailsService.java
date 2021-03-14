@@ -1,5 +1,8 @@
-package com.project.informationhub.User;
+package com.project.informationhub.service;
 
+import com.project.informationhub.model.user.CustomUserDetails;
+import com.project.informationhub.model.user.User;
+import com.project.informationhub.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

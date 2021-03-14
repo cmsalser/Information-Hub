@@ -1,4 +1,4 @@
-package com.project.informationhub;
+package com.project.informationhub.exception;
 
 public class NotFoundException extends RuntimeException {
     

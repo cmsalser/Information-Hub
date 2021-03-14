@@ -1,10 +1,11 @@
-package com.project.informationhub.FAQ;
+package com.project.informationhub.controller;
 
 import java.util.List;
 
-import com.project.informationhub.NotFoundException;
+import com.project.informationhub.model.FAQ;
+import com.project.informationhub.repository.FAQRepository;
+import com.project.informationhub.exception.NotFoundException;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
 // import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

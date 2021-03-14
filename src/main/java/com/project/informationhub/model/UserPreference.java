@@ -1,11 +1,11 @@
-package com.project.informationhub.UserPreferance;
+package com.project.informationhub.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class UserPreferance {
+public class UserPreference {
     
     @Id
     @GeneratedValue
@@ -14,9 +14,9 @@ public class UserPreferance {
     private boolean emailNotifiation;
     private boolean darkMode;
 
-    public UserPreferance() {}
+    public UserPreference() {}
 
-    public UserPreferance(boolean emailNotifiation, boolean darkMode) {
+    public UserPreference(boolean emailNotifiation, boolean darkMode) {
         this.emailNotifiation = emailNotifiation;
         this.darkMode = darkMode;
     }

@@ -1,8 +1,10 @@
-package com.project.informationhub.ContactUs;
+package com.project.informationhub.controller;
 
 import java.util.List;
 
-import com.project.informationhub.NotFoundException;
+import com.project.informationhub.model.ContactUs;
+import com.project.informationhub.repository.ContactUsRepository;
+import com.project.informationhub.exception.NotFoundException;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

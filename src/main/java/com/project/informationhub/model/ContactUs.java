@@ -1,4 +1,4 @@
-package com.project.informationhub.ContactUs;
+package com.project.informationhub.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -1,11 +1,8 @@
 package com.project.informationhub;
 
-import com.project.informationhub.FAQ.FAQ;
-import com.project.informationhub.FAQ.FAQRepository;
-import com.project.informationhub.UserPreferance.UserPreferance;
-import com.project.informationhub.UserPreferance.UserPreferanceRepository;
-import com.project.informationhub.ContactUs.ContactUs;
-import com.project.informationhub.ContactUs.ContactUsRepository;
+import com.project.informationhub.repository.FAQRepository;
+import com.project.informationhub.repository.UserPreferenceRepository;
+import com.project.informationhub.repository.ContactUsRepository;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +19,7 @@ class LoadDatabase {
   private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
   @Bean
-  CommandLineRunner initDatabase(FAQRepository FAQRepo, ContactUsRepository ContactUsRepo, UserPreferanceRepository UserPreferanceRepo) {
+  CommandLineRunner initDatabase(FAQRepository FAQRepo, ContactUsRepository ContactUsRepo, UserPreferenceRepository UserPreferanceRepo) {
 
     return args -> {
       // log.info("Preloading " + FAQRepo.save(new FAQ("Q1", "yes")));

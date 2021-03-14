@@ -1,5 +1,6 @@
-package com.project.informationhub;
+package com.project.informationhub.configuration;
 
+import com.project.informationhub.handler.LoginUrlAuthenticationSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;

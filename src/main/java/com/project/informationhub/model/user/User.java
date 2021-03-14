@@ -1,4 +1,4 @@
-package com.project.informationhub.User;
+package com.project.informationhub.model.user;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
