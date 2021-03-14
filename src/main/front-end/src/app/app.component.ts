@@ -10,16 +10,16 @@ import { Router } from "@angular/router";
 export class AppComponent {
   title = 'front-end';
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private AuthService: AuthService, private router: Router) {
   }
 
   logout(){
-    this.authService.logOut();
+    console.log('logout');
+    this.AuthService.logout();
     this.router.navigateByUrl('/auth');
   }
 
   authenticated() {
-    console.log(this.authService.authenticated);
-    return this.authService.authenticated;
+    return this.AuthService.authenticated;
   }
 }
