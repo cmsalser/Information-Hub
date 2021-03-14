@@ -21,6 +21,6 @@ public class LoginUrlAuthenticationSuccessHandler implements AuthenticationSucce
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
         CustomUserDetails userDetails = (CustomUserDetails)authentication.getPrincipal();
 
-        httpServletResponse.sendRedirect("/users/" + userDetails.getId());
+        httpServletResponse.sendRedirect("/user/" + userDetails.getId());
     }
 }

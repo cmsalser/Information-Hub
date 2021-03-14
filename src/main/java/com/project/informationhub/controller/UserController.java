@@ -5,7 +5,7 @@ import com.project.informationhub.repository.UserRepository;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/users")
+@RequestMapping(value = "/user")
 public class UserController {
 
     private final UserRepository repository;

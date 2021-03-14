@@ -1,4 +1,4 @@
-package com.project.informationhub;
+package com.project.informationhub.configuration;
 
 import com.project.informationhub.repository.FAQRepository;
 import com.project.informationhub.repository.UserPreferenceRepository;
