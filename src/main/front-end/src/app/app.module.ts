@@ -12,6 +12,7 @@ import {AuthService} from "./auth/auth.service";
 import { FaqEditComponent } from './faq/faq-edit/faq-edit.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

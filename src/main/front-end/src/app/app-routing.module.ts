@@ -7,6 +7,7 @@ import { UserComponent } from "./user/user.component";
 import { FaqEditComponent } from './faq/faq-edit/faq-edit.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 
+
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home'},
   { path: 'user', component: UserComponent },
