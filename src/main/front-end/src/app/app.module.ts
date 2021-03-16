@@ -7,16 +7,11 @@ import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
 import { HomeComponent } from './home/home.component';
 import { FaqComponent } from './faq/faq.component';
-import { FaqEditComponent } from './faq/faq-edit/faq-edit.component';
 import { UserComponent } from './user/user.component';
-import {RouterModule, Routes} from "@angular/router";
+import {AuthService} from "./auth/auth.service";
+import { FaqEditComponent } from './faq/faq-edit/faq-edit.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
-const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'home'},
-  { path: 'home', component: HomeComponent},
-  { path: 'auth', component: AuthComponent},
-  { path: 'faq', component: FaqComponent}
-];
 
 @NgModule({
   declarations: [
@@ -24,15 +19,19 @@ const routes: Routes = [
     AuthComponent,
     HomeComponent,
     FaqComponent,
+    UserComponent,
     FaqEditComponent,
-    UserComponent
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes),
+    AppRoutingModule,
     FormsModule,
     HttpClientModule
   ],
+ // exports: [
+  //  SignUpComponent
+//  ],
   providers: [],
   bootstrap: [AppComponent]
 })
