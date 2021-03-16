@@ -1,54 +1,63 @@
 package com.project.informationhub.model;
 
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Temporal;
+import javax.persistence.OneToMany;
+
 /**
- * 
+ *
  * Class maintaining information about a post
  *
  */
 @Entity
 public class Post {
-	
+
 	@Id
-//	@Column(name = "COMMENT_ID")
-	private long commentId;
-	
-//	@Column(name = "THREAD_ID")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	//@Column(name = "COMMENT_ID")
+	private Long id;
+
+	//@Column(name = "THREAD_ID")
 	//@PrimaryKeyJoinColumn
-	private long threadID;
-	
-//	@Column(name = "TITLE")
+	private int threadID;
+
+	//@Column(name = "TITLE")
 	private String title;
-	
-//	@Column(name = "DESCRIPTION")
+
+	//@Column(name = "DESCRIPTION")
 	private String description;
-	
-//	@Column(name = "CREATE_DATE")
+
+	//@Column(name = "CREATE_DATE")
 	private Date timestampCreated;
-	
-//	@Column(name = "UPDATE_DATE")
+
+	//@Column(name = "UPDATE_DATE")
 	private Date timestampEdited;
-	
-//	@Column(name = "STICKIED")
-	boolean stickied;
-	
-	public long getCommentId() {
-		return commentId;
+
+	//@Column(name = "STICKIED")
+	private boolean stickied;
+
+	//@JoinColumn(name = "PARENT_POST_ID", nullable = true)
+	//@ManyToOne(cascade = CascadeType.ALL)
+	//private Post post;
+
+	@OneToMany(mappedBy = "post")
+	private Set<PostUpvotes> upvotes= new HashSet<>();
+
+	public Long getId() {
+		return id;
 	}
 
-	public void setCommentId(int commentId) {
-		this.commentId = commentId;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public long getThreadID() {
+	public int getThreadID() {
 		return threadID;
 	}
 
@@ -95,8 +104,20 @@ public class Post {
 	public void setStickied(boolean stickied) {
 		this.stickied = stickied;
 	}
-	
-	
-	
-	
+
+//	public Post getPost() {
+//		return post;
+//	}
+//
+//	public void setPost(Post post) {
+//		this.post = post;
+//	}
+
+	public Set<PostUpvotes> getUpvotes() {
+		return upvotes;
+	}
+
+	public void setUpvotes(Set<PostUpvotes> upvotes) {
+		this.upvotes = upvotes;
+	}
 }

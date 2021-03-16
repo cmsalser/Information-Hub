@@ -2,8 +2,6 @@ package com.project.informationhub.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.informationhub.model.TopicForum;
 import com.project.informationhub.repository.TopicForumRepository;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/topicforum")
