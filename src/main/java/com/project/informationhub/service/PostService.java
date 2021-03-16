@@ -100,6 +100,36 @@ public class PostService {
 		return responseDto;
 	}
 	
+	public ResponseDto stickiedPost(long postId)
+	{	
+		ResponseDto responseDto = new ResponseDto();
+		
+		Optional<Post> isPost = get(postId);
+		if(isPost.isPresent()) {
+			List<Post> posts = postRepository.findByThreadIDAndStickied(isPost.get().getThreadID(), Boolean.TRUE);
+			if(Objects.isNull(posts) || posts.isEmpty()) {
+				Post post = isPost.get();
+				post.setStickied(Boolean.TRUE);
+				postRepository.save(post);
+				responseDto.setStatus(Constants.STATUS_SUCCESS);
+				responseDto.setCode(200);
+				
+			} 
+			else {
+				responseDto.setStatus(Constants.STATUS_IGNORED);
+				responseDto.setCode(201);
+				responseDto.setMessage("already stickied post is available");
+			}
+			
+			
+		} 
+		else {
+			responseDto.setStatus(Constants.STATUS_FAILED);
+			responseDto.setCode(404);
+		}
+		return responseDto;
+	}
+	
 	public ResponseDto delete(long postId)
 	{
 		ResponseDto response = new ResponseDto();

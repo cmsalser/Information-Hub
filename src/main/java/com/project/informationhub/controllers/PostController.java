@@ -63,6 +63,12 @@ public class PostController {
 		return postService.upvotePost(postId, userId);
 	}
 	
+	@PutMapping("/stickied/{postId}")
+	public ResponseDto stickiedPost(@PathVariable long postId)
+	{
+		return postService.stickiedPost(postId);
+	}
+	
 	
 	@DeleteMapping("/{postId}")
 	public ResponseDto delete(@PathVariable int postId)

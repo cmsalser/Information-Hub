@@ -14,14 +14,14 @@ public class PostUpvotes {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "POST_UPVOTE_ID")
+	//@Column(name = "POST_UPVOTE_ID")
 	private Long id;
 	
 	@ManyToOne
-	@JoinColumn(name = "POST_ID", referencedColumnName = "COMMENT_ID")
+	@JoinColumn(name = "postId", referencedColumnName = "id")
 	private Post post;
 	
-	@Column(name = "USER_ID")
+	//@Column(name = "USER_ID")
 	private long userId;
 
 

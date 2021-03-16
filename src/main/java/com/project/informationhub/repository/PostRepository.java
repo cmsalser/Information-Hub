@@ -15,5 +15,9 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 	List<Post> findByTitleContainingOrDescriptionContaining(String word, String word1);
 	
 	List<Post> findByThreadID(int threadId);
+	
+	List<Post> findByThreadIDAndStickied(int threadId, boolean sticked);
+	
+	
 
 }

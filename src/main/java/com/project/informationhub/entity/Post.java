@@ -26,26 +26,26 @@ public class Post {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "COMMENT_ID")
+	//@Column(name = "COMMENT_ID")
 	private Long id;
 	
-	@Column(name = "THREAD_ID")
+	//@Column(name = "THREAD_ID")
 	//@PrimaryKeyJoinColumn
 	private int threadID;
 	
-	@Column(name = "TITLE")
+	//@Column(name = "TITLE")
 	private String title;
 	
-	@Column(name = "DESCRIPTION")
+	//@Column(name = "DESCRIPTION")
 	private String description;
 	
-	@Column(name = "CREATE_DATE")
+	//@Column(name = "CREATE_DATE")
 	private Date timestampCreated;
 	
-	@Column(name = "UPDATE_DATE")
+	//@Column(name = "UPDATE_DATE")
 	private Date timestampEdited;
 	
-	@Column(name = "STICKIED")
+	//@Column(name = "STICKIED")
 	private boolean stickied;
 	
 	//@JoinColumn(name = "PARENT_POST_ID", nullable = true)
