@@ -1,31 +1,33 @@
 package com.project.informationhub.service;
 
 import java.util.Date;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
 
+import com.project.informationhub.model.Post;
+import com.project.informationhub.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.informationhub.dto.ResponseDto;
-import com.project.informationhub.entity.Post;
-import com.project.informationhub.entity.PostUpvotes;
-import com.project.informationhub.repository.PostRepository;
+import com.project.informationhub.model.PostUpvotes;
 import com.project.informationhub.repository.PostUpvotesRepository;
 import com.project.informationhub.utils.Constants;
 
-
-
 @Service
 public class PostService {
-	
-	
+
 	@Autowired
 	private PostRepository postRepository;
 	
+//<<<<<<< HEAD
+//	public long createPost(Post post)
+//	{
+//		Post newPost = postRepository.save(post);
+//
+//		return newPost.getCommentId();
+//=======
 	@Autowired
 	private PostUpvotesRepository postUpvotesRepository;
 	
@@ -40,6 +42,14 @@ public class PostService {
 	
 	public long updatePost(Post post)
 	{
+//<<<<<<< HEAD
+//		if(post.getCommentId() == 0) {
+//			return 0;
+//		}
+//		Post updatedPost = postRepository.save(post);
+//
+//		return updatedPost.getCommentId();
+//=======
 		if(post.getId() == 0) {
 			return 0;
 		}
@@ -48,10 +58,21 @@ public class PostService {
 		Post updatedPost = postRepository.save(post);
 		
 		return updatedPost.getId();
-		
-		
 	}
 	
+//<<<<<<< HEAD
+//	public Optional<Post> get(int postId)
+//	{
+//		return postRepository.findById(postId);
+//	}
+//
+//	public void delete(int postId)
+//	{
+//		Optional<Post>  optionalPost = get(postId);
+//		if(optionalPost.isPresent()) {
+//			 postRepository.deleteById(postId);
+//		}
+//=======
 	public Optional<Post> get(long postId)
 	{
 		
@@ -133,7 +154,7 @@ public class PostService {
 	public ResponseDto delete(long postId)
 	{
 		ResponseDto response = new ResponseDto();
-		Optional<Post>  optionalPost = get(postId);
+		Optional<Post> optionalPost = get(postId);
 		if(optionalPost.isPresent()) {
 			response.setCode(200);
 			response.setStatus(Constants.STATUS_SUCCESS);
@@ -145,7 +166,6 @@ public class PostService {
 			response.setStatus(Constants.STATUS_FAILED);
 		}
 		return response;
-		
 	}
 	
 	public List<Post> searchPostByWord(String word)
@@ -159,8 +179,8 @@ public class PostService {
 //				postIds.add(post.getId());
 //			}
 //		}
-//		
-//		
+//
+//
 //		for(Post post : posts)
 //		{
 //			if( post.getDescription().contains(word))
@@ -168,15 +188,9 @@ public class PostService {
 //				postIds.add(post.getId());
 //			}
 //		}
-//		
-//		
+//
+//
 //		return postIds;
-		
-	}
-	
-	
-	
-	
-	
 
+	}
 }

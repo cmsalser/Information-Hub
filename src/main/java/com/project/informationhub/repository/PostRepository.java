@@ -2,12 +2,10 @@ package com.project.informationhub.repository;
 
 import java.util.List;
 
+import com.project.informationhub.model.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-
-import com.project.informationhub.entity.Post;
-
 
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
@@ -17,7 +15,4 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 	List<Post> findByThreadID(int threadId);
 	
 	List<Post> findByThreadIDAndStickied(int threadId, boolean sticked);
-	
-	
-
 }

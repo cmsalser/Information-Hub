@@ -1,0 +1,22 @@
+<div class="container">
+    <a class="btn btn-sm btn-outline-secondary" [routerLink]="['/faq-edit/']">Add</a>
+    <ul class="list-group">
+        <li *ngFor="let faq of faqs" class="list-group-item clearfix" id="postsList">
+            <div class="row">
+                <h3>{{faq.question}}</h3>
+            </div>
+            <div class="row">
+                <p>{{faq.answer}}</p>
+            </div>
+            <div class="row">
+                <div class="ml-auto">
+                    <div class="text-right" *ngIf="isAdmin(); then thenBlock"></div>
+                    <ng-template #thenBlock>
+                        <a class="btn btn-sm btn-outline-secondary" (click)="deleteFaq(faq.id)">Delete</a>
+                        <a class="btn btn-sm btn-outline-secondary" [routerLink]="['/faq-edit/',faq.id]">Edit</a>
+                    </ng-template>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

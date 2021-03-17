@@ -1,9 +1,8 @@
 package com.project.informationhub.security;
 
+import com.project.informationhub.model.user.CustomUserDetails;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
-
-import com.project.informationhub.User.CustomUserDetails;
 
 @Component("userSecurity")
 public class UserSecurity {
