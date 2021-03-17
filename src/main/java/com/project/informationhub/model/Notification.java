@@ -1,4 +1,4 @@
-package com.project.informationhub.entity;
+package com.project.informationhub.model;
 
 import java.util.Date;
 import java.util.HashSet;

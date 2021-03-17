@@ -11,9 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.informationhub.dto.ResponseDto;
-import com.project.informationhub.entity.Notification;
-import com.project.informationhub.entity.Post;
-import com.project.informationhub.entity.PostUpvotes;
+import com.project.informationhub.model.Notification;
+import com.project.informationhub.model.Post;
+import com.project.informationhub.model.PostUpvotes;
 import com.project.informationhub.repository.NotificationRepository;
 import com.project.informationhub.repository.PostRepository;
 import com.project.informationhub.repository.PostUpvotesRepository;

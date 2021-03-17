@@ -1,4 +1,4 @@
-package com.project.informationhub.controllers;
+package com.project.informationhub.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.informationhub.dto.ResponseDto;
-import com.project.informationhub.entity.Notification;
-import com.project.informationhub.entity.Post;
+import com.project.informationhub.model.Notification;
+import com.project.informationhub.model.Post;
 import com.project.informationhub.service.NotificationService;
 import com.project.informationhub.service.PostService;
 
