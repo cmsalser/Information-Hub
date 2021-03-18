@@ -44,6 +44,9 @@ public class User {
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
 	private Set<Thread> threads = new HashSet<>();
 
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+	private Set<Media> media = new HashSet<>();
+
     public String getUsername() {
         return username;
     }
