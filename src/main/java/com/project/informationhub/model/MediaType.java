@@ -1,4 +1,4 @@
-package com.project.informationhub.entity;
+package com.project.informationhub.model;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -13,29 +13,25 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "MEDIA_TYPE")
+@Table(name = "media_type")
 public class MediaType {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "MEDIATYPE_ID")
+	@Column(name = "mediatype_id")
 	private Long mediaTypeId;
-	@Column(name = "MEDIATYPE_NAME")
+
+	@Column(name = "mediatype_name")
 	private String mediaTypeName;
+
 	@OneToMany(mappedBy = "mediaType",cascade = CascadeType.ALL)
 	private Set<Media> medias= new HashSet<>();
 	
-	/**
-	 * @return the medias
-	 */
-	public Set<Media> getMedias() {
-		return medias;
+	public Set<Media> getMedia() {
+		return media;
 	}
 
-	/**
-	 * @param medias the medias to set
-	 */
-	public void setMedias(Set<Media> medias) {
-		this.medias = medias;
+	public void setMedia(Set<Media> media) {
+		this.media = media;
 	}
 
 	public MediaType() {
@@ -44,27 +40,19 @@ public class MediaType {
 	public MediaType(String mediaTypeName) {
 		this.mediaTypeName = mediaTypeName;
 	}
-	/**
-	 * @return the mediaTypeId
-	 */
+	
 	public Long getMediaTypeId() {
 		return mediaTypeId;
 	}
-	/**
-	 * @param mediaTypeId the mediaTypeId to set
-	 */
+	
 	public void setMediaTypeId(Long mediaTypeId) {
 		this.mediaTypeId = mediaTypeId;
 	}
-	/**
-	 * @return the mediaTypeName
-	 */
+	
 	public String getMediaTypeName() {
 		return mediaTypeName;
 	}
-	/**
-	 * @param mediaTypeName the mediaTypeName to set
-	 */
+
 	public void setMediaTypeName(String mediaTypeName) {
 		this.mediaTypeName = mediaTypeName;
 	}

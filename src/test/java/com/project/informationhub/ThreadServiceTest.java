@@ -1,9 +1,10 @@
 package com.project.informationhub;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
@@ -15,10 +16,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 import com.project.informationhub.dto.ThreadDTO;
-import com.project.informationhub.model.Thread;
-import com.project.informationhub.model.User;
 import com.project.informationhub.exception.ThreadNotFoundException;
+import com.project.informationhub.model.Thread;
+import com.project.informationhub.model.user.User;
 import com.project.informationhub.repository.UserRepository;
+import com.project.informationhub.service.ThreadService;
 
 @Transactional
 @SpringBootTest

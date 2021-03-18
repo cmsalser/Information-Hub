@@ -39,7 +39,6 @@ public class MediaServiceTest {
 	public void findByIdTest() {
 		MediaType mediaType = new MediaType("pdf");
 		MediaType dbMediaType = mediaTypeRepository.save(mediaType);
-		
 		User user = new User();
 		user.setFirstname("Edis");
 		user.setLastname("Emin");
@@ -61,7 +60,6 @@ public class MediaServiceTest {
 	public void createMediaTest() {
 		MediaType mediaType = new MediaType("pdf");
 		MediaType dbMediaType = mediaTypeRepository.save(mediaType);
-		
 		User user = new User();
 		user.setFirstname("Edis");
 		user.setLastname("Emin");
@@ -80,7 +78,6 @@ public class MediaServiceTest {
 	public void updateMediaTest() {
 		MediaType mediaType = new MediaType("pdf");
 		MediaType dbMediaType = mediaTypeRepository.save(mediaType);
-		
 		User user = new User();
 		user.setFirstname("Edis");
 		user.setLastname("Emin");
@@ -104,7 +101,6 @@ public class MediaServiceTest {
 	public void deleteMediaTest() {
 		MediaType mediaType = new MediaType("pdf");
 		MediaType dbMediaType = mediaTypeRepository.save(mediaType);
-		
 		User user = new User();
 		user.setFirstname("Edis");
 		user.setLastname("Emin");
@@ -128,7 +124,6 @@ public class MediaServiceTest {
 	public void findByUserIdTest() {
 		MediaType mediaType = new MediaType("pdf");
 		MediaType dbMediaType = mediaTypeRepository.save(mediaType);
-		
 		User user = new User();
 		user.setFirstname("Edis");
 		user.setLastname("Emin");

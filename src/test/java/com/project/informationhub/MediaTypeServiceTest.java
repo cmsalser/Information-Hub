@@ -27,24 +27,19 @@ public class MediaTypeServiceTest {
 	public void createMediaTypeTest() {
 		MediaType mediaType = new MediaType("pdf");
 		MediaType dbMediaType = mediaTypeService.createMediaType(mediaType);
-		
 		assertEquals("pdf", dbMediaType.getMediaTypeName());
 		assertNotNull(dbMediaType.getMediaTypeId());		
-		
+			
 	}
 	
 	@Test
 	public void findAllTest() {
 		MediaType mediaType1 = new MediaType("pdf");
 		mediaTypeService.createMediaType(mediaType1);
-		
 		MediaType mediaType2 = new MediaType("mp3");
 		mediaTypeService.createMediaType(mediaType2);
-		
 		List<MediaType> mediaTypes = mediaTypeService.findAll();
-		
-		assertTrue(mediaTypes.size()==2);
-		
+		assertTrue(mediaTypes.size()==2);	
 		
 	}
 

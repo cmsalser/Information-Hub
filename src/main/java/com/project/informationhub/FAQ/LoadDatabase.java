@@ -6,6 +6,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.project.informationhub.model.FAQ;
+import com.project.informationhub.repository.FAQRepository;
+
 // THIS IS MEANT TO MAKE "DUMMY DATA" FOR TESTING
 // Will create 2 Data objects for FAQ everytime the system runs.
 

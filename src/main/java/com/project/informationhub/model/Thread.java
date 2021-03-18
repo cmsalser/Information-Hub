@@ -24,7 +24,7 @@ import com.project.informationhub.model.user.User;
  *
  */
 @Entity
-@Table(name = "Thread")
+@Table(name = "thread")
 public class Thread implements Serializable{
 	
 	

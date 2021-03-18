@@ -1,4 +1,4 @@
-package com.project.informationhub.UserPreferance;
+package com.project.informationhub.controller;
 
 import java.util.List;
 

@@ -1,5 +1,6 @@
-package com.project.informationhub.User;
+package com.project.informationhub.security;
 
+import com.project.informationhub.model.user.CustomUserDetails;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 

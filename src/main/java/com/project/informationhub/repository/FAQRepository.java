@@ -1,7 +1,8 @@
-package com.project.informationhub.FAQ;
+package com.project.informationhub.repository;
 
+import com.project.informationhub.model.FAQ;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-interface FAQRepository extends JpaRepository<FAQ, Long> {
+public interface FAQRepository extends JpaRepository<FAQ, Long> {
     
 }
