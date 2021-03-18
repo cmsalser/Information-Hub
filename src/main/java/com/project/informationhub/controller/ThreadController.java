@@ -1,6 +1,5 @@
-package com.informationHub.controller;
+package com.project.informationhub.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,60 +12,57 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.informationHub.exception.ThreadNotFoundException;
-import com.informationHub.repository.ThreadRepository;
+import com.project.informationhub.dto.ThreadDTO;
+import com.project.informationhub.service.ThreadService;
 
 @RestController
 @RequestMapping(value = "/thread")
 public class ThreadController {
 	
 	@Autowired	
-	ThreadRepository threadRepository;
+	ThreadService threadService;
 	
 	@PostMapping("")
-    public com.informationHub.entity.Thread createThread(@RequestBody com.informationHub.entity.Thread newThread) {
-		newThread.setTimestampCreated(new Date());
-		newThread.setTimestampEdited(new Date());
-        return threadRepository.save(newThread);
+    public com.project.informationhub.model.Thread createThread(@RequestBody ThreadDTO newThread) {
+		return threadService.createThread(newThread);
     }
 	
 	@GetMapping("/{threadId}")
-	public com.informationHub.entity.Thread findById(@PathVariable(value = "threadId") int threadId){
-		return threadRepository.findById(threadId).orElseThrow(() -> new ThreadNotFoundException(threadId));
+	public com.project.informationhub.model.Thread findById(@PathVariable(value = "threadId") Long threadId){
+		return threadService.findById(threadId);
 		
 	}
 	
 	@GetMapping("/account/{accountId}")
-	public com.informationHub.entity.Thread findByAccountId(@PathVariable(value = "accountId") int accountId){
-		return threadRepository.findByAccountID(accountId).orElseThrow(() -> new ThreadNotFoundException(accountId));
+	public List<com.project.informationhub.model.Thread> findByAccountId(@PathVariable(value = "accountId") Long accountId){
+		return threadService.findByAccountId(accountId);
 		
 	}
 	
 	@GetMapping("")
-	public List<com.informationHub.entity.Thread> findAll(){
-		return threadRepository.findAll();
+	public List<com.project.informationhub.model.Thread> findAll(){
+		return threadService.findAll();
 		
 	}
 	
 	@PutMapping(value="/{threadId}")
-    public com.informationHub.entity.Thread updateThread(@PathVariable int threadId, @RequestBody com.informationHub.entity.Thread newThread) {
-        return threadRepository.findById(threadId)
-                    .map(dbThread -> {
-                    	dbThread.setTitle(newThread.getTitle());
-                    	dbThread.setDescription(newThread.getDescription());
-                    	dbThread.setStickied(newThread.getStickied());
-                    	dbThread.setTimestampEdited(new Date());
-                        return threadRepository.save(dbThread);
-                    })
-                    .orElseGet(() -> {                    	
-                        return threadRepository.save(newThread);
-                    });
+    public com.project.informationhub.model.Thread updateThread(@PathVariable Long threadId, @RequestBody ThreadDTO newThread) {
+        return threadService.updateThread(threadId, newThread);
     }
 	
+	@PutMapping(value ="/stickied/{threadId}")
+	public com.project.informationhub.model.Thread setStickied(@PathVariable Long threadId){
+		return threadService.setStickied(threadId);
+	}
+	
+	
+	
 	@DeleteMapping("/{threadId}")
-    public void deleteThread(@PathVariable int threadId) {
-		threadRepository.deleteById(threadId);
+    public void deleteThread(@PathVariable Long threadId) {
+		threadService.deleteThread(threadId);
     }
+	
+	
 	
 
 }

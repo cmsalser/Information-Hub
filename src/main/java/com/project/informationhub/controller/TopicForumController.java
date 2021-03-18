@@ -1,4 +1,4 @@
-package com.informationHub.controller;
+package com.project.informationhub.controller;
 
 import java.util.List;
 
@@ -11,25 +11,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.informationHub.entity.TopicForum;
-import com.informationHub.repository.TopicForumRepository;
+import com.project.informationhub.model.TopicForum;
+import com.project.informationhub.service.TopicForumService;
 
 @RestController
 @RequestMapping(value = "/topicforum")
 public class TopicForumController {
 	
 	@Autowired	
-	TopicForumRepository topicForumRepository;
+	TopicForumService TopicForumService;
 	
 	@PostMapping("")
 	public TopicForum createTopic(@Valid @RequestBody TopicForum topic) {
 		
-		return topicForumRepository.save(topic);
+		return TopicForumService.createTopic(topic);
 	}
 	
 	@GetMapping("")
 	public List<TopicForum> findAll(){
-		return topicForumRepository.findAll();
+		return TopicForumService.findAll();
 		
 	}
 
