@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.project.informationhub.model.user.User;
 /**
  * 
  * @author Class for storing information about threads
@@ -33,7 +34,7 @@ public class Thread implements Serializable{
 	private Long threadID;
 	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "ACCOUNT_ID", referencedColumnName = "id")
+	@JoinColumn(name = "account_id", referencedColumnName = "id")
 	private User user;
 
 	@Column(name = "title")
