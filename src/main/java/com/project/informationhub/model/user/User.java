@@ -11,32 +11,33 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @Column(length = 45, unique = true)
     private String username;
 
     private String firstname;
     private String lastname;
     private String password;
 
-    @Column(unique=true)
+    @Column(length = 45, unique = true)
     private String email;
 
     private String phoneNumber;
 
-//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-//    private Date birthday;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private Date birthday;
 
     public User() {
 
     }
 
-    public User(String username, String firstname, String lastname, String password, String email, String phoneNumber) {
+    public User(String username, String firstname, String lastname, String password, String email, String phoneNumber, Date birthday) {
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
         this.password = password;
         this.email = email;
         this.phoneNumber = phoneNumber;
-//        this.birthday = birthday;
+        this.birthday = birthday;
     }
 
     public String getUsername() {
@@ -63,9 +64,9 @@ public class User {
         return phoneNumber;
     }
 
-//    public Date getBirthday() {
-//        return birthday;
-//    }
+    public Date getBirthday() {
+        return birthday;
+    }
 
     public long getId() {
         return id;
@@ -95,9 +96,9 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-//    public void setBirthday(Date birthday) {
-//        this.birthday = birthday;
-//    }
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
 
     public void setId(long id) {
         this.id = id;

@@ -28,7 +28,8 @@ class LoadDatabase {
 //      log.info("Preloading " + threadRepository.save(new Thread(1, "Title", "Description", "new desc", false,
 //      false)));
 
-//      log.info("Preloading " + user.save(new User("username", "firstname", "lastname", "password", "email", "phoneNumber")));
+//      log.info("Preloading " + user.save(new User("usr", "firstname", "lastname", "pass", "dk@hotmail.com", "phoneNumber", new Date(1998, 9, 12))));
+//      log.info("Preloading " + user.save(new User("usr", "firstname", "lastname", "pass", "dk@hotmail.com", "phoneNumber", new Date(1998, 9, 12))));
 
 //       log.info("Preloading " + FAQRepo.save(new FAQ("Q1", "yes")));
       
