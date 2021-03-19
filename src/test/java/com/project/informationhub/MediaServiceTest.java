@@ -16,7 +16,7 @@ import org.springframework.test.context.ActiveProfiles;
 import com.project.informationhub.dto.MediaDTO;
 import com.project.informationhub.entity.Media;
 import com.project.informationhub.entity.MediaType;
-import com.project.informationhub.entity.User;
+import com.project.informationhub.model.user.User;
 import com.project.informationhub.exception.MediaNotFoundException;
 import com.project.informationhub.repository.MediaTypeRepository;
 import com.project.informationhub.repository.UserRepository;

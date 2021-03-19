@@ -25,8 +25,7 @@ public class MediaTypeIntegrationTest {
 	
 	@Test
     public void createMediaTypeTest()   throws Exception {    
-        
-
+		
     	mvc.perform(post("/mediatype").contentType(MediaType.APPLICATION_JSON).content(
 				"{\"mediaTypeName\": \"pdf\"}")).andExpect(
 						status().isOk()).andExpect(jsonPath("$.mediaTypeName").value("pdf")) .andReturn();	

@@ -21,7 +21,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.web.util.NestedServletException;
 
-import com.project.informationhub.entity.User;
+import com.project.informationhub.model.user.User;
 import com.project.informationhub.exception.ThreadNotFoundException;
 import com.project.informationhub.repository.UserRepository;
 
