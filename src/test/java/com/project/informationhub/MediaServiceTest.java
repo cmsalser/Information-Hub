@@ -138,9 +138,9 @@ public class MediaServiceTest {
 		mediaService.createMedia(mediaDTO1);
 		mediaService.createMedia(mediaDTO2);
 		
-		List<MediaDTO> medias = mediaService.findByUserId(user.getId());
+		List<MediaDTO> media = mediaService.findByUserId(user.getId());
 		
-		assertTrue(medias.size()==2);
+		assertTrue(media.size()==2);
 	}
 
 }
