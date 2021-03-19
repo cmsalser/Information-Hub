@@ -23,11 +23,11 @@ export class SignUpComponent implements OnInit {
       username: 'Username',
       password: 'Password',
       selectGender: '',
+      email: 'email here',
       conditions: this.fb.group({
         privacyPolicy: false,
         termsAndConditions: false
-      }),
-      email: 'email here'
+      })
     })
   }
 
