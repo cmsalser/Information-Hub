@@ -20,21 +20,26 @@ export class SignUpComponent implements OnInit {
     this.signUpForm = this.fb.group({
       firstName: 'First Name',
       LastName: 'Last Name',
-      username: 'user name',
-      password: 'password',
-      gender: '',
+      username: 'Username',
+      password: 'Password',
+      selectGender: '',
+      email: 'email here',
       conditions: this.fb.group({
         privacyPolicy: false,
         termsAndConditions: false
-      }),
-      email: 'email here'
+      })
     })
   }
 
   onSubmit(): void {
-    console.log(this.signUpForm);
-    
+    console.log(this.signUpForm); 
   }
+// need to fix this drop down selection 
+  selectGender(event): void {
+      this.signUpForm.patchValue({
+        selectGender: event.target.value
+      });
+  } 
 
 
 }
