@@ -14,6 +14,7 @@ import com.project.informationhub.dto.ResponseDto;
 import com.project.informationhub.model.Notification;
 import com.project.informationhub.model.Post;
 import com.project.informationhub.model.PostUpvotes;
+import com.project.informationhub.model.user.User;
 import com.project.informationhub.repository.NotificationRepository;
 import com.project.informationhub.repository.PostRepository;
 import com.project.informationhub.repository.PostUpvotesRepository;
@@ -35,9 +36,8 @@ public class NotificationService {
 	@Autowired
 	UserRepository userRepository;
 	
-//	@Autowired
-//	UserRole
-	
+	@Autowired
+	MailService mailservice;
 	
 	
 	public ResponseDto createNotification (Notification notification)
@@ -45,18 +45,29 @@ public class NotificationService {
 		ResponseDto response = new ResponseDto();
 		notification.setTimestampCreated(new Date());
 		notification.setTimestampEdited(new Date());
-		// set priority based on post upvotes
-		if("webinar".equalsIgnoreCase(notification.getType())) {
-			//send mail to all user level person
-		} else if ("thread".equalsIgnoreCase(notification.getType())) {
-			//get user of thread.
+		if("post".equalsIgnoreCase(notification.getType())) {
 			
-			//get all staff to send email
+		} 
+		Optional<User> optionalUser= userRepository.findById(notification.getAccountId());
+		if(optionalUser.isPresent()) {
+			String email = optionalUser.get().getEmail();
+			mailservice.sendEmail(email, notification.getTitle(), notification.getDescription());
 		}
 		
 		Notification newNotification= notificationRepository.save(notification);
 		//send email for notification
 		response.setData(newNotification);
+		response.setCode(200);
+		return response;
+	}
+	
+	public ResponseDto getNotifications (long userId)
+	{
+		ResponseDto response = new ResponseDto();
+		
+		List<Notification> notifications= notificationRepository.findByAccountId(userId);
+		//send email for notification
+		response.setData(notifications);
 		response.setCode(200);
 		return response;
 	}
@@ -86,6 +97,28 @@ public class NotificationService {
 			response.setCode(404);
 		}
 		return response;
+	}
+	
+	public boolean sendPostNotification(Post post, String subject, String message) {
+		boolean isSent = false;
+		Optional<com.project.informationhub.model.Thread> optionalThread = threadRepository.findByThreadID(post.getThreadID());
+		if(optionalThread.isPresent()) {
+			Optional<User> optionalUser= userRepository.findById(optionalThread.get().getAccountID());
+			if(optionalUser.isPresent()) {
+				String email = optionalUser.get().getEmail();
+				mailservice.sendEmail(email, subject, message);
+				Notification notification = new Notification();
+				notification.setTitle(subject);
+				notification.setType("POST");
+				notification.setDescription(message);
+				notification.setAccountId( optionalUser.get().getId());
+				notification.setTimestampCreated(new Date());
+				notification.setTimestampEdited(new Date());
+				notificationRepository.save(notification);
+				isSent = true;
+			}
+		}
+		return isSent;
 	}
 	
 	

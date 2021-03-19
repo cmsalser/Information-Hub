@@ -15,7 +15,7 @@ public class MailService {
     @Autowired
     private JavaMailSender javaMailSender;
     
-    void sendEmail(String to, String subject, String message) {
+    public void sendEmail(String to, String subject, String message) {
 
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setTo(to);
@@ -27,7 +27,7 @@ public class MailService {
 
     }
     
-    void sendEmail(List<String> to, String subject, String message) {
+    public void sendEmail(List<String> to, String subject, String message) {
 
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setTo(StringUtils.join(to, ","));

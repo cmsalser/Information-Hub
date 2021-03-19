@@ -21,15 +21,12 @@ public class PostService {
 	@Autowired
 	private PostRepository postRepository;
 	
-//<<<<<<< HEAD
-//	public long createPost(Post post)
-//	{
-//		Post newPost = postRepository.save(post);
-//
-//		return newPost.getCommentId();
-//=======
+
 	@Autowired
 	private PostUpvotesRepository postUpvotesRepository;
+	
+	@Autowired
+	NotificationService notificationService;
 	
 	public long createPost(Post post)
 	{
@@ -37,19 +34,14 @@ public class PostService {
 		post.setTimestampEdited(new Date());
 		Post newPost = postRepository.save(post);
 		
+		notificationService.sendPostNotification(newPost, "New Post created", "New post has been created in your thread.");
+		
 		return newPost.getId();
 	}
 	
 	public long updatePost(Post post)
 	{
-//<<<<<<< HEAD
-//		if(post.getCommentId() == 0) {
-//			return 0;
-//		}
-//		Post updatedPost = postRepository.save(post);
-//
-//		return updatedPost.getCommentId();
-//=======
+
 		if(post.getId() == 0) {
 			return 0;
 		}
@@ -59,20 +51,7 @@ public class PostService {
 		
 		return updatedPost.getId();
 	}
-	
-//<<<<<<< HEAD
-//	public Optional<Post> get(int postId)
-//	{
-//		return postRepository.findById(postId);
-//	}
-//
-//	public void delete(int postId)
-//	{
-//		Optional<Post>  optionalPost = get(postId);
-//		if(optionalPost.isPresent()) {
-//			 postRepository.deleteById(postId);
-//		}
-//=======
+
 	public Optional<Post> get(long postId)
 	{
 		

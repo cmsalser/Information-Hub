@@ -12,6 +12,8 @@ import com.project.informationhub.model.Notification;
 @Repository
 public interface NotificationRepository extends JpaRepository<Notification, Long> {
 	Notification findByIdAndAccountId(long notificationId, long accountId);
+	
+	List<Notification> findByAccountId(long accountId);
 
 
 }
