@@ -1,69 +1,101 @@
-<br>
-<br>
-<h1>Sign Up</h1>
-<br> 
-<br>
-<form [formGroup]='signUpForm' (ngSubmit)="onSubmit()">
+<div class="p-md-4 border rounded-3">
+  <div class="pb-3">
+    <h1>Sign Up</h1>
+  </div>
+  <form [formGroup]='signUpForm' (ngSubmit)="onSubmit()">
     <div class="row">
-        <div class="col">
-            <div class="form-group">
-                <label for="firstname">First Name</label>
-                <input type="text" formControlName="firstName" id="firstname" class="form-control">
-                <div class="invalid-feedback">Please fill in details</div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="form-group">
-                <label for="lastname">Last Name</label>
-                <input type="text" formControlName="lastName" id="lastname" class="form-control">
-            </div>
-        </div>
-    </div>
-    <div class="col">
+      <div class="col">
         <div class="form-group">
-            <label for="email"> Email</label>
-            <input type="text" formControlName="email" id="lastname" class="form-control">
+          <input type="text" formControlName="firstname" id="firstname" class="form-control" placeholder="Firstname">
+          <div class="invalid-feedback">Please fill in details</div>
         </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <input type="text" formControlName="lastname" id="lastname" class="form-control" placeholder="Lastname">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                  <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
+                </svg>
+              </span>
+            </div>
+            <input type="text" class="form-control" placeholder="Email" formControlName="email" required>
+          </div>
+          <div class="invalid-feedback">Please enter a valid email address.</div>
+        </div>
+      </div>
     </div>
     <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" formControlName="username" id="username" class="form-control" required>
-        <div class="invalid-feedback">Please enter a valid username.</div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+              <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+            </svg>
+          </span>
+        </div>
+        <input type="text" formControlName="username" id="username" class="form-control" placeholder="Username" required>
+      </div>
+      <div class="invalid-feedback">Please enter a valid username.</div>
     </div>
     <div class="row">
-        <div class="col">
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" formControlName="password" id="password" class="form-control" required>
-                <div class="invalid-feedback">Password must be 8 characters long.</div>
+      <div class="col">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
+                  <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+                </svg>
+              </span>
             </div>
+            <input type="password" formControlName="password" id="password" class="form-control" placeholder="Password" required>
+          </div>
+          <div class="invalid-feedback">Password must be 8 characters long.</div>
         </div>
-        <div class="col">
-            <div class="form-group">
-                <label for="password-confirm">Confirm Password</label>
-                <input type="password" formControlName="password" id="password-confirm" class="form-control" required>
-                <div class="invalid-feedback">Passwords don't match.</div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+                  <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+                </svg>
+              </span>
             </div>
+            <input type="password" formControlName="password" id="password-confirm" class="form-control" placeholder="Confirm password" required>
+          </div>
+          <div class="invalid-feedback">Passwords don't match.</div>
         </div>
+      </div>
     </div>
     <div>
-        <label>Select gender:</label>
-    <select formControlName="selectGender" (change)="selectGender($event)">
-        <option *ngFor="let loc of gender" [ngValue]="gen">{{gen}}
-        </option>
-        <!-- if "not listed" is selected, give the option to fill in value. Need to add this-->
-    </select>
-</div>
-    <div class="form-check">
-        <input type="checkbox" formControlName="privacyPolicy" id="accept-privacy-policy" class="form-check-input">
-        <label for="accept-terms" class="form-check-label">I have read and understood our Privacy Policy</label>
+      <!--      <label>Select gender:</label>-->
+      <!--      <select formControlName="selectGender" (change)="selectGender($event)">-->
+      <!--          <option *ngFor="let loc of gender" [ngValue]="gen">{{gen}}-->
+      <!--          </option>-->
+      <!--          &lt;!&ndash; if "not listed" is selected, give the option to fill in value. Need to add this&ndash;&gt;-->
+      <!--      </select>-->
     </div>
     <div class="form-check">
-        <input type="checkbox" formControlName="termsAndConditions"id="accept-terms" class="form-check-input">
-        <label for="accept-terms" class="form-check-label">Accept Terms &amp; Conditions</label>
+      <input type="checkbox" formControlName="privacyPolicy" id="accept-privacy-policy" class="form-check-input">
+      <label for="accept-privacy-policy" class="form-check-label">I have read and understood our Privacy Policy</label>
+    </div>
+    <div class="form-check">
+      <input type="checkbox" formControlName="termsAndConditions" id="accept-terms" class="form-check-input">
+      <label for="accept-terms" class="form-check-label">Accept Terms &amp; Conditions</label>
     </div>
     <br>
     <button type="submit" class="btn btn-primary">Sign Up</button>
-</form>
-<br>
-<br>
+  </form>
+</div>
