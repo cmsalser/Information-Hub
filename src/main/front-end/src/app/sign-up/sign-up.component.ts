@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
-import {wrapI18nPlaceholder} from "@angular/compiler/src/render3/view/i18n/util";
 
 @Component({
   selector: 'app-sign-up',
