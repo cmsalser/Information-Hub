@@ -12,6 +12,8 @@ import { ThreadComponent } from './forum/thread/thread.component';
 import { ThreadEditComponent } from './forum/thread-edit/thread-edit.component';
 import { PostEditComponent } from './forum/post-edit/post-edit.component';
 import { ThreadAddComponent } from './forum/thread-add/thread-add.component';
+import { CalendarComponent } from './calendar/calendar.component';
+
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home'},
@@ -26,7 +28,9 @@ const routes: Routes = [
   { path: 'faq', component: FaqComponent},
   { path: 'faq-edit', component: FaqEditComponent},
   { path: 'faq-edit/:id', component: FaqEditComponent},
-  { path: 'sign-up', component: SignUpComponent}
+  { path: 'sign-up', component: SignUpComponent},
+  { path: 'calendar', component: CalendarComponent}
+
 ];
 
 @NgModule({
