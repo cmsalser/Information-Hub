@@ -1,6 +1,7 @@
 package com.project.informationhub.model.user;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.project.informationhub.model.Media;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -42,7 +43,7 @@ public class User {
     }
  
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
-	private Set<Thread> threads = new HashSet<>();
+	private Set<com.project.informationhub.model.Thread> threads = new HashSet<>();
 
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
 	private Set<Media> media = new HashSet<>();
@@ -111,11 +112,11 @@ public class User {
         this.id = id;
     }
 
-	public Set<Thread> getThreads() {
+	public Set<com.project.informationhub.model.Thread> getThreads() {
 		return threads;
 	}
 
-	public void setThreads(Set<Thread> threads) {
+	public void setThreads(Set<com.project.informationhub.model.Thread> threads) {
 		this.threads = threads;
 	}
     

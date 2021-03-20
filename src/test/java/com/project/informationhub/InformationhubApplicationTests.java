@@ -32,7 +32,7 @@ class InformationhubApplicationTests {
 		post.setId(1l);
 		post.setDescription("My post");
 		post.setTitle("My post title");
-		post.setThreadID(1);
+		//post.setThreadID(1);
 		long postId = postservice.createPost(post);
 		System.out.println("post created with > " + postId);
 		assertNotEquals(0, postId);
@@ -68,7 +68,7 @@ class InformationhubApplicationTests {
 		post.setId(1l);
 		post.setDescription("My post");
 		post.setTitle("My post title");
-		post.setThreadID(1);
+		//post.setThreadID(1);
 		long postId = postservice.createPost(post);
 		ResponseDto response1 =postservice.delete(postId);
 		System.out.println("delete correct response "+response1);

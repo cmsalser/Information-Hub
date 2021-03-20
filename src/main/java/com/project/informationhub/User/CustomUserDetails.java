@@ -1,13 +1,15 @@
 package com.project.informationhub.User;
 
+import java.util.Collection;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
+import com.project.informationhub.model.user.User;
 
 public class CustomUserDetails implements UserDetails {
 
-    private int id;
+    private long id;
     private String username;
     private String password;
 
@@ -17,7 +19,7 @@ public class CustomUserDetails implements UserDetails {
         this.password = user.getPassword();
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

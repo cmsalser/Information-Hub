@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.informationhub.dto.MediaDTO;
-import com.project.informationhub.entity.Media;
-import com.project.informationhub.entity.MediaType;
-import com.project.informationhub.model.user.User;
 import com.project.informationhub.exception.MediaNotFoundException;
+import com.project.informationhub.model.Media;
+import com.project.informationhub.model.MediaType;
+import com.project.informationhub.model.user.User;
 import com.project.informationhub.repository.MediaRepository;
 import com.project.informationhub.repository.MediaTypeRepository;
 import com.project.informationhub.repository.UserRepository;

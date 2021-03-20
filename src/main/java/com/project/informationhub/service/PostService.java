@@ -127,7 +127,7 @@ public class PostService {
 		
 		Optional<Post> isPost = get(postId);
 		if(isPost.isPresent()) {
-			List<Post> posts = postRepository.findByThreadIDAndStickied(isPost.get().getThreadID(), Boolean.TRUE);
+			List<Post> posts = postRepository.findByThreadIDAndStickied(isPost.get().getThread().getThreadID(), Boolean.TRUE);
 			if(Objects.isNull(posts) || posts.isEmpty()) {
 				Post post = isPost.get();
 				post.setStickied(Boolean.TRUE);

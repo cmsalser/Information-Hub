@@ -1,4 +1,4 @@
-package com.project.informationhub;
+package com.project.informationhub.controller;
 
 import com.project.informationhub.User.CustomUserDetails;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;

@@ -31,10 +31,6 @@ public class Post {
 	@JoinColumn(name = "THREAD_ID", referencedColumnName = "THREAD_ID")
 	private Thread thread;
 
-	//@Column(name = "THREAD_ID")
-	//@PrimaryKeyJoinColumn
-	private int threadID;
-
 	//@Column(name = "TITLE")
 	private String title;
 
@@ -65,13 +61,6 @@ public class Post {
 		this.id = id;
 	}
 
-	public int getThreadID() {
-		return threadID;
-	}
-
-	public void setThreadID(int threadID) {
-		this.threadID = threadID;
-	}
 
 	public String getTitle() {
 		return title;
@@ -79,6 +68,14 @@ public class Post {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public Thread getThread() {
+		return thread;
+	}
+
+	public void setThread(Thread thread) {
+		this.thread = thread;
 	}
 
 	public String getDescription() {

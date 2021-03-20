@@ -14,5 +14,5 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 	
 	List<Post> findByThreadID(int threadId);
 	
-	List<Post> findByThreadIDAndStickied(int threadId, boolean sticked);
+	List<Post> findByThreadIDAndStickied(long threadId, boolean sticked);
 }

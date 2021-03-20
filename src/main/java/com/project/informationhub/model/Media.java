@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.project.informationhub.model.user.User;
+
 @Entity
 @Table(name = "media")
 public class Media {

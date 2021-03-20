@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.informationhub.dto.MediaDTO;
-import com.project.informationhub.entity.Media;
 import com.project.informationhub.service.MediaService;
 
 @RestController

@@ -1,8 +1,8 @@
-package com.project.informationhub.service;
+package com.project.informationhub;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
@@ -14,12 +14,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 import com.project.informationhub.dto.MediaDTO;
-import com.project.informationhub.entity.Media;
-import com.project.informationhub.entity.MediaType;
-import com.project.informationhub.model.user.User;
 import com.project.informationhub.exception.MediaNotFoundException;
+import com.project.informationhub.model.MediaType;
+import com.project.informationhub.model.user.User;
 import com.project.informationhub.repository.MediaTypeRepository;
 import com.project.informationhub.repository.UserRepository;
+import com.project.informationhub.service.MediaService;
 
 @Transactional
 @SpringBootTest

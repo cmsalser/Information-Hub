@@ -26,12 +26,12 @@ public class MediaType {
 	@OneToMany(mappedBy = "mediaType",cascade = CascadeType.ALL)
 	private Set<Media> medias= new HashSet<>();
 	
-	public Set<Media> getMedia() {
-		return media;
+	public Set<Media> getMedias() {
+		return medias;
 	}
 
-	public void setMedia(Set<Media> media) {
-		this.media = media;
+	public void setMedias(Set<Media> medias) {
+		this.medias = medias;
 	}
 
 	public MediaType() {

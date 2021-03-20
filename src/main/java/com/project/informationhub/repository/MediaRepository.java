@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.project.informationhub.entity.Media;
+import com.project.informationhub.model.Media;
 
 @Repository
 public interface MediaRepository extends JpaRepository<Media, Long>{

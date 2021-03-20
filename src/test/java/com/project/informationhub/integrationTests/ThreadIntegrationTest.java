@@ -1,10 +1,9 @@
 package com.project.informationhub.integrationTests;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -22,7 +21,6 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.web.util.NestedServletException;
 
 import com.project.informationhub.model.user.User;
-import com.project.informationhub.exception.ThreadNotFoundException;
 import com.project.informationhub.repository.UserRepository;
 
 @SpringBootTest
