@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormBuilder, Validators} from '@angular/forms';
-import {wrapI18nPlaceholder} from "@angular/compiler/src/render3/view/i18n/util";
+import {FormGroup, FormBuilder} from '@angular/forms';
+import {UserService} from "../user/user.service";
+import {User} from "../models/user.model";
 
 @Component({
   selector: 'app-sign-up',
@@ -11,37 +12,43 @@ import {wrapI18nPlaceholder} from "@angular/compiler/src/render3/view/i18n/util"
 export class SignUpComponent implements OnInit {
   //add option to input gender when "not listed" selected
   // gender: string[] = ['Female','Male', 'Transgender', 'Non-binary','Intersex', 'Not Listed: please provide details', 'Prefer not to say',''];
-  signUpForm: FormGroup;
-  constructor(private fb: FormBuilder ) { }
+
+  // user: User = new User("firstname", "lastname", "email", "username", "pass", new Date(1998, 1, 1))
+
+  constructor(private fb: FormBuilder, public userService: UserService) { }
 
   ngOnInit(): void {
     this.initializeSignUp();
   }
   initializeSignUp(): void {
-    this.signUpForm = this.fb.group({
+    this.userService.signUpForm = this.fb.group({
       firstname: [''],
       lastname: [''],
       username: [''],
       password: [''],
+      // confirmPassword: [''],
       // selectGender: '',
       email: [''],
-      dob: [''],
-      conditions: this.fb.group({
-        privacyPolicy: false,
-        termsAndConditions: false
-      })
+      birthday: ['']
+      // conditions: this.fb.group({
+      //   privacyPolicy: false,
+      //   termsAndConditions: false
+      // })
     })
   }
 
+  // onSubmit(): void {
+  //   this.userService.register(this.userService.signUpForm.value).subscribe()
+  // }
+
   onSubmit(): void {
-    console.log(this.signUpForm);
-  }
+    this.userService.register(this.userService.signUpForm.value)
+      .subscribe();
+  };
 // need to fix this drop down selection
 //   selectGender(event): void {
 //       this.signUpForm.patchValue({
 //         selectGender: event.target.value
 //       });
 //   }
-
-
 }
