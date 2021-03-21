@@ -28,7 +28,7 @@ public class Post {
 	private Long id;
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "THREAD_ID", referencedColumnName = "THREAD_ID")
+	@JoinColumn(name = "thread_id", referencedColumnName = "thread_id")
 	private Thread thread;
 
 	//@Column(name = "TITLE")
