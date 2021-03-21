@@ -41,6 +41,7 @@ public class MediaIntegrationTest {
 	
 	@Test
 	public void createMediaTest() throws Exception{
+
 		user = new User();
 		user.setFirstname("Edis");
 		user.setLastname("Emin");
@@ -60,10 +61,12 @@ public class MediaIntegrationTest {
 		
 		mvc.perform(post("/media").contentType(MediaType.APPLICATION_JSON).content(sampleRequest)).andExpect(
 						status().isOk()).andExpect(jsonPath("$.mediaPath").value("Covid New Features.pdf")) .andReturn();
+
 	}
 	
 	@Test
 	public void findByIdTest() throws Exception{
+
 		user = new User();
 		user.setFirstname("Edis");
 		user.setLastname("Emin");
@@ -95,6 +98,7 @@ public class MediaIntegrationTest {
 	
 	@Test
 	public void findByUserIdTest() throws Exception{
+
 		user = new User();
 		user.setFirstname("Edis");
 		user.setLastname("Emin");
@@ -122,6 +126,7 @@ public class MediaIntegrationTest {
 	
 	@Test
 	public void updateMediaTest() throws Exception{
+
 		user = new User();
 		user.setFirstname("Edis");
 		user.setLastname("Emin");
@@ -152,12 +157,12 @@ public class MediaIntegrationTest {
 		
 		mvc.perform(put("/media/"+mediaId).contentType(MediaType.APPLICATION_JSON).
 				content(updateRequest)).andExpect(jsonPath("$.mediaPath").value("Covid New Variants.pdf"));
-		
-				
+					
 	}
 	
 	@Test
 	public void deleteMediatest() throws Exception{
+
 		user = new User();
 		user.setFirstname("Edis");
 		user.setLastname("Emin");

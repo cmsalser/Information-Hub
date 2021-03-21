@@ -37,6 +37,7 @@ public class MediaServiceTest {
 	
 	@Test
 	public void findByIdTest() {
+
 		MediaType mediaType = new MediaType("pdf");
 		MediaType dbMediaType = mediaTypeRepository.save(mediaType);
 		User user = new User();
@@ -58,6 +59,7 @@ public class MediaServiceTest {
 	
 	@Test
 	public void createMediaTest() {
+
 		MediaType mediaType = new MediaType("pdf");
 		MediaType dbMediaType = mediaTypeRepository.save(mediaType);
 		User user = new User();
@@ -72,10 +74,12 @@ public class MediaServiceTest {
 		
 		assertNotNull(dbMedia);
 		assertEquals("Covid vaccination.pdf", dbMedia.getMediaPath());
+
 	}
 	
 	@Test
 	public void updateMediaTest() {
+
 		MediaType mediaType = new MediaType("pdf");
 		MediaType dbMediaType = mediaTypeRepository.save(mediaType);
 		User user = new User();
@@ -95,10 +99,12 @@ public class MediaServiceTest {
 		
 		assertNotNull(updatedMediaDTO);
 		assertEquals("Covid New Variant.pdf", updatedMediaDTO.getMediaPath());
+
 	}
 	
 	@Test
 	public void deleteMediaTest() {
+
 		MediaType mediaType = new MediaType("pdf");
 		MediaType dbMediaType = mediaTypeRepository.save(mediaType);
 		User user = new User();
@@ -118,10 +124,12 @@ public class MediaServiceTest {
 		}catch(Exception ex) {
 			assertTrue(ex instanceof MediaNotFoundException);
 		}
+
 	}
 	
 	@Test
 	public void findByUserIdTest() {
+
 		MediaType mediaType = new MediaType("pdf");
 		MediaType dbMediaType = mediaTypeRepository.save(mediaType);
 		User user = new User();
@@ -141,6 +149,7 @@ public class MediaServiceTest {
 		List<MediaDTO> media = mediaService.findByUserId(user.getId());
 		
 		assertTrue(media.size()==2);
+
 	}
 
 }

@@ -21,18 +21,21 @@ import org.springframework.test.web.servlet.MockMvc;
 @ActiveProfiles("test")
 public class TopicForumIntegrationTest {
 	
-	@Autowired
+    @Autowired
     private MockMvc mvc;
     
     @Test
     public void createTopicTest()   throws Exception {    
+
     	mvc.perform(post("/topicforum").contentType(MediaType.APPLICATION_JSON).content(
 				"{\"title\": \"Covid New Variants\"}")).andExpect(
-						status().isOk()).andExpect(jsonPath("$.title").value("Covid New Variants")) .andReturn();	
+						status().isOk()).andExpect(jsonPath("$.title").value("Covid New Variants")) .andReturn();
+	
     }
     
     @Test
-    public void findAllTest()   throws Exception {    
+    public void findAllTest()   throws Exception {   
+ 
     	mvc.perform(post("/topicforum").contentType(MediaType.APPLICATION_JSON).content(
 				"{\"title\": \"Covid New Variants\"}"));
     	
@@ -42,8 +45,7 @@ public class TopicForumIntegrationTest {
     	mvc.perform(get("/topicforum").contentType(MediaType.APPLICATION_JSON)).andExpect(
 				status().isOk()).andExpect(jsonPath("$[0].title").value("Covid New Variants"))
     	.andExpect(jsonPath("$[1].title").value("Covid New Vaccines"));
-    	
-    	
+    		
     }
 
 

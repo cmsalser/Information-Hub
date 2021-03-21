@@ -13,5 +13,7 @@ public interface ThreadRepository extends JpaRepository<com.project.informationh
 	
 	@Query("from Thread t inner join fetch t.user where t.user.id = :accountId")
 	List<com.project.informationhub.model.Thread> findByAccountID(@Param("accountId") Long accountId);
+	
+	List<com.project.informationhub.model.Thread> findByTitleContainingOrDescriptionContaining(String word, String word1);
 
 }

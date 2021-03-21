@@ -22,12 +22,13 @@ public class ThreadService {
 	@Autowired
 	UserRepository userRepository;
 	
-    public com.project.informationhub.model.Thread createThread(ThreadDTO newThread) {
+        public com.project.informationhub.model.Thread createThread(ThreadDTO newThread) {
 		User user = userRepository.findById(newThread.getAccountID()).get();
 		com.project.informationhub.model.Thread thread = new com.project.informationhub.model.Thread(user,newThread.getTitle(),
 		newThread.getDescription(),newThread.isAnonymous(),newThread.isStickied());    	
         return threadRepository.save(thread);
-    }
+
+        }
 	
 	public com.project.informationhub.model.Thread findById(Long threadId){
 		return threadRepository.findById(threadId).orElseThrow(() -> new ThreadNotFoundException(threadId));
@@ -44,7 +45,7 @@ public class ThreadService {
 		
 	}
 	
-    public com.project.informationhub.model.Thread updateThread(Long threadId,ThreadDTO newThread) {
+        public com.project.informationhub.model.Thread updateThread(Long threadId,ThreadDTO newThread) {
         return threadRepository.findById(threadId)
                     .map(dbThread -> {
                     	dbThread.setTitle(newThread.getTitle());
@@ -60,13 +61,13 @@ public class ThreadService {
                 		newThread.getDescription(),newThread.isAnonymous(),newThread.isStickied());  
                         return threadRepository.save(thread);
                     });
-    }
+   	 }
 	
 	
 	
-    public void deleteThread(Long threadId) {
+    	public void deleteThread(Long threadId) {
 		threadRepository.deleteById(threadId);
-    }
+    	}
 
 	public Thread setStickied(Long threadId) {
 		return threadRepository.findById(threadId)
@@ -75,7 +76,21 @@ public class ThreadService {
                 	dbThread.setTimestampEdited(new Date());
                     return threadRepository.save(dbThread);
                 }).orElseThrow(() -> new ThreadNotFoundException(threadId));
-}
+	}
+	
+	public List<com.project.informationhub.model.Thread> searchThreadsByWord(String word){
+		return threadRepository.findByTitleContainingOrDescriptionContaining(word, word);
+	}
+
+	public Thread changeAnonymous(Long threadId, boolean anonymous) {
+		return threadRepository.findById(threadId)
+                .map(dbThread -> {
+                	dbThread.setAnonymous(anonymous);
+                	dbThread.setTimestampEdited(new Date());
+                    return threadRepository.save(dbThread);
+                }).orElseThrow(() -> new ThreadNotFoundException(threadId));
+
+	}
 	
 
 }

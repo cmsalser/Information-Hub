@@ -26,6 +26,7 @@ public class MediaTypeServiceTest {
 	
 	@Test
 	public void createMediaTypeTest() {
+
 		MediaType mediaType = new MediaType("pdf");
 		MediaType dbMediaType = mediaTypeService.createMediaType(mediaType);
 		assertEquals("pdf", dbMediaType.getMediaTypeName());
@@ -35,6 +36,7 @@ public class MediaTypeServiceTest {
 	
 	@Test
 	public void findAllTest() {
+
 		MediaType mediaType1 = new MediaType("pdf");
 		mediaTypeService.createMediaType(mediaType1);
 		MediaType mediaType2 = new MediaType("mp3");

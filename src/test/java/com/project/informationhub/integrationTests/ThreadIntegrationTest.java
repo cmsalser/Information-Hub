@@ -1,4 +1,5 @@
 package com.project.informationhub.integrationTests;
+import static org.hamcrest.Matchers.hasSize;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -30,7 +31,7 @@ import com.project.informationhub.repository.UserRepository;
 public class ThreadIntegrationTest {
 	
 	@Autowired
-    private MockMvc mvc;
+        private MockMvc mvc;
 	
 	@Autowired
 	UserRepository userRepository;
@@ -40,7 +41,8 @@ public class ThreadIntegrationTest {
 	String sampleRequest;
 	
 	@Test
-	public void createThreadTest() throws Exception{		
+	public void createThreadTest() throws Exception{
+		
 		user = new User();
 		user.setFirstname("Edis");
 		user.setLastname("Emin");
@@ -58,7 +60,8 @@ public class ThreadIntegrationTest {
 	}
 	
 	@Test
-	public void findByIdTest() throws Exception{		
+	public void findByIdTest() throws Exception{	
+	
 		user = new User();
 		user.setFirstname("Edis");
 		user.setLastname("Emin");
@@ -84,7 +87,8 @@ public class ThreadIntegrationTest {
 	}
 	
 	@Test
-	public void findByAccountIdTest() throws Exception{		
+	public void findByAccountIdTest() throws Exception{
+		
 		user = new User();
 		user.setFirstname("Edis");
 		user.setLastname("Emin");
@@ -105,7 +109,8 @@ public class ThreadIntegrationTest {
 	}
 	
 	@Test
-	public void findAllTest() throws Exception{		
+	public void findAllTest() throws Exception{	
+	
 		user = new User();
 		user.setFirstname("Edis");
 		user.setLastname("Emin");
@@ -138,7 +143,8 @@ public class ThreadIntegrationTest {
 	}
 	
 	@Test
-	public void updateThreadTest() throws Exception{		
+	public void updateThreadTest() throws Exception{
+		
 		user = new User();
 		user.setFirstname("Edis");
 		user.setLastname("Emin");
@@ -170,7 +176,8 @@ public class ThreadIntegrationTest {
 	}
 	
 	@Test
-	public void setStickiedTest() throws Exception{		
+	public void setStickiedTest() throws Exception{	
+	
 		user = new User();
 		user.setFirstname("Edis");
 		user.setLastname("Emin");
@@ -197,6 +204,7 @@ public class ThreadIntegrationTest {
 	
 	@Test
 	public void deleteThreadTest() throws Exception{
+
 		user = new User();
 		user.setFirstname("Edis");
 		user.setLastname("Emin");
@@ -227,5 +235,65 @@ public class ThreadIntegrationTest {
 		}
 	
 	}
+
+	@Test
+	public void changeAnonymousTest() throws Exception{		
+		
+		user = new User();
+		user.setFirstname("Edis");
+		user.setLastname("Emin");
+		user = userRepository.save(user);
+		
+		sampleRequest = "{\"accountID\" : "+ user.getId()+",\r\n" + 
+				"  \"title\" : \"Java 8 New Features\",\r\n" + 
+				"  \"description\" : \"talks about new features launched in Java 8\",\r\n" + 
+				"  \"anonymous\" :  true,\r\n" + 
+				"  \"stickied\" : false \r\n" +"}";
+		
+		MvcResult mvcResult = 
+				mvc.perform(post("/thread").contentType(MediaType.APPLICATION_JSON).content(sampleRequest)).andExpect(
+						status().isOk()).andExpect(jsonPath("$.anonymous").value(true)) .andReturn();
+		
+		JSONObject threadResponse = new JSONObject(mvcResult.getResponse().getContentAsString());
+		
+		Long threadId = threadResponse.getLong("threadID");
+		
+		mvc.perform(put("/thread/anonymous/"+threadId+"/false").contentType(MediaType.APPLICATION_JSON)).andExpect(
+				status().isOk()).andExpect(jsonPath("$.anonymous").value(false)) .andReturn();
+		
+	}
+
+	@Test
+	public void getByWordTest() throws Exception{		
+		
+		user = new User();
+		user.setFirstname("Edis");
+		user.setLastname("Emin");
+		user = userRepository.save(user);
+		
+		sampleRequest = "{\"accountID\" : "+ user.getId()+",\r\n" + 
+				"  \"title\" : \"Java 8 New Features\",\r\n" + 
+				"  \"description\" : \"talks about new features launched in Java 8\",\r\n" + 
+				"  \"anonymous\" :  true,\r\n" + 
+				"  \"stickied\" : false \r\n" +"}";
+		
+		mvc.perform(post("/thread").contentType(MediaType.APPLICATION_JSON).content(sampleRequest)).andExpect(
+						status().isOk()).andExpect(jsonPath("$.anonymous").value(true));
+		
+		String sampleRequest2 = "{\"accountID\" : "+ user.getId()+",\r\n" + 
+				"  \"title\" : \"Java 11 New Features\",\r\n" + 
+				"  \"description\" : \"talks about new features launched in Java 11\",\r\n" + 
+				"  \"anonymous\" :  true,\r\n" + 
+				"  \"stickied\" : true \r\n" +"}";
+		
+		mvc.perform(post("/thread").contentType(MediaType.APPLICATION_JSON).content(sampleRequest2)).andExpect(
+				status().isOk()).andExpect(jsonPath("$.anonymous").value(true));
+
+		
+		mvc.perform(get("/thread/searchByWord/Java").contentType(MediaType.APPLICATION_JSON)).andExpect(
+				status().isOk()).andExpect(jsonPath("$", hasSize(2)));
+		
+	}
+
 
 }

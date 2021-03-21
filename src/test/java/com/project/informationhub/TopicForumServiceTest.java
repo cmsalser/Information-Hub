@@ -27,6 +27,7 @@ public class TopicForumServiceTest {
 	
 	@Test
 	public void createTopicTest() {
+
 		TopicForum topicForum = new TopicForum("Covid-19 vaccines");
 		TopicForum dbTopicForum = topicForumService.createTopic(topicForum);
 		assertEquals("Covid-19 vaccines", dbTopicForum.getTitle());
@@ -36,6 +37,7 @@ public class TopicForumServiceTest {
 	
 	@Test
 	public void findAllTest() {
+
 		TopicForum topicForum1 = new TopicForum("Covid-19 vaccines");
 		topicForumService.createTopic(topicForum1);
 		TopicForum topicForum2 = new TopicForum("Covid-19 new Variant");

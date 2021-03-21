@@ -21,18 +21,19 @@ import org.springframework.test.web.servlet.MockMvc;
 @ActiveProfiles("test")
 public class MediaTypeIntegrationTest {
 	@Autowired
-    private MockMvc mvc;
+        private MockMvc mvc;
 	
 	@Test
-    public void createMediaTypeTest()   throws Exception {    
+        public void createMediaTypeTest()   throws Exception {    
 		
     	mvc.perform(post("/mediatype").contentType(MediaType.APPLICATION_JSON).content(
 				"{\"mediaTypeName\": \"pdf\"}")).andExpect(
-						status().isOk()).andExpect(jsonPath("$.mediaTypeName").value("pdf")) .andReturn();	
+						status().isOk()).andExpect(jsonPath("$.mediaTypeName").value("pdf")) .andReturn();
+	
     }
 	
 	@Test
-    public void findAllTest()   throws Exception { 
+        public void findAllTest()   throws Exception { 
 		
 		mvc.perform(post("/mediatype").contentType(MediaType.APPLICATION_JSON).content(
 				"{\"mediaTypeName\": \"pdf\"}"));
@@ -44,6 +45,5 @@ public class MediaTypeIntegrationTest {
 				status().isOk()).andExpect(jsonPath("$[0].mediaTypeName").value("pdf"))
     	.andExpect(jsonPath("$[1].mediaTypeName").value("mp3"));
 		
-	
 	}
 }

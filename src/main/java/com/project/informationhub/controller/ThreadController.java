@@ -23,9 +23,10 @@ public class ThreadController {
 	ThreadService threadService;
 	
 	@PostMapping("")
-    public com.project.informationhub.model.Thread createThread(@RequestBody ThreadDTO newThread) {
+        public com.project.informationhub.model.Thread createThread(@RequestBody ThreadDTO newThread) {
 		return threadService.createThread(newThread);
-    }
+
+        }
 	
 	@GetMapping("/{threadId}")
 	public com.project.informationhub.model.Thread findById(@PathVariable(value = "threadId") Long threadId){
@@ -46,22 +47,32 @@ public class ThreadController {
 	}
 	
 	@PutMapping(value="/{threadId}")
-    public com.project.informationhub.model.Thread updateThread(@PathVariable Long threadId, @RequestBody ThreadDTO newThread) {
+        public com.project.informationhub.model.Thread updateThread(@PathVariable Long threadId, @RequestBody ThreadDTO newThread) {
         return threadService.updateThread(threadId, newThread);
-    }
+
+        }
 	
 	@PutMapping(value ="/stickied/{threadId}")
 	public com.project.informationhub.model.Thread setStickied(@PathVariable Long threadId){
 		return threadService.setStickied(threadId);
 	}
-	
+
+	@PutMapping(value ="/anonymous/{threadId}/{anonymous}")
+	public com.project.informationhub.model.Thread changeAnonymous(@PathVariable Long threadId,@PathVariable boolean anonymous){
+		return threadService.changeAnonymous(threadId,anonymous);
+	}
 	
 	
 	@DeleteMapping("/{threadId}")
-    public void deleteThread(@PathVariable Long threadId) {
+        public void deleteThread(@PathVariable Long threadId) {
 		threadService.deleteThread(threadId);
-    }
+        }
 	
+	@GetMapping("/searchByWord/{word}")
+	public List<com.project.informationhub.model.Thread> getByWord(@PathVariable String word)
+	{
+		return threadService.searchThreadsByWord(word);
+	}
 	
 	
 
