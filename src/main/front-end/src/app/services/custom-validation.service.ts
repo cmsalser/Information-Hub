@@ -3,6 +3,7 @@ import {AbstractControl, FormGroup} from "@angular/forms";
 import { HttpClient } from "@angular/common/http";
 import { map} from "rxjs/operators";
 import {UserService} from "../user/user.service";
+import {Observable} from "rxjs";
 
 
 @Injectable({
@@ -33,9 +34,11 @@ export class CustomValidationService {
     };
   }
 
-  validateUsernameNotTaken(username: string) {
-    return this.userService.checkUsernameExists(username).subscribe((response: boolean) => {
-      return {usernameTaken: response};
-    })
+  validateUsernameNotTaken(control: AbstractControl) {
+    return this.userService.checkUsernameExists(control.value).pipe(
+      map(res => {
+        return res ? {usernameTaken: true} : null;
+      })
+    );
   }
 }

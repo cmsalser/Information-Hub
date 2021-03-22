@@ -18,7 +18,8 @@
               </svg>
             </span>
                 </div>
-                <input type="text" formControlName="firstname" id="firstname" class="form-control" placeholder="Firstname">
+                <input type="text" formControlName="firstname" id="firstname" class="form-control"
+                       [ngClass]="{'is-invalid':userService.signUpForm.get('firstname').errors && userService.signUpForm.get('firstname').touched}" placeholder="Firstname">
               </div>
               <div class="invalid-feedback">Please fill in details</div>
             </div>
@@ -33,7 +34,8 @@
               </svg>
             </span>
                 </div>
-                <input type="text" formControlName="lastname" id="lastname" class="form-control" placeholder="Lastname">
+                <input type="text" formControlName="lastname" id="lastname" class="form-control"
+                       [ngClass]="{'is-invalid':userService.signUpForm.get('lastname').errors && userService.signUpForm.get('lastname').touched}" placeholder="Lastname">
               </div>
             </div>
           </div>
@@ -49,7 +51,8 @@
                 </svg>
               </span>
                 </div>
-                <input type="text" class="form-control" placeholder="Email" formControlName="email" required>
+                <input type="text" class="form-control" placeholder="Email" formControlName="email"
+                       [ngClass]="{'is-invalid':userService.signUpForm.get('email').errors && userService.signUpForm.get('email').touched}">
               </div>
               <div class="invalid-feedback">Please enter a valid email address.</div>
             </div>
@@ -67,11 +70,11 @@
                 <div class="invalid-feedback" *ngIf="userService.signUpForm.get('username').hasError('minlength') else elseBranch">
                   Username must be at least 3 characters.
                 </div>
-                <div #elseBranch>
-                  <div *ngIf="userService.signUpForm.get('username').hasError('usernameTaken');">
+                <ng-template #elseBranch>
+                  <div class="invalid-feedback" *ngIf="userService.signUpForm.get('username').hasError('usernameTaken');">
                     Username taken.
                   </div>
-                </div>
+                </ng-template>
               </div>
             </div>
           </div>
@@ -87,7 +90,8 @@
                 </svg>
               </span>
                 </div>
-                <input type="password" formControlName="password" id="password" class="form-control" placeholder="Password" required>
+                <input type="password" formControlName="password" id="password" class="form-control"
+                       [ngClass]="{'is-invalid':userService.signUpForm.get('password').errors && userService.signUpForm.get('password').touched}" placeholder="Password">
               </div>
               <div class="invalid-feedback">Password must be 8 characters long.</div>
             </div>
@@ -123,7 +127,8 @@
                 </span>
               </div>
               <input type="date" id="birthday" formControlName="birthday" name="birthday" class="form-control" type="text"
-                     onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Date of birth">
+                     onfocus="(this.type='date')" onblur="(this.type='text')"
+                     [ngClass]="{'is-invalid':userService.signUpForm.get('birthday').errors && userService.signUpForm.get('birthday').touched}" placeholder="Date of birth">
             </div>
           </div>
         </div>

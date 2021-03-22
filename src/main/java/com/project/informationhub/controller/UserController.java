@@ -5,6 +5,7 @@ import com.project.informationhub.repository.UserRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/user")
@@ -32,7 +33,8 @@ public class UserController {
     }
 
     @PostMapping("/")
-    public boolean usernameExists(String username) {
-        return repository.findByUsername(username).isPresent();
+    public boolean usernameExists(@RequestParam String username) {
+        Optional<User> user = repository.findByUsername(username);
+        return user.isPresent();
     }
 }

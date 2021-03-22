@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {User} from "../models/user.model";
 import {FormGroup} from "@angular/forms";
 import {Observable} from "rxjs";
@@ -23,6 +23,6 @@ export class UserService {
   // }
 
   checkUsernameExists(username: string): Observable<boolean> {
-    return this.http.post<boolean>('http://localhost:8080/user/', username)
+    return this.http.post<boolean>('http://localhost:8080/user/', new HttpParams().set('username', username))
   }
 }
