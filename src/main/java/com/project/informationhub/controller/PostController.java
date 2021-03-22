@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.informationhub.dto.ResponseDto;
@@ -51,9 +52,9 @@ public class PostController {
 	}
 	
 	@GetMapping("/searchByWord/{word}")
-	public List<Post> getByWord(@PathVariable String word)
+	public List<Post> getByWord(@PathVariable String word, @RequestParam(value  = "mostUpvoted") int mostUpvoted)
 	{
-		return postService.searchPostByWord(word);
+		return postService.searchPostByWord(word, mostUpvoted);
 	}
 	
 	@PutMapping("/upvote/{userId}/{postId}")

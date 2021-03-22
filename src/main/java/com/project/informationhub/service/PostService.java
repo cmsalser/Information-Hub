@@ -1,9 +1,12 @@
 package com.project.informationhub.service;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import com.project.informationhub.model.Post;
 import com.project.informationhub.repository.PostRepository;
@@ -147,9 +150,14 @@ public class PostService {
 		return response;
 	}
 	
-	public List<Post> searchPostByWord(String word)
+	public List<Post> searchPostByWord(String word, int mostUpvoted)
 	{
-		return postRepository.findByTitleContainingOrDescriptionContaining(word, word);
+		List<Post> posts =  postRepository.findByTitleContainingOrDescriptionContaining(word, word);
+		if(mostUpvoted == 1) {
+			posts = posts.stream().sorted(Comparator.comparingInt(d -> d.getUpvotes().size())).collect(Collectors.toList());
+			Collections.reverse(posts);
+		}
+		return posts;
 //		Set<Integer> postIds = new LinkedHashSet<>();
 //		for(Post post : posts)
 //		{
