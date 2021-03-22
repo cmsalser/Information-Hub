@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder} from '@angular/forms';
+import {FormBuilder, Validators} from '@angular/forms';
 import {UserService} from "../user/user.service";
+import {CustomValidationService} from "../services/custom-validation.service";
 
 @Component({
   selector: 'app-sign-up',
@@ -14,25 +15,27 @@ export class SignUpComponent implements OnInit {
 
   // user: User = new User("firstname", "lastname", "email", "username", "pass", new Date(1998, 1, 1))
 
-  constructor(private fb: FormBuilder, public userService: UserService) { }
+  constructor(private fb: FormBuilder, public userService: UserService, public customValidator: CustomValidationService) { }
 
   ngOnInit(): void {
     this.initializeSignUp();
   }
   initializeSignUp(): void {
     this.userService.signUpForm = this.fb.group({
-      firstname: [''],
-      lastname: [''],
-      username: [''],
-      password: [''],
-      // confirmPassword: [''],
+      firstname: ['', [Validators.required]],
+      lastname: ['', [Validators.required]],
+      username: ['', [Validators.required, Validators.minLength(3)], this.customValidator.validateUsernameNotTaken.bind(this.customValidator)],
+      password: ['', [Validators.required]],
+      confirmPassword: ['', [Validators.required]],
       // selectGender: '',
-      email: [''],
-      birthday: ['']
+      email: ['', [Validators.required]],
+      birthday: ['', [Validators.required]]
       // conditions: this.fb.group({
       //   privacyPolicy: false,
       //   termsAndConditions: false
       // })
+    }, {
+      validator: this.customValidator.passwordMatchValidator("password", "confirmPassword")
     })
   }
 

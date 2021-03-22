@@ -62,9 +62,17 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="basic-addon2"><b>@</b></span>
                 </div>
-                <input type="text" formControlName="username" id="username" class="form-control" placeholder="Username" required>
+                <input type="text" formControlName="username" id="username" class="form-control"
+                       [ngClass]="{'is-invalid':userService.signUpForm.get('username').errors && userService.signUpForm.get('username').touched}" placeholder="Username">
+                <div class="invalid-feedback" *ngIf="userService.signUpForm.get('username').hasError('minlength') else elseBranch">
+                  Username must be at least 3 characters.
+                </div>
+                <div #elseBranch>
+                  <div *ngIf="userService.signUpForm.get('username').hasError('usernameTaken');">
+                    Username taken.
+                  </div>
+                </div>
               </div>
-              <div class="invalid-feedback">Please enter a valid username.</div>
             </div>
           </div>
         </div>
@@ -84,22 +92,25 @@
               <div class="invalid-feedback">Password must be 8 characters long.</div>
             </div>
           </div>
-<!--          <div class="col">-->
-<!--            <div class="form-group">-->
-<!--              <div class="input-group">-->
-<!--                <div class="input-group-prepend">-->
-<!--              <span class="input-group-text" id="basic-addon4">-->
-<!--                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">-->
-<!--                  <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>-->
-<!--                  <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>-->
-<!--                </svg>-->
-<!--              </span>-->
-<!--                </div>-->
-<!--                <input type="password" formControlName="confirmPassword" id="password-confirm" class="form-control" placeholder="Confirm" required>-->
-<!--              </div>-->
-<!--              <div class="invalid-feedback">Passwords don't match.</div>-->
-<!--            </div>-->
-<!--          </div>-->
+          <div class="col">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+                      <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+                    </svg>
+                  </span>
+                </div>
+                <input type="password" formControlName="confirmPassword" id="password-confirm" class="form-control"
+                       [ngClass]="{'is-invalid':userService.signUpForm.get('confirmPassword').errors && userService.signUpForm.get('confirmPassword').touched}" placeholder="Confirm">
+                <div class="invalid-feedback" *ngIf="userService.signUpForm.get('confirmPassword').hasError('passwordMismatch')">
+                  Password does not match.
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="row text-center p-2">
           <div class="col form-group">
@@ -142,7 +153,7 @@
 <!--        </div>-->
         <div class="row text-right pt-4">
           <div class="col form-group">
-              <button type="submit" class="col-5 btn btn-primary">Sign Up</button>
+              <button type="submit" class="col-5 btn btn-primary" [disabled]="!userService.signUpForm.valid">Sign Up</button>
           </div>
         </div>
       </form>

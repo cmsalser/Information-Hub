@@ -17,4 +17,12 @@ export class UserService {
   register(user: User): Observable<User> {
     return this.http.post<User>('http://localhost:8080/user/signup', user);
   }
+
+  // getAll(): Observable<Array<User>> {
+  //   return this.http.get<Array<User>>('http://localhost:8080/user/')
+  // }
+
+  checkUsernameExists(username: string): Observable<boolean> {
+    return this.http.post<boolean>('http://localhost:8080/user/', username)
+  }
 }

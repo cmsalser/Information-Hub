@@ -4,6 +4,8 @@ import com.project.informationhub.model.user.User;
 import com.project.informationhub.repository.UserRepository;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/user")
 public class UserController {
@@ -22,5 +24,15 @@ public class UserController {
     @PostMapping("/signup")
     public User signUp(@RequestBody User user) {
         return repository.save(user);
+    }
+
+    @GetMapping("/")
+    public List<User> index() {
+        return repository.findAll();
+    }
+
+    @PostMapping("/")
+    public boolean usernameExists(String username) {
+        return repository.findByUsername(username).isPresent();
     }
 }
