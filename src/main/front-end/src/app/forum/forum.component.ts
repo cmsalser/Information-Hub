@@ -17,6 +17,7 @@ export class ForumComponent implements OnInit {
       .subscribe(
         (threads: any[]) => {
           this.threads = threads;
+          console.log(threads);
         })
   }
 

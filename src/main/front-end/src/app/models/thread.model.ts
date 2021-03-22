@@ -1,13 +1,21 @@
 export class Thread {
-    userId: number;
-    id: number;
+    threadID: number;
+    accountID: number;
     title: string;
-    body: string;
+    description: string;
+    anonymous: boolean;
+    timestampCreated: Date;
+    timestampEdited: Date;
+    stickied: boolean;
 
-    constructor(userId: number, id: number, title: string, body: string) {
-        this.userId = userId;
-        this.id = id;
+    constructor(threadID: number, accountID: number, title: string, description: string, anonymous: boolean, timestampCreated: Date, timestampEdited: Date, stickied: boolean) {
+        this.threadID = threadID;
+        this.accountID = accountID;
         this.title = title;
-        this.body = body;
+        this.description = description;
+        this.anonymous = anonymous;
+        this.timestampCreated = timestampCreated;
+        this.timestampEdited = timestampEdited;
+        this.stickied = stickied;
     }
 }

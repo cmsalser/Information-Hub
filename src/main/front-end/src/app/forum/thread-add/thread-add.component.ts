@@ -18,7 +18,7 @@ export class ThreadAddComponent implements OnInit {
 
   createThread() {
     const body = JSON.stringify(this.newThread);
-    this.ForumService.addThread(body, this.newThread.id);
-    this.Router.navigateByUrl('/thread/' + this.newThread.id);
+    this.ForumService.addThread(body, this.newThread.threadID);
+    this.Router.navigateByUrl('/thread/' + this.newThread.threadID);
   }
 }

@@ -1,9 +1,10 @@
 <div class="container">
     <div class="jumbotron">
         <h1>{{ thread.title }}</h1>
-        <p>{{ thread.body }}</p>
-        <a class="btn btn-sm btn-outline-secondary" [routerLink]="['/thread/edit/', thread.id]">Edit</a>
+        <p>{{ thread.description }}</p>
+        <a class="btn btn-sm btn-outline-secondary" [routerLink]="['/thread/edit/', thread.threadID]">Edit</a>
     </div>
+    <!--
     <li *ngFor="let post of posts" class="list-group-item clearfix">
         <div class="row">
             <p>{{ post.body }}</p>
@@ -17,4 +18,5 @@
             </div>
         </div>
     </li>
+-->
 </div>

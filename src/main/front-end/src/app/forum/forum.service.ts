@@ -5,32 +5,32 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ForumService {
+  private threadURL: string;
   private postsURL: string;
-  private commentsURL: string;
 
   constructor(private Http: HttpClient) {
-    this.postsURL = 'https://jsonplaceholder.typicode.com/posts/';
-    this.commentsURL = 'https://jsonplaceholder.typicode.com/comments/';
+    this.threadURL = 'http://localhost:8080/thread/';
+    this.postsURL = 'http://localhost:8080/post';
    }
 
   getThread(id) {
-    return this.Http.get(this.postsURL + id);
+    return this.Http.get(this.threadURL + id);
   }
 
   getThreads() {
-    return this.Http.get(this.postsURL);
+    return this.Http.get(this.threadURL);
   }
 
   deleteThread(id) {
-    return this.Http.delete(this.postsURL + id);
+    return this.Http.delete(this.threadURL + id);
   }
 
   editThread(body, id) {
-    return this.Http.patch(this.postsURL + id, body);
+    return this.Http.put(this.threadURL + id, body);
   }
 
   addThread(body, id) {
-    console.log(body + " " + id)
+    return this.Http.post(this.threadURL + id, body);
   }
 
   getPosts(id) {
@@ -38,14 +38,14 @@ export class ForumService {
   }
   
   getPostById(id) {
-    return this.Http.get(this.commentsURL + id);
+    return this.Http.get(this.postsURL + id);
   }
 
   deletePost(id) {
-    return this.Http.delete(this.commentsURL + id);
+    return this.Http.delete(this.postsURL + id);
   }
 
   editPost(body, id) {
-    return this.Http.patch(this.commentsURL + id, body);
+    return this.Http.patch(this.postsURL + id, body);
   }
 }

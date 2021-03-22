@@ -28,18 +28,18 @@ export class ThreadEditComponent implements OnInit {
     console.log(this.editedThread);
     const body = JSON.stringify(this.editedThread);
 
-    this.ForumService.editThread(body, this.editedThread.id)
+    this.ForumService.editThread(body, this.editedThread.threadID)
       .subscribe(
         (data) => {
           console.log(data);
         });
 
-    this.Router.navigateByUrl('/thread/' + this.editedThread.id);
+    this.Router.navigateByUrl('/thread/' + this.editedThread.threadID);
   }
 
   deleteThread() {
-    this.ForumService.deleteThread(this.editedThread.id);
-    console.log("Thread id: " + this.editedThread.id + " deleted");
+    this.ForumService.deleteThread(this.editedThread.threadID);
+    console.log("Thread id: " + this.editedThread.threadID + " deleted");
     this.Router.navigateByUrl('/forum');
   }
 }
