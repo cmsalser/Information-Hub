@@ -45,3 +45,8 @@ nav {
 .header-title:hover {
   text-decoration: none;
 }
+
+.content {
+  min-height: calc(100vh - 111px);
+  /* 48px footer + 63px header */
+}
