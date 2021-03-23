@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,10 +8,12 @@ import { HttpClient } from '@angular/common/http';
 export class ForumService {
   private threadURL: string;
   private postsURL: string;
+  private header;
 
   constructor(private Http: HttpClient) {
     this.threadURL = 'http://localhost:8080/thread/';
     this.postsURL = 'http://localhost:8080/post';
+    this.header = { headers: new HttpHeaders().set('Content-Type', 'application/json')};
    }
 
   getThread(id) {
@@ -26,11 +29,12 @@ export class ForumService {
   }
 
   editThread(body, id) {
-    return this.Http.put(this.threadURL + id, body);
+    console.log(body);
+    return this.Http.put(this.threadURL + id, body, this.header);
   }
 
-  addThread(body, id) {
-    return this.Http.post(this.threadURL + id, body);
+  addThread(body): Observable<Object> {
+    return this.Http.post(this.threadURL, body, this.header);
   }
 
   getPosts(id) {

@@ -9,7 +9,13 @@ import { ForumService } from '../forum.service';
   styleUrls: ['./thread-add.component.css']
 })
 export class ThreadAddComponent implements OnInit {
-  newThread = {} as Thread;
+  newThread = {
+    accountID: "",
+    title: "",
+    description: "",
+    anonymous: false,
+    stickied: false
+  };
 
   constructor(private ForumService: ForumService, private Router: Router) { }
 
@@ -18,7 +24,11 @@ export class ThreadAddComponent implements OnInit {
 
   createThread() {
     const body = JSON.stringify(this.newThread);
-    this.ForumService.addThread(body, this.newThread.threadID);
-    this.Router.navigateByUrl('/thread/' + this.newThread.threadID);
+    this.ForumService.addThread(body)
+      .subscribe(
+        (data: Thread) => {
+          console.log(data);
+          this.Router.navigateByUrl('/thread/' + data.threadID);
+        })
   }
 }
