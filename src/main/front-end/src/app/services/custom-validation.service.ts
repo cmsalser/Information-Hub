@@ -51,9 +51,7 @@ export class CustomValidationService {
   }
 
   checkDateIsValid(date: string, today: string): Observable<boolean> {
-    console.log(parseInt(date.substring(0, 4)) <= parseInt(today.substring(0, 4)))
-    return of(parseInt(date.substring(0, 4)) <= parseInt(today.substring(0, 4)) && parseInt(date.substring(5, 7)) <= parseInt(today.substring(5, 7)) &&
-    parseInt(date.substring(8, 11)) <= parseInt(today.substring(8, 11)));
+    return of(moment(date).isSameOrBefore(today, 'day'));
   }
 
   validateDateOfBirth(control: AbstractControl) {
