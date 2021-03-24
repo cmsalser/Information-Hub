@@ -3,8 +3,8 @@ import {AbstractControl, FormGroup} from "@angular/forms";
 import { HttpClient } from "@angular/common/http";
 import { map} from "rxjs/operators";
 import {UserService} from "../user/user.service";
-import {Observable} from "rxjs";
-
+import {Observable, of} from "rxjs";
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +38,30 @@ export class CustomValidationService {
     return this.userService.checkUsernameExists(control.value).pipe(
       map(res => {
         return res ? {usernameTaken: true} : null;
+      })
+    );
+  }
+
+  validateEmailNotTaken(control: AbstractControl) {
+    return this.userService.checkEmailExists(control.value).pipe(
+      map(res => {
+        return res ? {emailTaken: true} : null;
+      })
+    );
+  }
+
+  checkDateIsValid(date: string, today: string): Observable<boolean> {
+    console.log(parseInt(date.substring(0, 4)) <= parseInt(today.substring(0, 4)))
+    return of(parseInt(date.substring(0, 4)) <= parseInt(today.substring(0, 4)) && parseInt(date.substring(5, 7)) <= parseInt(today.substring(5, 7)) &&
+    parseInt(date.substring(8, 11)) <= parseInt(today.substring(8, 11)));
+  }
+
+  validateDateOfBirth(control: AbstractControl) {
+    let controlValue = control.value.toString();
+    let today = moment(new Date()).format('YYYY-MM-DD');
+
+    return this.checkDateIsValid(controlValue, today).pipe(map(res => {
+        return res ? null : {invalidDate: true};
       })
     );
   }

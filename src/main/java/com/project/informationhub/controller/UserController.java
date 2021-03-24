@@ -32,9 +32,15 @@ public class UserController {
         return repository.findAll();
     }
 
-    @PostMapping("/")
+    @PostMapping("/username")
     public boolean usernameExists(@RequestParam String username) {
         Optional<User> user = repository.findByUsername(username);
+        return user.isPresent();
+    }
+
+    @PostMapping("/email")
+    public boolean emailExists(@RequestParam String email) {
+        Optional<User> user = repository.findByEmail(email);
         return user.isPresent();
     }
 }

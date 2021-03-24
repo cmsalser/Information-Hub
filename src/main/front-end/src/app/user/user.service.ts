@@ -23,6 +23,10 @@ export class UserService {
   // }
 
   checkUsernameExists(username: string): Observable<boolean> {
-    return this.http.post<boolean>('http://localhost:8080/user/', new HttpParams().set('username', username))
+    return this.http.post<boolean>('http://localhost:8080/user/username', new HttpParams().set('username', username))
+  }
+
+  checkEmailExists(email: string): Observable<boolean> {
+    return this.http.post<boolean>('http://localhost:8080/user/email', new HttpParams().set('email', email))
   }
 }

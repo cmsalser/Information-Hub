@@ -19,9 +19,9 @@
             </span>
                 </div>
                 <input type="text" formControlName="firstname" id="firstname" class="form-control"
-                       [ngClass]="{'is-invalid':userService.signUpForm.get('firstname').errors && userService.signUpForm.get('firstname').touched}" placeholder="Firstname">
+                       [ngClass]="{'is-invalid':userService.signUpForm.get('firstname').errors && userService.signUpForm.get('firstname').touched,
+                                   'is-valid':!userService.signUpForm.get('firstname').errors}" placeholder="Firstname">
               </div>
-              <div class="invalid-feedback">Please fill in details</div>
             </div>
           </div>
           <div class="col">
@@ -35,7 +35,8 @@
             </span>
                 </div>
                 <input type="text" formControlName="lastname" id="lastname" class="form-control"
-                       [ngClass]="{'is-invalid':userService.signUpForm.get('lastname').errors && userService.signUpForm.get('lastname').touched}" placeholder="Lastname">
+                       [ngClass]="{'is-invalid':userService.signUpForm.get('lastname').errors && userService.signUpForm.get('lastname').touched,
+                                   'is-valid':!userService.signUpForm.get('lastname').errors}" placeholder="Lastname">
               </div>
             </div>
           </div>
@@ -52,9 +53,18 @@
               </span>
                 </div>
                 <input type="text" class="form-control" placeholder="Email" formControlName="email"
-                       [ngClass]="{'is-invalid':userService.signUpForm.get('email').errors && userService.signUpForm.get('email').touched}">
+                       [ngClass]="{'is-invalid':userService.signUpForm.get('email').errors && userService.signUpForm.get('email').touched,
+                                   'is-valid':!userService.signUpForm.get('email').errors}">
+                <div class="invalid-feedback" *ngIf="(userService.signUpForm.get('email').hasError('pattern')) ||
+                               (userService.signUpForm.get('email').hasError('minlength')) else elseBranch">
+                  Invalid email.
+                </div>
+                <ng-template #elseBranch>
+                  <div class="invalid-feedback" *ngIf="userService.signUpForm.get('email').getError('emailTaken')">
+                    Email is taken.
+                  </div>
+                </ng-template>
               </div>
-              <div class="invalid-feedback">Please enter a valid email address.</div>
             </div>
           </div>
         </div>
@@ -66,7 +76,8 @@
                   <span class="input-group-text" id="basic-addon2"><b>@</b></span>
                 </div>
                 <input type="text" formControlName="username" id="username" class="form-control"
-                       [ngClass]="{'is-invalid':userService.signUpForm.get('username').errors && userService.signUpForm.get('username').touched}" placeholder="Username">
+                       [ngClass]="{'is-invalid':userService.signUpForm.get('username').errors && userService.signUpForm.get('username').touched,
+                                   'is-valid':!userService.signUpForm.get('username').errors}" placeholder="Username">
                 <div class="invalid-feedback" *ngIf="userService.signUpForm.get('username').hasError('minlength') else elseBranch">
                   Username must be at least 3 characters.
                 </div>
@@ -91,9 +102,12 @@
               </span>
                 </div>
                 <input type="password" formControlName="password" id="password" class="form-control"
-                       [ngClass]="{'is-invalid':userService.signUpForm.get('password').errors && userService.signUpForm.get('password').touched}" placeholder="Password">
+                       [ngClass]="{'is-invalid':userService.signUpForm.get('password').errors && userService.signUpForm.get('password').touched,
+                                   'is-valid':!userService.signUpForm.get('password').errors}" placeholder="Password">
+                <div class="invalid-feedback" *ngIf="userService.signUpForm.get('password').getError('minlength')">
+                  Password must be 8 characters long.
+                </div>
               </div>
-              <div class="invalid-feedback">Password must be 8 characters long.</div>
             </div>
           </div>
           <div class="col">
@@ -108,7 +122,8 @@
                   </span>
                 </div>
                 <input type="password" formControlName="confirmPassword" id="password-confirm" class="form-control"
-                       [ngClass]="{'is-invalid':userService.signUpForm.get('confirmPassword').errors && userService.signUpForm.get('confirmPassword').touched}" placeholder="Confirm">
+                       [ngClass]="{'is-invalid':userService.signUpForm.get('confirmPassword').errors && userService.signUpForm.get('confirmPassword').touched,
+                                   'is-valid':!userService.signUpForm.get('confirmPassword').errors}" placeholder="Confirm">
                 <div class="invalid-feedback" *ngIf="userService.signUpForm.get('confirmPassword').hasError('passwordMismatch')">
                   Password does not match.
                 </div>
@@ -116,7 +131,7 @@
             </div>
           </div>
         </div>
-        <div class="row text-center p-2">
+        <div class="row p-2">
           <div class="col form-group">
             <div class="input-group">
               <div class="input-group-prepend">
@@ -128,17 +143,13 @@
               </div>
               <input type="date" id="birthday" formControlName="birthday" name="birthday" class="form-control" type="text"
                      onfocus="(this.type='date')" onblur="(this.type='text')"
-                     [ngClass]="{'is-invalid':userService.signUpForm.get('birthday').errors && userService.signUpForm.get('birthday').touched}" placeholder="Date of birth">
+                     [ngClass]="{'is-invalid':userService.signUpForm.get('birthday').errors && userService.signUpForm.get('birthday').touched,
+                                 'is-valid':!userService.signUpForm.get('birthday').errors}" placeholder="Date of birth">
+              <div class="invalid-feedback" *ngIf="userService.signUpForm.get('birthday').hasError('invalidDate')">
+                Cannot pick a date past current date.
+              </div>
             </div>
           </div>
-        </div>
-        <div>
-          <!--      <label>Select gender:</label>-->
-          <!--      <select formControlName="selectGender" (change)="selectGender($event)">-->
-          <!--          <option *ngFor="let loc of gender" [ngValue]="gen">{{gen}}-->
-          <!--          </option>-->
-          <!--          &lt;!&ndash; if "not listed" is selected, give the option to fill in value. Need to add this&ndash;&gt;-->
-          <!--      </select>-->
         </div>
 <!--        <div class="row pl-2">-->
 <!--          <div class="col">-->

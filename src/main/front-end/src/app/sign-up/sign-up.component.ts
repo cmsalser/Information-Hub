@@ -25,11 +25,12 @@ export class SignUpComponent implements OnInit {
       firstname: ['', [Validators.required]],
       lastname: ['', [Validators.required]],
       username: ['', [Validators.required, Validators.minLength(3)], this.customValidator.validateUsernameNotTaken.bind(this.customValidator)],
-      password: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
       confirmPassword: ['', [Validators.required]],
       // selectGender: '',
-      email: ['', [Validators.required]],
-      birthday: ['', [Validators.required]]
+      email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
+                   Validators.minLength(1)], this.customValidator.validateEmailNotTaken.bind(this.customValidator)],
+      birthday: ['', [Validators.required], this.customValidator.validateDateOfBirth.bind(this.customValidator)]
       // conditions: this.fb.group({
       //   privacyPolicy: false,
       //   termsAndConditions: false
