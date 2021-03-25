@@ -16,7 +16,6 @@ import { ThreadComponent } from './forum/thread/thread.component';
 import { ThreadEditComponent } from './forum/thread-edit/thread-edit.component';
 import { PostEditComponent } from './forum/post-edit/post-edit.component';
 import { ThreadAddComponent } from './forum/thread-add/thread-add.component';
-import { CalendarComponent } from './calendar/calendar.component';
 
 @NgModule({
   declarations: [
@@ -32,8 +31,7 @@ import { CalendarComponent } from './calendar/calendar.component';
     ThreadComponent,
     ThreadEditComponent,
     PostEditComponent,
-    ThreadAddComponent,
-    CalendarComponent
+    ThreadAddComponent
   ],
   imports: [
     BrowserModule,
