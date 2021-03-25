@@ -19,23 +19,22 @@ import com.project.informationhub.service.PostService;
 
 
 @RestController
-@RequestMapping("post")
+@RequestMapping("/post")
 public class PostController {
 	
 	@Autowired
 	private PostService postService;
 	
-	@PostMapping
+	@PostMapping("")
 	public long createPost(@RequestBody Post post)
 	{
 		return postService.createPost(post);
 	}
 	
-	@PutMapping
-	public long updatePost(@RequestBody Post post)
-	{
-		return postService.updatePost(post);
-			
+	@PutMapping("/{postId}")
+	public long updatePost(@PathVariable Long postId, @RequestBody Post post) {
+		// post.setId(id);
+		return postService.updatePost(postId, post);
 	}
 	
 	@GetMapping("/{postId}")

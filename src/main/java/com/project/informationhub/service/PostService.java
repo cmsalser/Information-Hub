@@ -40,7 +40,7 @@ public class PostService {
 		return newPost.getId();
 	}
 	
-	public long updatePost(Post post)
+	public long updatePost(Long id, Post post)
 	{
 //<<<<<<< HEAD
 //		if(post.getCommentId() == 0) {
@@ -50,14 +50,18 @@ public class PostService {
 //
 //		return updatedPost.getCommentId();
 //=======
-		if(post.getId() == 0) {
-			return 0;
-		}
-		post.setTimestampCreated(new Date());
+		// if(post.getId() == 0) {
+		// 	return 0;
+		// }
+		// post.setTimestampCreated(new Date());
+		// post.setTimestampEdited(new Date());
+		// Post updatedPost = postRepository.save(post);
+
+		// return updatedPost.getId();
+
+		post.setId(id);
 		post.setTimestampEdited(new Date());
-		Post updatedPost = postRepository.save(post);
-		
-		return updatedPost.getId();
+		return postRepository.save(post).getId();
 	}
 	
 //<<<<<<< HEAD

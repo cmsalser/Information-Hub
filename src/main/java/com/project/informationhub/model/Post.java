@@ -49,6 +49,14 @@ public class Post {
 	@OneToMany(mappedBy = "post")
 	private Set<PostUpvotes> upvotes= new HashSet<>();
 
+	public Post() {}
+
+	public Post(int threadID, String title, String description) {
+		this.threadID = threadID;
+		this.title = title;
+		this.description = description;
+	}
+
 	public Long getId() {
 		return id;
 	}
