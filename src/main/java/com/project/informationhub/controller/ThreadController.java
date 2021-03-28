@@ -1,11 +1,7 @@
 package com.project.informationhub.controller;
 
-import java.util.Date;
 import java.util.List;
 
-import com.project.informationhub.exception.NotFoundException;
-import com.project.informationhub.model.Thread;
-import com.project.informationhub.repository.ThreadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,57 +12,72 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project.informationhub.dto.ThreadDTO;
+import com.project.informationhub.service.ThreadService;
+
 @RestController
 @RequestMapping(value = "/thread")
 public class ThreadController {
 	
-	@Autowired
-	ThreadRepository threadRepository;
+	@Autowired	
+	ThreadService threadService;
 	
 	@PostMapping("")
-    public Thread createThread(@RequestBody Thread newThread) {
-		newThread.setTimestampCreated(new Date());
-		newThread.setTimestampEdited(new Date());
-        return threadRepository.save(newThread);
+    public com.project.informationhub.model.Thread createThread(@RequestBody ThreadDTO newThread) {
+		return threadService.createThread(newThread);
     }
 	
 	@GetMapping("/{threadId}")
-	public Thread findById(@PathVariable(value = "threadId") long threadId){
-		return threadRepository.findByThreadID(threadId).orElseThrow(() -> new NotFoundException(threadId));
+	public com.project.informationhub.model.Thread findById(@PathVariable(value = "threadId") Long threadId){
+		return threadService.findById(threadId);
 		
 	}
 	
 	@GetMapping("/account/{accountId}")
-	public Thread findByAccountId(@PathVariable(value = "accountId") long accountId){
-		return threadRepository.findByAccountID(accountId).orElseThrow(() -> new NotFoundException(accountId));
+	public List<com.project.informationhub.model.Thread> findByAccountId(@PathVariable(value = "accountId") Long accountId){
+		return threadService.findByAccountId(accountId);
+		
+	}
+	
+	@GetMapping("/forum/{forumID}")
+	public List<com.project.informationhub.model.Thread> findByForumID(@PathVariable(value = "forumID") Long forumID){
+		return threadService.findByForumID(forumID);
 		
 	}
 	
 	@GetMapping("")
-	public List<Thread> findAll(){
-		return threadRepository.findAll();
+	public List<com.project.informationhub.model.Thread> findAll(){
+		return threadService.findAll();
 		
 	}
 	
 	@PutMapping(value="/{threadId}")
-    public Thread updateThread(@PathVariable int threadId, @RequestBody Thread newThread) {
-        return threadRepository.findById(threadId)
-                    .map(dbThread -> {
-                    	dbThread.setTitle(newThread.getTitle());
-                    	dbThread.setDescription(newThread.getDescription());
-                    	dbThread.setStickied(newThread.getStickied());
-                    	dbThread.setTimestampEdited(new Date());
-                        return threadRepository.save(dbThread);
-                    })
-                    .orElseGet(() -> {                    	
-                        return threadRepository.save(newThread);
-                    });
+    public com.project.informationhub.model.Thread updateThread(@PathVariable Long threadId, @RequestBody ThreadDTO newThread) {
+        return threadService.updateThread(threadId, newThread);
     }
 	
+	@PutMapping(value ="/stickied/{threadId}")
+	public com.project.informationhub.model.Thread setStickied(@PathVariable Long threadId){
+		return threadService.setStickied(threadId);
+	}
+	
+	@PutMapping(value ="/anonymous/{threadId}/{anonymous}")
+	public com.project.informationhub.model.Thread changeAnonymous(@PathVariable Long threadId,@PathVariable boolean anonymous){
+		return threadService.changeAnonymous(threadId,anonymous);
+	}	
+	
+	
 	@DeleteMapping("/{threadId}")
-    public void deleteThread(@PathVariable int threadId) {
-		threadRepository.deleteById(threadId);
+    public void deleteThread(@PathVariable Long threadId) {
+		threadService.deleteThread(threadId);
     }
+	
+	@GetMapping("/searchByWord/{word}")
+	public List<com.project.informationhub.model.Thread> getByWord(@PathVariable String word)
+	{
+		return threadService.searchThreadsByWord(word);
+	}
+	
 	
 
 }
