@@ -42,7 +42,7 @@ public class PostService {
 		return newPost.getId();
 	}
 	
-	public long updatePost(Long id, Post post)
+	public long updatePost(Post post)
 	{
 //<<<<<<< HEAD
 //		if(post.getCommentId() == 0) {
