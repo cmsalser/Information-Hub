@@ -50,13 +50,21 @@ class InformationhubApplicationTests {
 	
 	@Test
 	void upVotePost() {
-		ResponseDto response =postservice.upvotePost(3l, 2l);
+		post = new Post();
+		post.setId(1l);
+		post.setDescription("My post");
+		post.setTitle("My post title");
+		post.setThreadID(1);
+		long postId = postservice.createPost(post);
+		ResponseDto response =postservice.upvotePost(postId, 2l);
 		
 		System.out.println("upvote response "+response);
 		assertEquals(200, response.getCode());
-		ResponseDto response1 =postservice.upvotePost(3l, 2l);
+		ResponseDto response1 =postservice.upvotePost(postId, 2l);
+		
 		System.out.println("upvote duplicate "+response1);
 		assertEquals(201, response1.getCode());
+
 	}
 	
 	@Test

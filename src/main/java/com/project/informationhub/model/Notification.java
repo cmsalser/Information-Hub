@@ -2,64 +2,61 @@ package com.project.informationhub.model;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Temporal;
 /**
- *
+ * 
  * Class maintaining information about a post
  *
  */
 @Entity
-public class Post {
-
+public class Notification {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	//@Column(name = "COMMENT_ID")
+	//@Column(name = "NOTIFICATION_ID")
 	private Long id;
-
-	//@Column(name = "THREAD_ID")
+	
+	//@Column(name = "ACCOUNT_ID")
 	//@PrimaryKeyJoinColumn
-	private int threadID;
-
-	//@Column(name = "TITLE")
+	private long accountId;
+	
+	//@Column(name = "NOTIFICATION_TITLE")
 	private String title;
-
+	
 	//@Column(name = "DESCRIPTION")
 	private String description;
-
+	
+	//@Column(name = "PRIORITY")
+	private Integer priority;
+	
 	//@Column(name = "CREATE_DATE")
 	private Date timestampCreated;
-
+	
 	//@Column(name = "UPDATE_DATE")
 	private Date timestampEdited;
-
-	//@Column(name = "STICKIED")
-	private boolean stickied;
-
-	//@JoinColumn(name = "PARENT_POST_ID", nullable = true)
-	//@ManyToOne(cascade = CascadeType.ALL)
-	//private Post post;
-
-	@JsonManagedReference
-	@OneToMany(mappedBy = "post", fetch = FetchType.EAGER)
-	private Set<PostUpvotes> upvotes= new HashSet<>();
-
-	public Post() {}
-
-	public Post(int threadID, String title, String description) {
-		this.threadID = threadID;
-		this.title = title;
-		this.description = description;
-	}
+	
+	//@Column(name = "VIEWED")
+	private Boolean viewed;
+	
+	//@Column(name = "TYPE")
+	private String type;
+	
+	//@Column(name = "TYPE_ID")
+	private Long typeId;
+	
 
 	public Long getId() {
 		return id;
@@ -67,14 +64,6 @@ public class Post {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public int getThreadID() {
-		return threadID;
-	}
-
-	public void setThreadID(int threadID) {
-		this.threadID = threadID;
 	}
 
 	public String getTitle() {
@@ -109,27 +98,46 @@ public class Post {
 		this.timestampEdited = timestampEdited;
 	}
 
-	public boolean isStickied() {
-		return stickied;
+	public long getAccountId() {
+		return accountId;
 	}
 
-	public void setStickied(boolean stickied) {
-		this.stickied = stickied;
+	public void setAccountId(long accountId) {
+		this.accountId = accountId;
 	}
 
-//	public Post getPost() {
-//		return post;
-//	}
-//
-//	public void setPost(Post post) {
-//		this.post = post;
-//	}
-
-	public Set<PostUpvotes> getUpvotes() {
-		return upvotes;
+	public Integer getPriority() {
+		return priority;
 	}
 
-	public void setUpvotes(Set<PostUpvotes> upvotes) {
-		this.upvotes = upvotes;
+	public void setPriority(Integer priority) {
+		this.priority = priority;
 	}
+
+	public Boolean  isViewed() {
+		return viewed;
+	}
+
+	public void setViewed(Boolean  viewed) {
+		this.viewed = viewed;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public Long getTypeId() {
+		return typeId;
+	}
+
+	public void setTypeId(Long typeId) {
+		this.typeId = typeId;
+	}
+
+	
+	
 }

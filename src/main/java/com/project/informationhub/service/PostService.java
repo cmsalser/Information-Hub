@@ -1,9 +1,12 @@
 package com.project.informationhub.service;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import com.project.informationhub.model.Post;
 import com.project.informationhub.repository.PostRepository;
@@ -21,21 +24,20 @@ public class PostService {
 	@Autowired
 	private PostRepository postRepository;
 	
-//<<<<<<< HEAD
-//	public long createPost(Post post)
-//	{
-//		Post newPost = postRepository.save(post);
-//
-//		return newPost.getCommentId();
-//=======
+
 	@Autowired
 	private PostUpvotesRepository postUpvotesRepository;
+	
+	@Autowired
+	NotificationService notificationService;
 	
 	public long createPost(Post post)
 	{
 		post.setTimestampCreated(new Date());
 		post.setTimestampEdited(new Date());
 		Post newPost = postRepository.save(post);
+		
+		notificationService.sendPostNotification(newPost, "New Post created", "New post has been created in your thread.");
 		
 		return newPost.getId();
 	}
@@ -59,24 +61,16 @@ public class PostService {
 
 		// return updatedPost.getId();
 
-		post.setId(id);
+		// post.setId(id);
+
+		if(post.getId() == 0) {
+			return 0;
+		}
+		post.setTimestampCreated(new Date());
 		post.setTimestampEdited(new Date());
 		return postRepository.save(post).getId();
 	}
-	
-//<<<<<<< HEAD
-//	public Optional<Post> get(int postId)
-//	{
-//		return postRepository.findById(postId);
-//	}
-//
-//	public void delete(int postId)
-//	{
-//		Optional<Post>  optionalPost = get(postId);
-//		if(optionalPost.isPresent()) {
-//			 postRepository.deleteById(postId);
-//		}
-//=======
+
 	public Optional<Post> get(long postId)
 	{
 		
@@ -172,9 +166,14 @@ public class PostService {
 		return response;
 	}
 	
-	public List<Post> searchPostByWord(String word)
+	public List<Post> searchPostByWord(String word, int mostUpvoted)
 	{
-		return postRepository.findByTitleContainingOrDescriptionContaining(word, word);
+		List<Post> posts =  postRepository.findByTitleContainingOrDescriptionContaining(word, word);
+		if(mostUpvoted == 1) {
+			posts = posts.stream().sorted(Comparator.comparingInt(d -> d.getUpvotes().size())).collect(Collectors.toList());
+			Collections.reverse(posts);
+		}
+		return posts;
 //		Set<Integer> postIds = new LinkedHashSet<>();
 //		for(Post post : posts)
 //		{
