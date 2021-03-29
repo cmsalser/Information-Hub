@@ -72,6 +72,16 @@ public class NotificationService {
 		return response;
 	}
 	
+	public ResponseDto getAllNotifications ()
+	{
+		ResponseDto response = new ResponseDto();
+		
+		List<Notification> notifications= notificationRepository.findAll();
+		response.setData(notifications);
+		response.setCode(200);
+		return response;
+	}
+	
 	public ResponseDto get(long notificationId)
 	{
 		ResponseDto response = new ResponseDto();
@@ -89,8 +99,9 @@ public class NotificationService {
 		ResponseDto response = new ResponseDto();
 		Notification notification = notificationRepository.findByIdAndAccountId(notificationId, accountId);
 		if(Objects.nonNull(notification)) {
-			notification.setViewed(Boolean.TRUE);
-			notificationRepository.save(notification);
+			notificationRepository.delete(notification);
+			//notification.setViewed(Boolean.TRUE);
+			//notificationRepository.save(notification);
 			response.setCode(200);
 			
 		} else {
