@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Event } from '../../models/event.model';
+import { Router } from "@angular/router";
+import { EventsScheduleService } from '../events-schedule.service';
+
 
 @Component({
   selector: 'app-add-event',
@@ -7,9 +11,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddEventComponent implements OnInit {
 
-  constructor() { }
+  newEvent = {} as Event;
+
+  constructor(private Router: Router, private EventsScheduleService: EventsScheduleService) { }
 
   ngOnInit(): void {
   }
-
+  createEvent() {
+    const body = JSON.stringify(this.newEvent);
+    this.EventsScheduleService.addEvent(body, this.newEvent.eventId);
+    this.Router.navigateByUrl('/event/' + this.newEvent.eventId); //check url
+  }
 }
