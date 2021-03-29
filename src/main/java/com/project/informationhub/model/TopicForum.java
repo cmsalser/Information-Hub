@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  *
  */
 @Entity
-@Table(name = "topicForum")
+@Table(name = "topicforum")
 public class TopicForum {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
