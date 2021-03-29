@@ -56,7 +56,7 @@ public class NotificationController {
 	@DeleteMapping("/{userId}/{notificationId}")
 	public ResponseDto setViewd(@PathVariable long userId, @PathVariable long notificationId)
 	{
-		return notificationService.setView(notificationId, userId);
+		return notificationService.deleteNotification(notificationId, userId);
 	}
 
 	

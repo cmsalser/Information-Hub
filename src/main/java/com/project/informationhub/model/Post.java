@@ -52,6 +52,8 @@ public class Post {
 	@JsonManagedReference
 	@OneToMany(mappedBy = "post", fetch = FetchType.EAGER)
 	private Set<PostUpvotes> upvotes= new HashSet<>();
+	
+	private boolean anonymous;
 
 	public Long getId() {
 		return id;
@@ -108,6 +110,7 @@ public class Post {
 	public void setStickied(boolean stickied) {
 		this.stickied = stickied;
 	}
+	
 
 //	public Post getPost() {
 //		return post;
@@ -116,6 +119,14 @@ public class Post {
 //	public void setPost(Post post) {
 //		this.post = post;
 //	}
+
+	public boolean isAnonymous() {
+		return anonymous;
+	}
+
+	public void setAnonymous(boolean anonymous) {
+		this.anonymous = anonymous;
+	}
 
 	public Set<PostUpvotes> getUpvotes() {
 		return upvotes;

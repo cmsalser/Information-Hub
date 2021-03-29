@@ -84,7 +84,7 @@ class NotificationTests {
 		assertEquals(200, response.getCode());
 		Notification newNotification = (Notification) response.getData();
 		
-		ResponseDto response1 = notificationService.setView(newNotification.getId(), 1l);
+		ResponseDto response1 = notificationService.deleteNotification(newNotification.getId(), 1l);
 		System.out.println(response1);
 		assertEquals(200, response1.getCode());
 	}
