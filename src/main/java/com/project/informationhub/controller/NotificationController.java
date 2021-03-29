@@ -36,9 +36,15 @@ public class NotificationController {
 	}
 	
 	@GetMapping("/{userId}")
-	public ResponseDto getAllNotification(@PathVariable long userId)
+	public ResponseDto getAllNotificationByUser(@PathVariable long userId)
 	{
 		return notificationService.getNotifications(userId);
+	}
+	
+	@GetMapping("")
+	public ResponseDto getAllNotification()
+	{
+		return notificationService.getAllNotifications();
 	}
 	
 	@GetMapping("/{notificationId}")
@@ -47,7 +53,7 @@ public class NotificationController {
 		return notificationService.get(notificationId);
 	}
 	
-	@PatchMapping("/viewed/{userId}/{notificationId}")
+	@DeleteMapping("/{userId}/{notificationId}")
 	public ResponseDto setViewd(@PathVariable long userId, @PathVariable long notificationId)
 	{
 		return notificationService.setView(notificationId, userId);
