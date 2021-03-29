@@ -13,6 +13,7 @@ import { ThreadEditComponent } from './forum/thread-edit/thread-edit.component';
 import { PostEditComponent } from './forum/post-edit/post-edit.component';
 import { ThreadAddComponent } from './forum/thread-add/thread-add.component';
 import { EventsScheduleComponent } from './events-schedule/events-schedule.component';
+import { AddEventComponent } from './events-schedule/add-event/add-event.component';
 
 
 
@@ -30,7 +31,8 @@ const routes: Routes = [
   { path: 'faq-edit', component: FaqEditComponent},
   { path: 'faq-edit/:id', component: FaqEditComponent},
   { path: 'sign-up', component: SignUpComponent},
-  { path: 'schedule', component: EventsScheduleComponent}
+  { path: 'schedule', component: EventsScheduleComponent},
+  { path: 'add-event', component: AddEventComponent}
 
 ];
 
