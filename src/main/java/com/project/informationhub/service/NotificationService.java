@@ -45,9 +45,7 @@ public class NotificationService {
 		ResponseDto response = new ResponseDto();
 		notification.setTimestampCreated(new Date());
 		notification.setTimestampEdited(new Date());
-		if("post".equalsIgnoreCase(notification.getType())) {
-			
-		} 
+		
 		Optional<User> optionalUser= userRepository.findById(notification.getAccountId());
 		if(optionalUser.isPresent()) {
 			String email = optionalUser.get().getEmail();
@@ -95,7 +93,7 @@ public class NotificationService {
 		return response;
 	}
 	
-	public ResponseDto setView(long notificationId,long accountId) {
+	public ResponseDto deleteNotification(long notificationId,long accountId) {
 		ResponseDto response = new ResponseDto();
 		Notification notification = notificationRepository.findByIdAndAccountId(notificationId, accountId);
 		if(Objects.nonNull(notification)) {

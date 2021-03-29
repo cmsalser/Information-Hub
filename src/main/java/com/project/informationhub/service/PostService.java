@@ -174,26 +174,26 @@ public class PostService {
 			Collections.reverse(posts);
 		}
 		return posts;
-//		Set<Integer> postIds = new LinkedHashSet<>();
-//		for(Post post : posts)
-//		{
-//			if( post.getTitle().contains(word))
-//			{
-//				postIds.add(post.getId());
-//			}
-//		}
-//
-//
-//		for(Post post : posts)
-//		{
-//			if( post.getDescription().contains(word))
-//			{
-//				postIds.add(post.getId());
-//			}
-//		}
-//
-//
-//		return postIds;
 
+
+	}
+	
+	public ResponseDto changeAnonymous(long postId, boolean anonymous)
+	{
+		ResponseDto response = new ResponseDto();
+		Optional<Post> optionalPost = get(postId);
+		if(optionalPost.isPresent()) {
+			response.setCode(200);
+			response.setStatus(Constants.STATUS_SUCCESS);
+			Post post = optionalPost.get();
+			post.setAnonymous(anonymous);
+			postRepository.save(post);
+		} 
+		else {
+			response.setCode(404);
+			response.setMessage("Post id incorrect");
+			response.setStatus(Constants.STATUS_FAILED);
+		}
+		return response;
 	}
 }
