@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  *
  */
 @Entity
-@Table(name = "TopicForum")
+@Table(name = "topicForum")
 public class TopicForum {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -44,40 +44,24 @@ public class TopicForum {
 		return title;
 	}
 
-	/**
-	 * @param title the title to set
-	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
-	/**
-	 * @return the forumID
-	 */
 	public Long getForumID() {
 		return forumID;
 	}
 
-	/**
-	 * @param forumID the forumID to set
-	 */
 	public void setForumID(Long forumID) {
 		this.forumID = forumID;
 	}
 
-	/**
-	 * @return the threads
-	 */
 	public Set<Thread> getThreads() {
 		return threads;
 	}
 
-	/**
-	 * @param threads the threads to set
-	 */
 	public void setThreads(Set<Thread> threads) {
 		this.threads = threads;
 	}
 	
-
 }

@@ -13,27 +13,22 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "MEDIA_TYPE")
+@Table(name = "mediaType")
 public class MediaType {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "MEDIATYPE_ID")
+	@Column(name="mediatype_id")
 	private Long mediaTypeId;
-	@Column(name = "MEDIATYPE_NAME")
 	private String mediaTypeName;
 	@OneToMany(mappedBy = "mediaType",cascade = CascadeType.ALL)
 	private Set<Media> medias= new HashSet<>();
 	
-	/**
-	 * @return the medias
-	 */
+	
 	public Set<Media> getMedias() {
 		return medias;
 	}
 
-	/**
-	 * @param medias the medias to set
-	 */
+	
 	public void setMedias(Set<Media> medias) {
 		this.medias = medias;
 	}
@@ -44,33 +39,21 @@ public class MediaType {
 	public MediaType(String mediaTypeName) {
 		this.mediaTypeName = mediaTypeName;
 	}
-	/**
-	 * @return the mediaTypeId
-	 */
+	
 	public Long getMediaTypeId() {
 		return mediaTypeId;
 	}
-	/**
-	 * @param mediaTypeId the mediaTypeId to set
-	 */
+	
 	public void setMediaTypeId(Long mediaTypeId) {
 		this.mediaTypeId = mediaTypeId;
 	}
-	/**
-	 * @return the mediaTypeName
-	 */
+	
 	public String getMediaTypeName() {
 		return mediaTypeName;
 	}
-	/**
-	 * @param mediaTypeName the mediaTypeName to set
-	 */
+	
 	public void setMediaTypeName(String mediaTypeName) {
 		this.mediaTypeName = mediaTypeName;
 	}
 	
-	
-	
-	
-
 }

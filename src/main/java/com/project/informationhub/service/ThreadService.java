@@ -37,17 +37,14 @@ public class ThreadService {
 	
 	public com.project.informationhub.model.Thread findById(Long threadId){
 		return threadRepository.findById(threadId).orElseThrow(() -> new ThreadNotFoundException(threadId));
-		
 	}	
 
 	public List<com.project.informationhub.model.Thread> findByAccountId(Long accountId){
-		return threadRepository.findByAccountID(accountId);
-		
+		return threadRepository.findByAccountID(accountId);	
 	}
 	
 	public List<com.project.informationhub.model.Thread> findAll(){
 		return threadRepository.findAll();
-		
 	}
 	
     public com.project.informationhub.model.Thread updateThread(Long threadId,ThreadDTO newThread) {
@@ -101,5 +98,4 @@ public class ThreadService {
 		return threadRepository.findByForumID(forumID);
 	}
 	
-
 }

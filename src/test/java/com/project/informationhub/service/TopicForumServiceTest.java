@@ -30,7 +30,6 @@ public class TopicForumServiceTest {
 		TopicForum dbTopicForum = topicForumService.createTopic(topicForum);
 		assertEquals("Covid-19 vaccines", dbTopicForum.getTitle());
 		assertNotNull(dbTopicForum.getForumID());
-		
 	}
 	
 	@Test
@@ -44,8 +43,6 @@ public class TopicForumServiceTest {
 		List<TopicForum> topicForums = topicForumService.findAll();
 		
 		assertTrue(topicForums.size() == 2);
-		
-		
 	}
 	
 	@Test
@@ -60,8 +57,6 @@ public class TopicForumServiceTest {
 		}catch(Exception ex) {
 			assertTrue(ex instanceof TopicForumNotFoundException);
 		}
-	
 	}
 	
-
 }

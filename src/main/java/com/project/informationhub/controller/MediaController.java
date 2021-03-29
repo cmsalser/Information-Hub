@@ -24,32 +24,27 @@ public class MediaController {
 	
 	@GetMapping("/{mediaId}")
 	public MediaDTO findById(@PathVariable(value = "mediaId") Long mediaId){
-		return mediaService.findById(mediaId);
-		
+		return mediaService.findById(mediaId);	
 	}
 	
 	@GetMapping("/user/{userId}")
 	public List<MediaDTO> findByUserId(@PathVariable(value = "userId") Long userId){
-		return mediaService.findByUserId(userId);
-		
+		return mediaService.findByUserId(userId);	
 	}
 	
 	@PostMapping("")
 	public MediaDTO createMedia(@RequestBody MediaDTO mediaDTO) {
-		return mediaService.createMedia(mediaDTO);
-		
+		return mediaService.createMedia(mediaDTO);	
 	}
 	
 	@PutMapping(value="/{mediaId}")
-    public MediaDTO updatemedia(@PathVariable Long mediaId, @RequestBody MediaDTO mediaDTO) {
+    	public MediaDTO updatemedia(@PathVariable Long mediaId, @RequestBody MediaDTO mediaDTO) {
 		return mediaService.updateMedia(mediaId, mediaDTO);
-    }
+    	}
 	
 	@DeleteMapping("/{mediaId}")
-    public void deleteMedia(@PathVariable Long mediaId) {
+    	public void deleteMedia(@PathVariable Long mediaId) {
 		mediaService.deleteMedia(mediaId);
-    }
+    	}
 	
-	
-
 }

@@ -16,7 +16,6 @@ public class TopicForumService {
 	TopicForumRepository topicForumRepository;
 	
 	public TopicForum createTopic(TopicForum topic) {
-		
 		return topicForumRepository.save(topic);
 	}
 	
@@ -24,19 +23,16 @@ public class TopicForumService {
 	
 	public List<TopicForum> findAll(){
 		return topicForumRepository.findAll();
-		
 	}
 
 	public void deleteTopicForum(Long forumID) {
 		topicForumRepository.deleteById(forumID);
-		
 	}
 
 
 
 	public TopicForum findById(Long forumID) {
 		return topicForumRepository.findById(forumID).orElseThrow(() -> new TopicForumNotFoundException(forumID));
-		
 	}
 
 }

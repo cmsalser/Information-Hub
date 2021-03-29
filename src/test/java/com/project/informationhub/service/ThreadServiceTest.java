@@ -197,8 +197,7 @@ public class ThreadServiceTest {
 		
 		thread4 = threadService.setStickied(thread4.getThreadID());
 		
-		assertTrue(thread4.getStickied());
-		
+		assertTrue(thread4.getStickied());	
 	}
 	
 	@Test
@@ -226,7 +225,6 @@ public class ThreadServiceTest {
 		thread4 = threadService.changeAnonymous(thread4.getThreadID(),false);
 		
 		assertFalse(thread4.getStickied());
-		
 	}
 	
 	@Test
@@ -267,9 +265,6 @@ public class ThreadServiceTest {
 				threadService.searchThreadsByWord("Covid");
 		
 		assertTrue(searchResults2.size()==1);
-		
-		
-		
 	}
 
 }

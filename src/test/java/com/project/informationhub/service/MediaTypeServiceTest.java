@@ -31,7 +31,6 @@ public class MediaTypeServiceTest {
 		
 		assertEquals("pdf", dbMediaType.getMediaTypeName());
 		assertNotNull(dbMediaType.getMediaTypeId());		
-		
 	}
 	
 	@Test
@@ -45,8 +44,6 @@ public class MediaTypeServiceTest {
 		List<MediaType> mediaTypes = mediaTypeService.findAll();
 		
 		assertTrue(mediaTypes.size()==2);
-		
-		
 	}
 
 }

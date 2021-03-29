@@ -25,25 +25,21 @@ public class TopicForumController {
 	
 	@PostMapping("")
 	public TopicForum createTopic(@Valid @RequestBody TopicForum topic) {
-		
 		return topicForumService.createTopic(topic);
 	}
 	
 	@GetMapping("")
 	public List<TopicForum> findAll(){
-		return topicForumService.findAll();
-		
+		return topicForumService.findAll();	
 	}
 	
 	@GetMapping("/{forumID}")
 	public TopicForum findByID(@PathVariable Long forumID){
-		return topicForumService.findById(forumID);
-		
+		return topicForumService.findById(forumID);	
 	}
 	
 	@DeleteMapping("/{forumID}")
-    public void deletetopicForum(@PathVariable Long forumID) {
+    	public void deletetopicForum(@PathVariable Long forumID) {
 		topicForumService.deleteTopicForum(forumID);
-    }
-
+    	}
 }

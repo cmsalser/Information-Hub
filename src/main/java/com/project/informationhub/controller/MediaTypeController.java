@@ -23,14 +23,12 @@ public class MediaTypeController {
 	
 	@PostMapping("")
 	public MediaType createMediaType(@Valid @RequestBody MediaType mediaType) {
-		
 		return mediaTypeService.createMediaType(mediaType);
 	}
 	
 	@GetMapping("")
 	public List<MediaType> findAll(){
 		return mediaTypeService.findAll();
-		
 	}
 
 }

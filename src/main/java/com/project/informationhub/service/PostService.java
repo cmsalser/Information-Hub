@@ -7,15 +7,17 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
+import com.project.informationhub.model.Thread;
 import com.project.informationhub.model.Post;
 import com.project.informationhub.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.informationhub.dto.PostDTO;
 import com.project.informationhub.dto.ResponseDto;
 import com.project.informationhub.model.PostUpvotes;
 import com.project.informationhub.repository.PostUpvotesRepository;
+import com.project.informationhub.repository.ThreadRepository;
 import com.project.informationhub.utils.Constants;
 
 @Service
@@ -31,8 +33,13 @@ public class PostService {
 	@Autowired
 	NotificationService notificationService;
 	
-	public long createPost(Post post)
+	@Autowired
+	ThreadRepository threadRepository;
+	
+	public long createPost(PostDTO postDTO)
 	{
+		Thread thread = threadRepository.findById(postDTO.getThreadID()).get();
+		Post post = new Post(thread, postDTO.getTitle(), postDTO.getDescription());
 		post.setTimestampCreated(new Date());
 		post.setTimestampEdited(new Date());
 		Post newPost = postRepository.save(post);
@@ -66,7 +73,7 @@ public class PostService {
 		if(post.getId() == 0) {
 			return 0;
 		}
-		post.setTimestampCreated(new Date());
+		//post.setTimestampCreated(new Date());
 		post.setTimestampEdited(new Date());
 		return postRepository.save(post).getId();
 	}
@@ -77,7 +84,7 @@ public class PostService {
 		return postRepository.findById(postId);
 	}
 	
-	public ResponseDto getPostByThread(int threadId)
+	public ResponseDto getPostByThread(Long threadId)
 	{	
 		ResponseDto responseDto = new ResponseDto();
 		responseDto.setCode(200);
@@ -125,7 +132,7 @@ public class PostService {
 		
 		Optional<Post> isPost = get(postId);
 		if(isPost.isPresent()) {
-			List<Post> posts = postRepository.findByThreadIDAndStickied(isPost.get().getThreadID(), Boolean.TRUE);
+			List<Post> posts = postRepository.findByThreadIDAndStickied(isPost.get().getThread().getThreadID(), Boolean.TRUE);
 			if(Objects.isNull(posts) || posts.isEmpty()) {
 				Post post = isPost.get();
 				post.setStickied(Boolean.TRUE);
