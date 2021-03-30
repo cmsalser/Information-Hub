@@ -12,15 +12,19 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-//    @OneToOne
-//    @JoinColumn(name = "social_worker_id", referencedColumnName = "id")
-//    private User creator;
+    @ManyToMany
+    @JoinTable(
+            name = "event_creator",
+            joinColumns = @JoinColumn(name = "event_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private Set<User> creators;
 
     @ManyToMany
     @JoinTable(
             name = "event_user",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "event_id"))
+            joinColumns = @JoinColumn(name = "event_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
     private Set<User> attendees;
 
     private Date date;
@@ -29,8 +33,8 @@ public class Event {
 
     private String eventLink;
 
-    public Event(User creator, Set<User> attendees, Date date, String description, String eventLink) {
-//        this.creator = creator;
+    public Event(Set<User> creators, Set<User> attendees, Date date, String description, String eventLink) {
+        this.creators = creators;
         this.attendees = attendees;
         this.date = date;
         this.description = description;
@@ -45,9 +49,9 @@ public class Event {
         return id;
     }
 
-//    public User getCreator() {
-//        return creator;
-//    }
+    public Set<User> getCreator() {
+        return creators;
+    }
 
     public Set<User> getAttendees() {
         return attendees;
@@ -69,9 +73,9 @@ public class Event {
         this.id = id;
     }
 
-//    public void setCreator(User creator) {
-//        this.creator = creator;
-//    }
+    public void setCreator(Set<User> creator) {
+        this.creators = creators;
+    }
 
     public void setAttendees(Set<User> attendees) {
         this.attendees = attendees;

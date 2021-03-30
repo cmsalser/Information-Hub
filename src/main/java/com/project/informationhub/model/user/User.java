@@ -31,6 +31,9 @@ public class User {
     @ManyToMany(mappedBy = "attendees")
     private Set<Event> events;
 
+    @ManyToMany(mappedBy = "creators")
+    private Set<Event> creators;
+
     public User() {
 
     }
