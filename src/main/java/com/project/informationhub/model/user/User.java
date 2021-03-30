@@ -4,6 +4,7 @@ import com.project.informationhub.model.Role;
 
 import javax.persistence.*;
 import java.util.Collection;
+
 @Entity
 public class User {
     @Id
@@ -35,7 +36,6 @@ public class User {
 
 
     public User() {
-
     }
 
     public User(String username, String firstname, String lastname, String password, String email, String phoneNumber) {

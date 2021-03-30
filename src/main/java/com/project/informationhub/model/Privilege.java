@@ -13,7 +13,7 @@ public class Privilege {
     private String name;
 
     @ManyToMany(mappedBy = "privileges")
-    private Collection<Role> tags;
+    private Collection<Role> roles;
 
     public String getName()
     {
