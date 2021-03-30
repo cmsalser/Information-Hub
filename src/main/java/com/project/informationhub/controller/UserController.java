@@ -1,7 +1,11 @@
 package com.project.informationhub.controller;
 
+import com.project.informationhub.dto.ResponseDto;
 import com.project.informationhub.model.user.User;
 import com.project.informationhub.repository.UserRepository;
+import com.project.informationhub.service.UserService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,6 +16,9 @@ import java.util.Optional;
 public class UserController {
 
     private final UserRepository repository;
+    
+    @Autowired
+    UserService userService;
 
     public UserController(UserRepository repository) {
         this.repository = repository;
@@ -33,6 +40,12 @@ public class UserController {
     public User signUp(@RequestBody User user)
     {
         return repository.save(user);
+    }
+    
+    @PostMapping("/signin")
+    public ResponseDto signIn(@RequestBody User user)
+    {
+        return userService.getLogin(user);
     }
 
     @GetMapping("/")
