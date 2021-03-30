@@ -1,9 +1,11 @@
 package com.project.informationhub.model.user;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.project.informationhub.model.Event;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -25,6 +27,9 @@ public class User {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date birthday;
+
+    @ManyToMany(mappedBy = "attendees")
+    private Set<Event> events;
 
     public User() {
 
