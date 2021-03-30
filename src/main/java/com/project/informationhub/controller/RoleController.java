@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
+
 // hi
 
 @RestController
@@ -18,14 +19,13 @@ public class RoleController {
     private RoleService roleService;
 
     @PostMapping
-    public Long createRole(@RequestBody Role role)
+    public Role createRole(@RequestBody Role role)
     {
-        Long newid = roleService.createRole(role);
-        return newid;
+        return roleService.createRole(role);
     }
 
     @GetMapping("/{roleID}")
-    public Optional<Role> get(@PathVariable String roleID)
+    public Optional<Role> get(@PathVariable Long roleID)
     {
         return roleService.get(roleID);
     }

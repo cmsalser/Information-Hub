@@ -7,37 +7,33 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-
-
-// hi
-
 @Service
 public class RoleService {
 
     @Autowired
-    private RoleRepository usertagrepository;
+    private RoleRepository rolerepository;
 
     // Create UserTag
-    public Long createRole(Role newrole)
+    public Role createRole(Role newrole)
     {
-        Role newRole = usertagrepository.save(newrole);
-
-        return newRole.getId();
+        Role newRole = rolerepository.save(newrole);
+        return newRole;
     }
 
     // Get Role from ID
-    public Optional<Role> get(String roleId)
+    public Optional<Role> get(Long roleId)
     {
-        return usertagrepository.findById(roleId);
+        return rolerepository.findById(roleId);
     }
 
+
     // Delete UserTag
-    public void delete(String roleId)
+    public void delete(Long roleId)
     {
         Optional<Role>  role_to_delete = get(roleId);
         if(role_to_delete.isPresent())
         {
-            usertagrepository.deleteById(roleId);
+            rolerepository.deleteById(roleId);
         }
     }
 

@@ -17,13 +17,21 @@ public class UserController {
         this.repository = repository;
     }
 
+    @GetMapping("")
+    public List<User> all()
+    {
+        return repository.findAll();
+    }
+
     @GetMapping("/{id}")
-    public User show(@PathVariable long id) {
+    public User show(@PathVariable long id)
+    {
         return repository.findById(id).get();
     }
 
     @PostMapping("/signup")
-    public User signUp(@RequestBody User user) {
+    public User signUp(@RequestBody User user)
+    {
         return repository.save(user);
     }
 

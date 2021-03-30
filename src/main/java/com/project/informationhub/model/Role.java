@@ -7,15 +7,12 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-@Table(name = "role")
-
 public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String user_id;
-    private String name;
+    private String name = "auto";
 
     @ManyToMany(mappedBy = "roles")
     private Collection<User> users;
@@ -27,24 +24,23 @@ public class Role {
                     name = "role_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
                     name = "privilege_id", referencedColumnName = "id"))
-
     private Collection<Privilege> privileges;
 
-    public Role() {} // Never used
 
-    public Role(Long my_tag_id, String my_user_id, String name)
+
+    public Role() {
+        System.out.println("Create");
+    } // Never used
+
+    public Role(String name)
     {
-        // It doesn't make sense to give any of these methods getters
-        this.id = my_tag_id;
-        this.user_id = my_user_id;
         this.name = name;
     }
-
 
     @Override
     public String toString()
     {
-        return "Tag Id: " + id + "; User ID: " + user_id + "; Tag Type: " + name + "\n";
+        return "Tag Id: " + id + "; Tag Type: " + name + "\n";
     }
 
     public void setId(Long id)
@@ -61,6 +57,10 @@ public class Role {
         return id;
     }
 
+    public String getName() {return name;}
+
+    public void setName(String newname) {name = newname;}
+
     @Override
     public boolean equals(Object o)
     {
@@ -69,6 +69,6 @@ public class Role {
         if (!(o instanceof Role))
             return false;
         Role other = (Role)o;
-        return (other.user_id.equals(this.user_id) && other.name.equals(this.name));
+        return (other.name.equals(this.name));
     }
 }
