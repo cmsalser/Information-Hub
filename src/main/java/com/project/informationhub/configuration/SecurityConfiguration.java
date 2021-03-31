@@ -29,7 +29,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-                .antMatchers("/user/signup").permitAll()
+                .antMatchers("/user/signup", "/user/username", "/user/email").permitAll()
                 .antMatchers("/user/{userId}/**").access("@userSecurity.hasUserId(authentication, #userId)")
                 .and()
                 .formLogin()

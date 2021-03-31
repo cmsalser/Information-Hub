@@ -5,10 +5,15 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  *
@@ -23,9 +28,9 @@ public class Post {
 	//@Column(name = "COMMENT_ID")
 	private Long id;
 
-	//@Column(name = "THREAD_ID")
-	//@PrimaryKeyJoinColumn
-	private int threadID;
+	@ManyToOne
+	@JoinColumn(name = "THREAD_ID", referencedColumnName = "THREAD_ID")
+	private Thread thread;
 
 	//@Column(name = "TITLE")
 	private String title;
@@ -46,8 +51,19 @@ public class Post {
 	//@ManyToOne(cascade = CascadeType.ALL)
 	//private Post post;
 
-	@OneToMany(mappedBy = "post")
+	@JsonManagedReference
+	@OneToMany(mappedBy = "post", fetch = FetchType.EAGER)
 	private Set<PostUpvotes> upvotes= new HashSet<>();
+	
+	private boolean anonymous;
+
+	public Post() {}
+
+	public Post(Thread thread, String title, String description) {
+		this.thread = thread;
+		this.title = title;
+		this.description = description;
+	}
 
 	public Long getId() {
 		return id;
@@ -57,12 +73,18 @@ public class Post {
 		this.id = id;
 	}
 
-	public int getThreadID() {
-		return threadID;
+	/**
+	 * @return the thread
+	 */
+	public Thread getThread() {
+		return thread;
 	}
 
-	public void setThreadID(int threadID) {
-		this.threadID = threadID;
+	/**
+	 * @param thread the thread to set
+	 */
+	public void setThread(Thread thread) {
+		this.thread = thread;
 	}
 
 	public String getTitle() {
@@ -104,6 +126,7 @@ public class Post {
 	public void setStickied(boolean stickied) {
 		this.stickied = stickied;
 	}
+	
 
 //	public Post getPost() {
 //		return post;
@@ -112,6 +135,14 @@ public class Post {
 //	public void setPost(Post post) {
 //		this.post = post;
 //	}
+
+	public boolean isAnonymous() {
+		return anonymous;
+	}
+
+	public void setAnonymous(boolean anonymous) {
+		this.anonymous = anonymous;
+	}
 
 	public Set<PostUpvotes> getUpvotes() {
 		return upvotes;

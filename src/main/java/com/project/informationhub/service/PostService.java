@@ -1,18 +1,23 @@
 package com.project.informationhub.service;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-
+import java.util.stream.Collectors;
+import com.project.informationhub.model.Thread;
 import com.project.informationhub.model.Post;
 import com.project.informationhub.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.informationhub.dto.PostDTO;
 import com.project.informationhub.dto.ResponseDto;
 import com.project.informationhub.model.PostUpvotes;
 import com.project.informationhub.repository.PostUpvotesRepository;
+import com.project.informationhub.repository.ThreadRepository;
 import com.project.informationhub.utils.Constants;
 
 @Service
@@ -21,21 +26,25 @@ public class PostService {
 	@Autowired
 	private PostRepository postRepository;
 	
-//<<<<<<< HEAD
-//	public long createPost(Post post)
-//	{
-//		Post newPost = postRepository.save(post);
-//
-//		return newPost.getCommentId();
-//=======
+
 	@Autowired
 	private PostUpvotesRepository postUpvotesRepository;
 	
-	public long createPost(Post post)
+	@Autowired
+	NotificationService notificationService;
+	
+	@Autowired
+	ThreadRepository threadRepository;
+	
+	public long createPost(PostDTO postDTO)
 	{
+		Thread thread = threadRepository.findById(postDTO.getThreadID()).get();
+		Post post = new Post(thread, postDTO.getTitle(), postDTO.getDescription());
 		post.setTimestampCreated(new Date());
 		post.setTimestampEdited(new Date());
 		Post newPost = postRepository.save(post);
+		
+		notificationService.sendPostNotification(newPost, "New Post created", "New post has been created in your thread.");
 		
 		return newPost.getId();
 	}
@@ -50,36 +59,32 @@ public class PostService {
 //
 //		return updatedPost.getCommentId();
 //=======
+		// if(post.getId() == 0) {
+		// 	return 0;
+		// }
+		// post.setTimestampCreated(new Date());
+		// post.setTimestampEdited(new Date());
+		// Post updatedPost = postRepository.save(post);
+
+		// return updatedPost.getId();
+
+		// post.setId(id);
+
 		if(post.getId() == 0) {
 			return 0;
 		}
-		post.setTimestampCreated(new Date());
+		//post.setTimestampCreated(new Date());
 		post.setTimestampEdited(new Date());
-		Post updatedPost = postRepository.save(post);
-		
-		return updatedPost.getId();
+		return postRepository.save(post).getId();
 	}
-	
-//<<<<<<< HEAD
-//	public Optional<Post> get(int postId)
-//	{
-//		return postRepository.findById(postId);
-//	}
-//
-//	public void delete(int postId)
-//	{
-//		Optional<Post>  optionalPost = get(postId);
-//		if(optionalPost.isPresent()) {
-//			 postRepository.deleteById(postId);
-//		}
-//=======
+
 	public Optional<Post> get(long postId)
 	{
 		
 		return postRepository.findById(postId);
 	}
 	
-	public ResponseDto getPostByThread(int threadId)
+	public ResponseDto getPostByThread(Long threadId)
 	{	
 		ResponseDto responseDto = new ResponseDto();
 		responseDto.setCode(200);
@@ -127,7 +132,7 @@ public class PostService {
 		
 		Optional<Post> isPost = get(postId);
 		if(isPost.isPresent()) {
-			List<Post> posts = postRepository.findByThreadIDAndStickied(isPost.get().getThreadID(), Boolean.TRUE);
+			List<Post> posts = postRepository.findByThreadIDAndStickied(isPost.get().getThread().getThreadID(), Boolean.TRUE);
 			if(Objects.isNull(posts) || posts.isEmpty()) {
 				Post post = isPost.get();
 				post.setStickied(Boolean.TRUE);
@@ -168,29 +173,34 @@ public class PostService {
 		return response;
 	}
 	
-	public List<Post> searchPostByWord(String word)
+	public List<Post> searchPostByWord(String word, int mostUpvoted)
 	{
-		return postRepository.findByTitleContainingOrDescriptionContaining(word, word);
-//		Set<Integer> postIds = new LinkedHashSet<>();
-//		for(Post post : posts)
-//		{
-//			if( post.getTitle().contains(word))
-//			{
-//				postIds.add(post.getId());
-//			}
-//		}
-//
-//
-//		for(Post post : posts)
-//		{
-//			if( post.getDescription().contains(word))
-//			{
-//				postIds.add(post.getId());
-//			}
-//		}
-//
-//
-//		return postIds;
+		List<Post> posts =  postRepository.findByTitleContainingOrDescriptionContaining(word, word);
+		if(mostUpvoted == 1) {
+			posts = posts.stream().sorted(Comparator.comparingInt(d -> d.getUpvotes().size())).collect(Collectors.toList());
+			Collections.reverse(posts);
+		}
+		return posts;
 
+
+	}
+	
+	public ResponseDto changeAnonymous(long postId, boolean anonymous)
+	{
+		ResponseDto response = new ResponseDto();
+		Optional<Post> optionalPost = get(postId);
+		if(optionalPost.isPresent()) {
+			response.setCode(200);
+			response.setStatus(Constants.STATUS_SUCCESS);
+			Post post = optionalPost.get();
+			post.setAnonymous(anonymous);
+			postRepository.save(post);
+		} 
+		else {
+			response.setCode(404);
+			response.setMessage("Post id incorrect");
+			response.setStatus(Constants.STATUS_FAILED);
+		}
+		return response;
 	}
 }

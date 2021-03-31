@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class PostUpvotes {
 
@@ -17,6 +19,7 @@ public class PostUpvotes {
 	
 	@ManyToOne
 	@JoinColumn(name = "postId", referencedColumnName = "id")
+	@JsonBackReference
 	private Post post;
 	
 	//@Column(name = "USER_ID")
