@@ -16,8 +16,12 @@ export class AuthComponent implements OnInit {
   }
 
   login() {
-    this.AuthService.authenticate(this.credentials, () => {
+    this.AuthService.authenticate(this.credentials, (user) => {
+      if(user == null) {
+        alert("Invalid credential")
+      } else {
         this.router.navigateByUrl('/');
+      }
     });
   }
 }
