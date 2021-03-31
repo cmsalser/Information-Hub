@@ -1,10 +1,22 @@
 package com.project.informationhub.model.user;
 
-import com.project.informationhub.model.Role;
-
-import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import com.project.informationhub.model.Thread;
+import com.project.informationhub.model.Media;
+import com.project.informationhub.model.Role;
 @Entity
 public class User {
     @Id
@@ -31,6 +43,12 @@ public class User {
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
     private Collection<Role> roles;
+    
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+	private Set<Media> medias= new HashSet<>();
+    
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+	private Set<Thread> threads= new HashSet<>();
 
 //    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 //    private Date birthday;
@@ -112,4 +130,32 @@ public class User {
     public void setId(long id) {
         this.id = id;
     }
+    
+    /**
+	 * @return the medias
+	 */
+	public Set<Media> getMedias() {
+		return medias;
+	}
+
+	/**
+	 * @param medias the medias to set
+	 */
+	public void setMedias(Set<Media> medias) {
+		this.medias = medias;
+	}
+
+	/**
+	 * @return the threads
+	 */
+	public Set<Thread> getThreads() {
+		return threads;
+	}
+
+	/**
+	 * @param threads the threads to set
+	 */
+	public void setThreads(Set<Thread> threads) {
+		this.threads = threads;
+	}
 }

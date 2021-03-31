@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project.informationhub.dto.PostDTO;
 import com.project.informationhub.dto.ResponseDto;
 import com.project.informationhub.service.PostService;
 
@@ -28,7 +29,7 @@ public class PostController {
 	private PostService postService;
 	
 	@PostMapping("")
-	public long createPost(@RequestBody Post post)
+	public long createPost(@RequestBody PostDTO post)
 	{
 		return postService.createPost(post);
 	}
@@ -46,7 +47,7 @@ public class PostController {
 	}
 
 	@GetMapping("/bythread/{threadId}")
-	public ResponseDto getPostByThread(@PathVariable int threadId)
+	public ResponseDto getPostByThread(@PathVariable Long threadId)
 	{
 		return postService.getPostByThread(threadId);
 	}

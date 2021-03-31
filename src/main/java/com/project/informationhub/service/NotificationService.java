@@ -110,9 +110,9 @@ public class NotificationService {
 	
 	public boolean sendPostNotification(Post post, String subject, String message) {
 		boolean isSent = false;
-		Optional<com.project.informationhub.model.Thread> optionalThread = threadRepository.findByThreadID(post.getThreadID());
+		Optional<com.project.informationhub.model.Thread> optionalThread = Optional.of(post.getThread());
 		if(optionalThread.isPresent()) {
-			Optional<User> optionalUser= userRepository.findById(optionalThread.get().getAccountID());
+			Optional<User> optionalUser= Optional.of(optionalThread.get().getUser());
 			if(optionalUser.isPresent()) {
 				String email = optionalUser.get().getEmail();
 				mailservice.sendEmail(email, subject, message);
