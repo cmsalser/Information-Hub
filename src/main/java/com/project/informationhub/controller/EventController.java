@@ -32,12 +32,23 @@ public class EventController {
         return eventRepository.save(event);
     }
 
-//    @PutMapping("/{id}")
-//    public Event update(@RequestBody Event event, @PathVariable long id) {
-//        Optional<Event> toUpdate = eventRepository.findById(id);
-//        if(toUpdate.isPresent()) {
-//
-//        }
-//    }
+    @PutMapping("/{id}")
+    public Event update(@RequestBody Event event, @PathVariable long id) throws Exception {
+        Optional<Event> toUpdate = eventRepository.findById(id);
+        if(toUpdate.isPresent()) {
+            toUpdate.get().setAttendees(event.getAttendees());
+            toUpdate.get().setCreator(event.getCreator());
+            toUpdate.get().setEventLink(event.getEventLink());
+            toUpdate.get().setDescription(event.getDescription());
+            toUpdate.get().setDate(event.getDate());
+            return toUpdate.get();
+        } else {
+            throw new Exception("ID is invalid");
+        }
+    }
 
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable long id) {
+        eventRepository.deleteById(id);
+    }
 }
