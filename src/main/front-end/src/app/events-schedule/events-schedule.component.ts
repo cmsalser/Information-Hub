@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Event } from '../models/event.model'; // edit from  '../../models/event.model'; wasnt working
+import { EventsScheduleService } from './events-schedule.service'; // '../events-schedule.service'; error
+
 
 @Component({
   selector: 'app-events-schedule',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventsScheduleComponent implements OnInit {
 
-  constructor() { }
+  events: Event[] = [];
+
+
+  constructor(private EventsScheduleService: EventsScheduleService) {
+
+   }
 
   ngOnInit(): void {
+    this.EventsScheduleService.getEvents()
+    .subscribe(
+      (events: any[]) => {
+        this.events = events;
+      })
   }
 
 }

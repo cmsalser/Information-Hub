@@ -7,16 +7,22 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EventsScheduleService {
 
-  private EventURL: string;
+  private eventURL: string;
 
   constructor(private Http: HttpClient) { 
-    this.EventURL = 'https://jsonplaceholder.typicode.com/event/';
+    this.eventURL = 'https://jsonplaceholder.typicode.com/event/';
   }
 
   addEvent(description, eventId) {
     console.log(description + " " + eventId)
   }
 
+  getEvent(eventId) {
+    return this.Http.get(this.eventURL + eventId);
+  }
 
+  getEvents() {
+    return this.Http.get(this.eventURL);
+  }
 
 }
