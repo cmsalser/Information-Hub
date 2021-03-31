@@ -4,6 +4,7 @@ import com.project.informationhub.model.Role;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class User {
@@ -110,5 +111,10 @@ public class User {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public void setRoles(List<Role> newroles)
+    {
+        this.roles = newroles;
     }
 }

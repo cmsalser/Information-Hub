@@ -28,9 +28,7 @@ public class Role {
 
 
 
-    public Role() {
-        System.out.println("Create");
-    } // Never used
+    public Role() { } // Never used
 
     public Role(String name)
     {
@@ -52,6 +50,11 @@ public class Role {
     {
         return privileges;
     }
+
+    public void setPrivileges(Collection<Privilege> privileges) {
+        this.privileges = privileges;
+    }
+
 
     public Long getId() {
         return id;

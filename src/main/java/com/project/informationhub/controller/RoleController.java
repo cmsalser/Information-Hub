@@ -1,6 +1,7 @@
 package com.project.informationhub.controller;
 
 import com.project.informationhub.model.Role;
+import com.project.informationhub.repository.RoleRepository;
 import com.project.informationhub.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,11 @@ public class RoleController {
     public Role createRole(@RequestBody Role role)
     {
         return roleService.createRole(role);
+    }
+
+    public RoleRepository getRepository()
+    {
+        return roleService.getRepository();
     }
 
     @GetMapping("/{roleID}")
