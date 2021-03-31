@@ -18,6 +18,8 @@ import { PostEditComponent } from './forum/post-edit/post-edit.component';
 import { ThreadAddComponent } from './forum/thread-add/thread-add.component';
 import { EventsScheduleComponent } from './events-schedule/events-schedule.component';
 import { AddEventComponent } from './events-schedule/add-event/add-event.component';
+import { EventComponent } from './events-schedule/event/event.component';
+import { EventEditComponent } from './events-schedule/event-edit/event-edit.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { AddEventComponent } from './events-schedule/add-event/add-event.compone
     PostEditComponent,
     ThreadAddComponent,
     EventsScheduleComponent,
-    AddEventComponent
+    AddEventComponent,
+    EventComponent,
+    EventEditComponent,
   ],
   imports: [
     BrowserModule,
