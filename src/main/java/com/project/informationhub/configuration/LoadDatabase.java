@@ -25,8 +25,7 @@ class LoadDatabase {
   CommandLineRunner initDatabase(UserRepository user, ThreadRepository threadRepository, FAQRepository FAQRepo, ContactUsRepository ContactUsRepo, UserPreferenceRepository UserPreferenceRepo) {
 
     return args -> {
-//      log.info("Preloading " + threadRepository.save(new Thread(1, "Title", "Description", "new desc", false,
-//      false)));
+//      log.info("Preloading " + threadRepository.save(new Thread(1, "Title", "Description", false, false,)));
 
 //      log.info("Preloading " + user.save(new User("usr", "firstname", "lastname", "pass", "dk@hotmail.com", "phoneNumber", new Date(1998, 9, 12))));
 //      log.info("Preloading " + user.save(new User("usr", "firstname", "lastname", "pass", "dk@hotmail.com", "phoneNumber", new Date(1998, 9, 12))));

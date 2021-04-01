@@ -14,7 +14,8 @@ export class ThreadAddComponent implements OnInit {
     title: "",
     description: "",
     anonymous: false,
-    stickied: false
+    stickied: false,
+    forumID: "",
   };
 
   constructor(private ForumService: ForumService, private Router: Router) { }

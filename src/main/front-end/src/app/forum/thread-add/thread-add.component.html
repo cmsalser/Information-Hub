@@ -23,6 +23,10 @@
                 [(ngModel)]="newThread.stickied">
             <label class="form-check-label" for="stickied">Sticky Post</label>
         </div>
+        <div class="form-group">
+            <label for="forumID">Forum ID:</label> <input type="number" class="form-control" id="forumID"
+                name="forumID" [(ngModel)]="newThread.forumID" />
+        </div>
         <button type="submit" class="btn btn-primary">Submit Thread</button>
     </form>
 </div>
