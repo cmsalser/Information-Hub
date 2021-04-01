@@ -49,10 +49,23 @@
     <li class="nav-item">
       <a class="nav-link" href="#">Contact Us</a>
     </li>
-
-    <notification-icon count='scopeVariable'>
-      <a class="nav-link" href="#"><i class="fa fa-bell fa_custom"></i></a>
-    </notification-icon>
+    <li class="nav-item">
+      <a class="nav-link" href="#">
+        <notification-icon count='scopeVariable'>
+          <a class="fa fa-bell fa_custom" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-item dropdown">
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">U</a>
+                <a class="dropdown-item" href="#">12</a>
+                <a class="dropdown-item" href="#">Lon</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Help</a>
+              </div>
+            </a>
+          </a>
+        </notification-icon>
+      </a>
+    </li>
 
     <!-- User : drop down button in navigation bar-->
     
@@ -62,7 +75,7 @@
       </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <a class="dropdown-item" href="#">User Preferences</a>
-        <a class="dropdown-item" href="#">Notifications</a>
+        <a class="dropdown-item" routerLinkActive="active" routerLink="/notification">Notifications</a>
         <a class="dropdown-item" href="#">Log Out</a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="#">Help</a>

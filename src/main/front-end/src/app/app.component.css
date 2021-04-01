@@ -47,3 +47,7 @@ nav {
 .header-title:hover {
   text-decoration: none;
 }
+
+.fa_custom {
+  color: #ffffff
+}

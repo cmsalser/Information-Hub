@@ -6,6 +6,7 @@ import { FaqComponent } from './faq/faq.component';
 import { UserComponent } from "./user/user.component";
 import { FaqEditComponent } from './faq/faq-edit/faq-edit.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { NotificationComponent } from './notification/notification.component';
 
 import { ForumComponent } from './forum/forum.component';
 import { ThreadComponent } from './forum/thread/thread.component';
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'faq', component: FaqComponent},
   { path: 'faq-edit', component: FaqEditComponent},
   { path: 'faq-edit/:id', component: FaqEditComponent},
+  { path: 'notification', component: NotificationComponent},
   { path: 'sign-up', component: SignUpComponent}
 ];
 

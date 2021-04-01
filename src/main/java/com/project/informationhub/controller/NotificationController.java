@@ -40,9 +40,15 @@ public class NotificationController {
 	{
 		return notificationService.getNotifications(userId);
 	}
+
+	// @GetMapping("")
+	// public ResponseDto getAllNotification()
+	// {
+	// 	return notificationService.getAllNotifications();
+	// }
 	
 	@GetMapping("")
-	public ResponseDto getAllNotification()
+	public List<Notification> getAllNotification()
 	{
 		return notificationService.getAllNotifications();
 	}

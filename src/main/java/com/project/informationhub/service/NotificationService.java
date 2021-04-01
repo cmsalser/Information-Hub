@@ -70,14 +70,24 @@ public class NotificationService {
 		return response;
 	}
 	
-	public ResponseDto getAllNotifications ()
+	// public ResponseDto getAllNotifications ()
+	// {
+	// 	ResponseDto response = new ResponseDto();
+		
+	// 	List<Notification> notifications= notificationRepository.findAll();
+	// 	response.setData(notifications);
+	// 	response.setCode(200);
+	// 	return response;
+	// }
+	
+	public List<Notification> getAllNotifications ()
 	{
 		ResponseDto response = new ResponseDto();
 		
 		List<Notification> notifications= notificationRepository.findAll();
 		response.setData(notifications);
 		response.setCode(200);
-		return response;
+		return notifications;
 	}
 	
 	public ResponseDto get(long notificationId)

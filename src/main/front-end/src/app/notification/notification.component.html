@@ -1,0 +1,23 @@
+<notification-icon count='scopeVariable'>
+  <a class="fa fa-bell fa_custom" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+    <!-- <a class="nav-item dropdown"> -->
+      <div class="dropdown-menu">
+        <li *ngFor="let notification of notifications" class="list-group-item clearfix" id="notificationList">
+          <a class="dropdown-item">
+            <h1> {{notification.description}} </h1>
+          </a>
+          <!-- <div>
+            <h1> {{notification.description}} </h1>
+          </div> -->
+        </li>
+        <!-- <a class="dropdown-item" href="#">U</a>
+        <a class="dropdown-item" href="#">12</a>
+        <a class="dropdown-item" href="#">Lon</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Help</a> -->
+      </div>
+    <!-- </a> -->
+  </a>
+</notification-icon>
+
+<div> <h1> {{notifications.length}} </h1> </div>

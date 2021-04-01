@@ -16,6 +16,7 @@ import { ThreadEditComponent } from './forum/thread-edit/thread-edit.component';
 import { PostEditComponent } from './forum/post-edit/post-edit.component';
 import { ThreadAddComponent } from './forum/thread-add/thread-add.component';
 import {UserService} from "./user/user.service";
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {UserService} from "./user/user.service";
     ThreadComponent,
     ThreadEditComponent,
     PostEditComponent,
-    ThreadAddComponent
+    ThreadAddComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,

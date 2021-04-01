@@ -10,6 +10,7 @@ import { Router } from "@angular/router";
 
 export class AppComponent {
   title = 'front-end';
+  // showNotificaiton:boolean = false;
 
   constructor(private AuthService: AuthService, private router: Router) {
   }
@@ -23,4 +24,10 @@ export class AppComponent {
   authenticated() {
     return this.AuthService.authenticated;
   }
+
+  // div1:boolean=true;
+
+  // div1Function(){
+  //     this.div1= !this.div1;
+  // }
 }
