@@ -25,4 +25,12 @@ export class EventsScheduleService {
     return this.Http.get(this.eventURL);
   }
 
+  deleteEvent(eventId) {
+    return this.Http.delete(this.eventURL + eventId);
+  }
+
+  editEvent(description, eventId) {
+    return this.Http.patch(this.eventURL + eventId, description);
+  }
+
 }
