@@ -21,6 +21,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.project.informationhub.model.Event;
 
 import java.util.Date;
+import javax.persistence.*;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class User {
@@ -168,4 +171,9 @@ public class User {
 	public void setThreads(Set<Thread> threads) {
 		this.threads = threads;
 	}
+
+    public void setRoles(List<Role> newroles)
+    {
+        this.roles = newroles;
+    }
 }
