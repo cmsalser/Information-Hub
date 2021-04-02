@@ -38,8 +38,7 @@ export class ThreadEditComponent implements OnInit {
   }
 
   deleteThread() {
-    this.ForumService.deleteThread(this.editedThread.threadID);
-    console.log("Thread id: " + this.editedThread.threadID + " deleted");
+    this.ForumService.deleteThread(this.editedThread.threadID).subscribe();
     this.Router.navigateByUrl('/forum');
   }
 }

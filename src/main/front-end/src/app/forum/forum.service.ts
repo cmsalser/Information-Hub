@@ -29,7 +29,6 @@ export class ForumService {
   }
 
   editThread(body, id) {
-    console.log(body);
     return this.Http.put(this.threadURL + id, body, this.header);
   }
 
