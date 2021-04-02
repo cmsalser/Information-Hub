@@ -8,7 +8,8 @@
                 <div class="filter-content">
                     <div class="card-body">
                         <form class="form-inline">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                                (change)="searchByWord($event.target)">
                         </form>
                     </div>
                     <div class="card-body">

@@ -19,7 +19,7 @@ export class ForumComponent implements OnInit {
 
   ngOnInit(): void {
     let user = localStorage.getItem("user");
-    if(user == undefined || user == null) {
+    if (user == undefined || user == null) {
       this.router.navigateByUrl('/');
     } else {
       this.ForumService.getThreads()
@@ -27,7 +27,7 @@ export class ForumComponent implements OnInit {
           (threads: any[]) => {
             this.threads = threads;
           });
-        this.TopicForumService.getTopics()
+      this.TopicForumService.getTopics()
         .subscribe(
           (topics: any[]) => {
             this.topics = topics;
@@ -35,8 +35,12 @@ export class ForumComponent implements OnInit {
     }
   }
 
-  eventCheck(event, id){
+  eventCheck(event, id) {
     console.log(event.checked);
     console.log(id);
-}
+  }
+
+  searchByWord(event) {
+    console.log(event.value);
+  }
 }
