@@ -11,6 +11,7 @@ import { ForumService } from '../forum.service';
 })
 export class ThreadComponent implements OnInit {
   thread = {} as Thread;
+  posts: Post[] = [];
 
   constructor(private ForumService: ForumService, private Route: ActivatedRoute, private Router: Router) { }
 
@@ -21,7 +22,12 @@ export class ThreadComponent implements OnInit {
         .subscribe(
           (data: Thread) => {
             this.thread = data;
-          })
+          });
+          this.ForumService.getPostsByThread(+params['id'])
+          .subscribe(
+            (resp) => {
+              this.posts = resp['data'];
+            });
       })
   }
 }

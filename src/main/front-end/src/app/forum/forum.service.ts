@@ -12,7 +12,7 @@ export class ForumService {
 
   constructor(private Http: HttpClient) {
     this.threadURL = 'http://localhost:8080/thread/';
-    this.postsURL = 'http://localhost:8080/post';
+    this.postsURL = 'http://localhost:8080/post/';
     this.header = { headers: new HttpHeaders().set('Content-Type', 'application/json')};
    }
 
@@ -36,8 +36,8 @@ export class ForumService {
     return this.Http.post(this.threadURL, body, this.header);
   }
 
-  getPosts(id) {
-    return this.Http.get('https://jsonplaceholder.typicode.com/comments?postId=' + id);
+  getPostsByThread(threadID) {
+    return this.Http.get(this.postsURL + 'bythread/' + threadID);
   }
   
   getPostById(id) {
@@ -48,7 +48,7 @@ export class ForumService {
     return this.Http.delete(this.postsURL + id);
   }
 
-  editPost(body, id) {
-    return this.Http.patch(this.postsURL + id, body);
+  editPost(body) {
+    return this.Http.put(this.postsURL, body, this.header);
   }
 }
