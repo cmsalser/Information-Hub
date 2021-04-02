@@ -13,7 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.project.informationhub.model.user.User;
 
 /**
  *
@@ -27,9 +29,14 @@ public class Post {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	//@Column(name = "COMMENT_ID")
 	private Long id;
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "account_id", referencedColumnName = "id")
+	private User user;
 
 	@ManyToOne
-	@JoinColumn(name = "THREAD_ID", referencedColumnName = "THREAD_ID")
+	@JoinColumn(name = "thread_id", referencedColumnName = "thread_id")
 	private Thread thread;
 
 	//@Column(name = "TITLE")
@@ -59,7 +66,8 @@ public class Post {
 
 	public Post() {}
 
-	public Post(Thread thread, String title, String description) {
+	public Post(User user, Thread thread, String title, String description) {
+		this.user = user;
 		this.thread = thread;
 		this.title = title;
 		this.description = description;
@@ -71,6 +79,14 @@ public class Post {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	/**

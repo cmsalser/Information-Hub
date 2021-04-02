@@ -52,6 +52,12 @@ public class PostController {
 		return postService.getPostByThread(threadId);
 	}
 	
+	@GetMapping("/byaccount/{accountId}")
+	public ResponseDto getPostByAcccount(@PathVariable Long accountId)
+	{
+		return postService.getPostByAccount(accountId);
+	}
+	
 	@GetMapping("/searchByWord/{word}")
 	public List<Post> getByWord(@PathVariable String word, @RequestParam(value  = "mostUpvoted") int mostUpvoted)
 	{
@@ -70,10 +76,10 @@ public class PostController {
 		return postService.stickiedPost(postId);
 	}
 	
-	@PatchMapping("/anonymous/{postId}/{anonymous}")
-	public ResponseDto changeAnonymous(@PathVariable long postId, @PathVariable boolean anonymous)
+	@PatchMapping("/anonymous/{accountId}/{anonymous}")
+	public ResponseDto changeAnonymous(@PathVariable long accountId, @PathVariable boolean anonymous)
 	{
-		return postService.changeAnonymous(postId, anonymous);
+		return postService.changeAnonymous(accountId, anonymous);
 	}
 	
 	
