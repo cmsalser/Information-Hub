@@ -17,6 +17,7 @@ import { PostEditComponent } from './forum/post-edit/post-edit.component';
 import { ThreadAddComponent } from './forum/thread-add/thread-add.component';
 import {UserService} from "./user/user.service";
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { PostAddComponent } from './forum/post-add/post-add.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     ThreadEditComponent,
     PostEditComponent,
     ThreadAddComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    PostAddComponent
   ],
   imports: [
     BrowserModule,

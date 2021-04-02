@@ -51,4 +51,8 @@ export class ForumService {
   editPost(body) {
     return this.Http.put(this.postsURL, body, this.header);
   }
+
+  addPost(body) {
+    return this.Http.post(this.postsURL, body, this.header);
+  }
 }

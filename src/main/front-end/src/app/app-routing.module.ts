@@ -12,6 +12,7 @@ import { ThreadComponent } from './forum/thread/thread.component';
 import { ThreadEditComponent } from './forum/thread-edit/thread-edit.component';
 import { PostEditComponent } from './forum/post-edit/post-edit.component';
 import { ThreadAddComponent } from './forum/thread-add/thread-add.component';
+import { PostAddComponent } from './forum/post-add/post-add.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'thread/edit/:id', component: ThreadEditComponent },
   { path: 'thread-add', component: ThreadAddComponent },
   { path: 'post/edit/:id', component: PostEditComponent },
+  { path: 'post-add/:id', component: PostAddComponent},
   { path: 'user', component: UserComponent },
   { path: 'home', component: HomeComponent},
   { path: 'auth', component: AuthComponent},
