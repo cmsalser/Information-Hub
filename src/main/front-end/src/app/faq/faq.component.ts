@@ -15,6 +15,11 @@ export class FaqComponent implements OnInit {
   constructor(private router: Router, private FaqService: FaqService, private AuthService: AuthService) { }
 
   ngOnInit(): void {
+    let user = localStorage.getItem("user");
+    console.log(user)
+    if(user == undefined || user == null) {
+      this.router.navigateByUrl('/');
+    }
     this.FaqService.findAll().subscribe( (faqs: any[]) => {
       this.faqs = faqs;
     });
