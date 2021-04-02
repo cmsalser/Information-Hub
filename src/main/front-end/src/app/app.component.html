@@ -49,21 +49,20 @@
     <li class="nav-item">
       <a class="nav-link" href="#">Contact Us</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">
-        <notification-icon count='scopeVariable'>
-          <a class="fa fa-bell fa_custom" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <a class="nav-item dropdown">
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">U</a>
-                <a class="dropdown-item" href="#">12</a>
-                <a class="dropdown-item" href="#">Lon</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Help</a>
-              </div>
-            </a>
-          </a>
-        </notification-icon>
+    <li class="nav-item dropdown">
+      <a class="nav-link">
+        <a class="fa fa-bell fa_custom" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <notification-icon count='scopeVariable'></notification-icon>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li *ngFor="let notification of notifications" class="dropdown-item" id="notificationList">
+              {{notification.title}} : {{notification.description}} 
+              <button (click)="deleteNotification(notification.id)" class="close" aria-label="Close">
+              <!-- <button (click)="deleteNotification(notification.id)" class="close" aria-label="Close"> -->
+                <span aria-hidden="true">×</span>
+              </button>
+          </li>
+        </div>
       </a>
     </li>
 

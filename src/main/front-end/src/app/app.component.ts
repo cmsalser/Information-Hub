@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { AuthService } from './auth/auth.service'
+import { AuthService } from './auth/auth.service';
+import { NotificationService } from './notification/notification.service';
 import { Router } from "@angular/router";
+import { interval, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +12,14 @@ import { Router } from "@angular/router";
 
 export class AppComponent {
   title = 'front-end';
-  // showNotificaiton:boolean = false;
+  notifications: Notification[] = [];
 
-  constructor(private AuthService: AuthService, private router: Router) {
+
+  constructor(private AuthService: AuthService, private router: Router, private NotificationService: NotificationService) {
+  }
+
+  ngOnInit(): void {
+    interval(1000).subscribe((val) => { this.getNotification(); });
   }
 
   logout(){
@@ -23,6 +30,21 @@ export class AppComponent {
 
   authenticated() {
     return this.AuthService.authenticated;
+  }
+
+  getNotification() {
+    this.NotificationService.findAll().subscribe( (notifications: any[]) => {
+      // this.notifications = Object.values(notifications);
+      // console.log(this.notifications.length);
+      // console.log(this.notifications);
+      this.notifications = notifications;
+      // console.log(this.notifications.length);
+      // console.log(this.notifications);
+    });
+  }
+
+  deleteNotification(id: string) {
+    this.NotificationService.delete(id).subscribe();
   }
 
   // div1:boolean=true;

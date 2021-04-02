@@ -1,23 +1,20 @@
-<notification-icon count='scopeVariable'>
-  <a class="fa fa-bell fa_custom" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
-    <!-- <a class="nav-item dropdown"> -->
-      <div class="dropdown-menu">
-        <li *ngFor="let notification of notifications" class="list-group-item clearfix" id="notificationList">
-          <a class="dropdown-item">
-            <h1> {{notification.description}} </h1>
-          </a>
-          <!-- <div>
-            <h1> {{notification.description}} </h1>
-          </div> -->
-        </li>
-        <!-- <a class="dropdown-item" href="#">U</a>
-        <a class="dropdown-item" href="#">12</a>
-        <a class="dropdown-item" href="#">Lon</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Help</a> -->
-      </div>
-    <!-- </a> -->
+<li class="nav-item dropdown">
+  <a class="nav-link">
+    <a class="fa fa-bell fa_custom" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <notification-icon count='scopeVariable'></notification-icon>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <li *ngFor="let notification of notifications" class="dropdown-item" id="notificationList">
+          {{notification.title}} : {{notification.description}}
+          <a class="btn btn-sm btn-outline-secondary" (click)="deleteNotification(notification.id)">Delete</a>
+      </li>
+    </div>
   </a>
-</notification-icon>
+</li>
+
+<li *ngFor="let notification of notifications" id="notificationList">
+  {{notification.title}} : {{notification.description}}
+  <a class="btn btn-sm btn-outline-secondary" (click)="deleteNotification(notification.id)">Delete</a>
+</li>
 
 <div> <h1> {{notifications.length}} </h1> </div>

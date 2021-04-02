@@ -30,6 +30,6 @@ import { Observable } from "rxjs";
     // }
   
     public delete(id: string) {
-      return this.http.delete(this.notificationURL + '/' + id)
+      return this.http.delete(this.notificationURL + '/0/' + id);
     }
   }

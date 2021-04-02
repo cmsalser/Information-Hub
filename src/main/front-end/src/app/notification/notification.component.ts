@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { interval } from 'rxjs';
 import { NotificationService } from './notification.service';
 
 @Component({
@@ -9,23 +10,24 @@ import { NotificationService } from './notification.service';
 export class NotificationComponent implements OnInit {
   notifications: Notification[] = [];
 
-  constructor(private NotificaitonService: NotificationService) { }
+  constructor(private NotificationService: NotificationService) { }
 
   ngOnInit(): void {
-    this.NotificaitonService.findAll().subscribe( (notifications: any[]) => {
+    interval(1000).subscribe((val) => { this.getNotification(); });
+  }
+
+  getNotification() {
+    this.NotificationService.findAll().subscribe( (notifications: any[]) => {
       // this.notifications = Object.values(notifications);
       // console.log(this.notifications.length);
       // console.log(this.notifications);
       this.notifications = notifications;
-      console.log(this.notifications.length);
-      console.log(this.notifications);
-    })
+      // console.log(this.notifications.length);
+      // console.log(this.notifications);
+    });
   }
 
-  // showNotification: boolean;  
-  // constructor(){}
-  
-  // openNotification(state: boolean) {
-  //   this.showNotification = state;
-  // }
+  deleteNotification(id: string) {
+    this.NotificationService.delete(id);
+  }
 }
