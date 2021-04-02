@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Thread } from '../models/thread.model';
 import { ForumService } from './forum.service';
+import { Router } from "@angular/router";
+
 
 @Component({
   selector: 'app-forum',
@@ -10,14 +12,19 @@ import { ForumService } from './forum.service';
 export class ForumComponent implements OnInit {
   threads: Thread[] = [];
 
-  constructor(private ForumService: ForumService) { }
+  constructor(private ForumService: ForumService, private router: Router) { }
 
   ngOnInit(): void {
-    this.ForumService.getThreads()
-      .subscribe(
-        (threads: any[]) => {
-          this.threads = threads;
-        })
+    let user = localStorage.getItem("user");
+    if(user == undefined || user == null) {
+      this.router.navigateByUrl('/');
+    } else {
+      this.ForumService.getThreads()
+        .subscribe(
+          (threads: any[]) => {
+            this.threads = threads;
+          })
+    }
   }
 
 }

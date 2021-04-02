@@ -5,6 +5,8 @@ import java.util.Date;
 public class PostDTO {
 	
 	private Long threadID;
+	
+	private Long accountID;
 
 	private String title;
 
@@ -22,6 +24,14 @@ public class PostDTO {
 
 	public void setThreadID(Long threadID) {
 		this.threadID = threadID;
+	}
+	
+	public Long getAccountID() {
+		return accountID;
+	}
+	
+	public void setAccountID(Long accountID) {
+		this.accountID = accountID;
 	}
 
 	public String getTitle() {

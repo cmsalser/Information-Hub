@@ -13,7 +13,7 @@ public class MailService {
 	
 
     @Autowired
-    private JavaMailSender javaMailSender;
+    public JavaMailSender javaMailSender;
     
     public void sendEmail(String to, String subject, String message) {
 

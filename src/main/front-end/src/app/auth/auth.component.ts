@@ -13,11 +13,18 @@ export class AuthComponent implements OnInit {
   constructor(private AuthService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    localStorage.setItem("user", null);
+    localStorage.removeItem("user");
   }
 
   login() {
-    this.AuthService.authenticate(this.credentials, () => {
+    this.AuthService.authenticate(this.credentials, (user) => {
+      if(user == null) {
+        alert("Invalid credential")
+      } else {
+        localStorage.setItem("user",JSON.stringify(user));
         this.router.navigateByUrl('/');
+      }
     });
   }
 }
