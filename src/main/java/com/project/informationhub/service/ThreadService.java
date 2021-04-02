@@ -27,12 +27,17 @@ public class ThreadService {
 	@Autowired
 	TopicForumRepository topicForumRepository;
 	
+	@Autowired
+	NotificationService notificationService;
+	
     public com.project.informationhub.model.Thread createThread(ThreadDTO newThread) {
 		User user = userRepository.findById(newThread.getAccountID()).get();
 		TopicForum forum = topicForumRepository.findById(newThread.getForumID()).get();
 		com.project.informationhub.model.Thread thread = new com.project.informationhub.model.Thread(user,newThread.getTitle(),
 				newThread.getDescription(),newThread.isAnonymous(),newThread.isStickied(),forum);    	
-        return threadRepository.save(thread);
+        Thread savedThread=  threadRepository.save(thread);
+        notificationService.sendNotificationToAdmin("New Thread created", "New thread has been created in the forum", "THREAD");
+        return savedThread;
     }
 	
 	public com.project.informationhub.model.Thread findById(Long threadId){

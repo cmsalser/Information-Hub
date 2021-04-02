@@ -60,7 +60,7 @@ public class SetupDataLoader implements
         user.setRoles(Arrays.asList(adminRole));
         user.setUsername("Administrator 1");
         user.setPhoneNumber("1234567890");
-        userRepository.save(user);
+        //userRepository.save(user);
 
         alreadySetup = true;
     }

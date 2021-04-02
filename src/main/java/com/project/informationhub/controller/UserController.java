@@ -3,6 +3,7 @@ package com.project.informationhub.controller;
 import com.project.informationhub.dto.ResponseDto;
 import com.project.informationhub.model.user.User;
 import com.project.informationhub.repository.UserRepository;
+import com.project.informationhub.service.NotificationService;
 import com.project.informationhub.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class UserController {
     
     @Autowired
     UserService userService;
+    
+    @Autowired
+    NotificationService notificationService;
 
     public UserController(UserRepository repository) {
         this.repository = repository;
@@ -39,7 +43,9 @@ public class UserController {
     @PostMapping("/signup")
     public User signUp(@RequestBody User user)
     {
-        return repository.save(user);
+    	User registeredUser = repository.save(user);
+    	notificationService.sendPNotification(registeredUser, "User Registration", "Welcome to informationhub. Thank you for registring", "REGISTER");
+        return registeredUser;
     }
     
     @PostMapping("/signin")
