@@ -21,6 +21,7 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
+
     interval(1000).subscribe((val) => { this.getNotification(JSON.parse(localStorage.getItem('user'))['data'].id);
                                         this.getNotViewCount(JSON.parse(localStorage.getItem('user'))['data'].id);
                                       });
@@ -57,7 +58,7 @@ export class AppComponent {
   }
 
   deleteNotification(id: string) {
-    this.NotificationService.delete(id).subscribe();
+    this.NotificationService.delete(id, JSON.parse(localStorage.getItem('user'))['data'].id).subscribe();
   }
 
   setViewedNotification(id: string) {

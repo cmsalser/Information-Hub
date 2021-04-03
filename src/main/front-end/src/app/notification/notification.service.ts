@@ -29,8 +29,8 @@ import { Observable } from "rxjs";
       return this.http.get(this.notificationURL + '/' + id + '/viewed');
     }
   
-    public delete(id: string) {
-      return this.http.delete(this.notificationURL + '/0/' + id);
+    public delete(id: string, userId: string) {
+      return this.http.delete(this.notificationURL + '/' + userId +'/' + id);
     }
 
     public getNotViewCount(id: string) {

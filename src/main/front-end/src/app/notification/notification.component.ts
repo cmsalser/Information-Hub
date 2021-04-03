@@ -21,8 +21,4 @@ export class NotificationComponent implements OnInit {
       this.notifications = notifications;
     });
   }
-
-  deleteNotification(id: string) {
-    this.NotificationService.delete(id);
-  }
 }
