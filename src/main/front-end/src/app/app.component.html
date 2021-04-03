@@ -1,61 +1,99 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-  <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/forum">Forum</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/faq">FAQ</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Calender and Events</a>
-      </li>
-    </ul>
-  </div>
-  <div class="mx-auto order-0">
-    <a class="navbar-brand mx-auto" href="/home">InformationHub</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  </div>
-  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-    <ul class="navbar-nav ml-auto">
+<!--<nav class="navbar navbar-expand-md navbar-dark bg-dark">-->
+<!--  <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">-->
+<!--    <ul class="navbar-nav mr-auto">-->
+<!--      <li class="nav-item">-->
+<!--        <a class="nav-link" href="/forum">Forum</a>-->
+<!--      </li>-->
+<!--      <li class="nav-item">-->
+<!--        <a class="nav-link" href="/faq">FAQ</a>-->
+<!--      </li>-->
+<!--      <li class="nav-item">-->
+<!--        <a class="nav-link" href="#">Calender and Events</a>-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--  </div>-->
+<!--  <div class="mx-auto order-0">-->
+<!--    <a class="navbar-brand mx-auto" href="/home">InformationHub</a>-->
+<!--    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">-->
+<!--      <span class="navbar-toggler-icon"></span>-->
+<!--    </button>-->
+<!--  </div>-->
+<!--  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">-->
+<!--    <ul class="navbar-nav ml-auto">-->
 
-      <!-- User : drop down button in navigation bar-->
+<!--      &lt;!&ndash; User : drop down button in navigation bar&ndash;&gt;-->
 
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          User
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">User Preferences</a>
-          <a class="dropdown-item" href="#">Notifications</a>
-          <a class="dropdown-item" href="#">Log Out</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Help</a>
+<!--      <li class="nav-item dropdown">-->
+<!--        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"-->
+<!--          aria-haspopup="true" aria-expanded="false">-->
+<!--          User-->
+<!--        </a>-->
+<!--        <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+<!--          <a class="dropdown-item" href="#">User Preferences</a>-->
+<!--          <a class="dropdown-item" href="#">Notifications</a>-->
+<!--          <a class="dropdown-item" href="#">Log Out</a>-->
+<!--          <div class="dropdown-divider"></div>-->
+<!--          <a class="dropdown-item" href="#">Help</a>-->
+<!--        </div>-->
+<!--      </li>-->
+<!--      <li class="nav-item">-->
+<!--        <a class="btn btn-outline-secondary" routerLinkActive="active" routerLink="/sign-up">Sign Up</a>-->
+<!--      </li>-->
+<!--      <li class="nav-item">-->
+<!--        <div *ngIf="authenticated(); then thenBlock else elseBlock"></div>-->
+<!--        <ng-template #thenBlock><a class="btn btn-outline-secondary" (click)="logout()">Logout</a></ng-template>-->
+<!--        <ng-template #elseBlock><a class="btn btn-outline-secondary" routerLinkActive="active"-->
+<!--            routerLink="/auth">Login</a>-->
+<!--        </ng-template>-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--  </div>-->
+<!--</nav>-->
+
+<!--&lt;!&ndash;Body of Web App&ndash;&gt;-->
+<!--<div class="container content">-->
+<!--  <router-outlet></router-outlet>-->
+<!--</div>-->
+
+
+<header class="border-bottom border-light">
+  <div class="container">
+    <div class="row justify-content-around">
+      <div class="col-9">
+        <a class="header-title" routerLink="/home">Information Hub</a>
+      </div>
+      <div class="col-2 text-right">
+        <button class="btn btn-success" routerLinkActive="active" routerLink="/sign-up">Sign Up</button>
+      </div>
+      <div class="col-1 text-right">
+        <div class="">
+          <div *ngIf="authenticated(); then thenBlock else elseBlock"></div>
+          <ng-template #thenBlock><a class="btn btn-outline-secondary" (click)="logout()">Logout</a></ng-template>
+          <ng-template #elseBlock><a class="btn btn-outline-secondary" routerLinkActive="active" routerLink="/auth">Login</a></ng-template>
         </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container text-center">
+    <ul class="navbar-nav mr-auto mx-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="/home">Home</a>
       </li>
       <li class="nav-item">
-        <a class="btn btn-outline-secondary" routerLinkActive="active" routerLink="/sign-up">Sign Up</a>
-      </li>
-      <li class="nav-item">
-        <div *ngIf="authenticated(); then thenBlock else elseBlock"></div>
-        <ng-template #thenBlock><a class="btn btn-outline-secondary" (click)="logout()">Logout</a></ng-template>
-        <ng-template #elseBlock><a class="btn btn-outline-secondary" routerLinkActive="active"
-            routerLink="/auth">Login</a>
-        </ng-template>
+        <a class="nav-link" routerLinkActive="active" routerLink="/faq">Faq</a>
       </li>
     </ul>
   </div>
 </nav>
 
-<!--Body of Web App-->
-<div class="container content">
+<div class="container">
   <router-outlet></router-outlet>
 </div>
 
 <!--Footer-->
 <footer style="background-color: rgba(77, 62, 62, 0.2);">
-      <a class="btn bg-transparent btn-lg btn-block" href="/contact-us" role="button">Contact Us</a> 
+      <a class="btn bg-transparent btn-lg btn-block" href="/contact-us" role="button">Contact Us</a>
 </footer>
