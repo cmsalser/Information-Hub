@@ -15,14 +15,14 @@
                     name="description" style="height: 500px;" [(ngModel)]="newPost.description"></textarea>
             </div>
             <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="anonymous" name="anonymous"
-                [(ngModel)]="newPost.anonymous">
-                <label class="form-check-label" for="anonymous">Post Anonymously</label>
-            </div>
-            <div class="form-group form-check">
                 <input type="checkbox" class="form-check-input" id="stickied" name="stickied"
                     [(ngModel)]="newPost.stickied">
                 <label class="form-check-label" for="stickied">Sticky Post</label>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="anonymous" name="anonymous"
+                [(ngModel)]="newPost.anonymous">
+                <label class="form-check-label" for="anonymous">Post Anonymously</label>
             </div>
             <button type="submit" class="btn btn-primary">Submit Thread</button>
         </form>

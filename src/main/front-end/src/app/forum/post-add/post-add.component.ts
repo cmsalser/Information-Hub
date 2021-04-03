@@ -34,6 +34,7 @@ export class PostAddComponent implements OnInit {
 
   createPost() {
     const body = JSON.stringify(this.newPost);
+    console.log(body);
     this.ForumService.addPost(body)
     .subscribe(
       (data) => {

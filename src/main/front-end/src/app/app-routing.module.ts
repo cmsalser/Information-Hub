@@ -15,21 +15,22 @@ import { PostEditComponent } from './forum/post-edit/post-edit.component';
 import { ThreadAddComponent } from './forum/thread-add/thread-add.component';
 import { PostAddComponent } from './forum/post-add/post-add.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { AuthGuard } from './auth/auth-guard.service';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home'},
-  { path: 'forum', component: ForumComponent },
-  { path: 'thread/:id', component: ThreadComponent },
-  { path: 'thread/edit/:id', component: ThreadEditComponent },
-  { path: 'thread-add', component: ThreadAddComponent },
-  { path: 'post/edit/:id', component: PostEditComponent },
-  { path: 'post-add/:id', component: PostAddComponent},
-  { path: 'user', component: UserComponent },
+  { path: 'forum', component: ForumComponent, canActivate: [AuthGuard] },
+  { path: 'thread/:id', component: ThreadComponent, canActivate: [AuthGuard] },
+  { path: 'thread/edit/:id', component: ThreadEditComponent, canActivate: [AuthGuard] },
+  { path: 'thread-add', component: ThreadAddComponent, canActivate: [AuthGuard] },
+  { path: 'post/edit/:id', component: PostEditComponent, canActivate: [AuthGuard] },
+  { path: 'post-add/:id', component: PostAddComponent, canActivate: [AuthGuard] },
+  { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent},
   { path: 'auth', component: AuthComponent},
-  { path: 'faq', component: FaqComponent},
-  { path: 'faq-edit', component: FaqEditComponent},
-  { path: 'faq-edit/:id', component: FaqEditComponent},
+  { path: 'faq', component: FaqComponent, canActivate: [AuthGuard] },
+  { path: 'faq-edit', component: FaqEditComponent, canActivate: [AuthGuard]},
+  { path: 'faq-edit/:id', component: FaqEditComponent, canActivate: [AuthGuard] },
   { path: 'sign-up', component: SignUpComponent},
   { path: 'contact-us', component: ContactUsComponent },
   { path: 'notification', component: NotificationComponent}
