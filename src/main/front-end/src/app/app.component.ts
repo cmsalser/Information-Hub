@@ -21,8 +21,9 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
-    interval(1000).subscribe((val) => { this.getNotification();
+    interval(1000).subscribe((val) => { this.getNotification(JSON.parse(localStorage.getItem("user")['data']));
                                         this.getNotViewCount();
+                                        console.log(this.AuthService.user.id);
                                       });
   }
 
@@ -39,7 +40,7 @@ export class AppComponent {
     if(user == undefined || user == null) {
       this.isAuthenticated = false;
     } else {
-     this.isAuthenticated = true;
+      this.isAuthenticated = true;
     }
    return this.isAuthenticated;
   }
@@ -50,8 +51,8 @@ export class AppComponent {
     });
   }
 
-  getNotification() {
-    this.NotificationService.findAll().subscribe( (notifications: any[]) => {
+  getNotification(id: string) {
+    this.NotificationService.getUserNotification(id).subscribe( (notifications: any[]) => {
       this.notifications = notifications;
     });
   }

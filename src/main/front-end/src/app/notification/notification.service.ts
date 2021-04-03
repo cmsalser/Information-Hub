@@ -21,6 +21,10 @@ import { Observable } from "rxjs";
       return this.http.get(this.notificationURL + '/' + id);
     }
 
+    public getUserNotification(id: string) {
+      return this.http.get(this.notificationURL + '/user/' + id);
+    }
+
     public setViewed(id: string) {
       return this.http.get(this.notificationURL + '/' + id + '/viewed');
     }

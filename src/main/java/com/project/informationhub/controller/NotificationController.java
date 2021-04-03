@@ -35,8 +35,14 @@ public class NotificationController {
 		return notificationService.createNotification(notification);
 	}
 	
-	@GetMapping("/{userId}")
-	public ResponseDto getAllNotificationByUser(@PathVariable long userId)
+	// @GetMapping("/{userId}")
+	// public ResponseDto getAllNotificationByUser(@PathVariable long userId)
+	// {
+	// 	return notificationService.getNotifications(userId);
+	// }
+
+	@GetMapping("/user/{userId}")
+	public List<Notification> getAllNotificationByUser(@PathVariable long userId)
 	{
 		return notificationService.getNotifications(userId);
 	}

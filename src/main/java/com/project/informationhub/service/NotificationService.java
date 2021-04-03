@@ -65,15 +65,21 @@ public class NotificationService {
 		return response;
 	}
 	
-	public ResponseDto getNotifications (long userId)
-	{
-		ResponseDto response = new ResponseDto();
+	// public ResponseDto getNotifications (long userId)
+	// {
+	// 	ResponseDto response = new ResponseDto();
 		
+	// 	List<Notification> notifications= notificationRepository.findByAccountId(userId);
+	// 	//send email for notification
+	// 	response.setData(notifications);
+	// 	response.setCode(200);
+	// 	return response;
+	// }
+
+	public List<Notification> getNotifications (long userId)
+	{
 		List<Notification> notifications= notificationRepository.findByAccountId(userId);
-		//send email for notification
-		response.setData(notifications);
-		response.setCode(200);
-		return response;
+		return notifications;
 	}
 	
 	// public ResponseDto getAllNotifications ()

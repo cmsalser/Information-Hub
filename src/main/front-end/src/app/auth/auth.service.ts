@@ -33,4 +33,4 @@ export class AuthService {
   logout() {
     this.authenticated = false;
   }
-  }
+}
