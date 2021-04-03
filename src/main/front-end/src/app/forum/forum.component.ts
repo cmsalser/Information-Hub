@@ -18,11 +18,7 @@ export class ForumComponent implements OnInit {
   constructor(private ForumService: ForumService, private TopicForumService: TopicForumService, private router: Router) { }
 
   ngOnInit(): void {
-    let user = localStorage.getItem("user");
-    if (user == undefined || user == null) {
-      this.router.navigateByUrl('/');
-    } else {
-      this.ForumService.getThreads()
+    this.ForumService.getThreads()
         .subscribe(
           (threads: any[]) => {
             this.threads = threads;
@@ -34,7 +30,6 @@ export class ForumComponent implements OnInit {
             let defaultTopic = new TopicForum(-1, "All");
             this.topics.push(defaultTopic);
           });
-    }
   }
 
   topicSelection(id) {

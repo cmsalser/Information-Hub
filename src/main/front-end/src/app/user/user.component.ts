@@ -11,10 +11,6 @@ export class UserComponent implements OnInit {
   constructor( private router: Router) { }
 
   ngOnInit(): void {
-    let user = localStorage.getItem("user");
-    if(user == undefined || user == null) {
-      this.router.navigateByUrl('/');
-    }
   }
 
 }
