@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import com.project.informationhub.model.Thread;
+import com.project.informationhub.model.user.User;
 import com.project.informationhub.model.Post;
 import com.project.informationhub.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,11 @@ import org.springframework.stereotype.Service;
 import com.project.informationhub.dto.PostDTO;
 import com.project.informationhub.dto.ResponseDto;
 import com.project.informationhub.model.PostUpvotes;
+import com.project.informationhub.model.Role;
 import com.project.informationhub.repository.PostUpvotesRepository;
+import com.project.informationhub.repository.RoleRepository;
 import com.project.informationhub.repository.ThreadRepository;
+import com.project.informationhub.repository.UserRepository;
 import com.project.informationhub.utils.Constants;
 
 @Service
@@ -36,39 +40,50 @@ public class PostService {
 	@Autowired
 	ThreadRepository threadRepository;
 	
+	@Autowired
+	RoleRepository roleRepository;
+	
+	@Autowired
+	UserRepository userRepository;
+	
 	public long createPost(PostDTO postDTO)
 	{
+		User user = userRepository.findById(postDTO.getAccountID()).get();
 		Thread thread = threadRepository.findById(postDTO.getThreadID()).get();
-		Post post = new Post(thread, postDTO.getTitle(), postDTO.getDescription());
+		Post post = new Post(user, thread, postDTO.getTitle(), postDTO.getDescription());
 		post.setTimestampCreated(new Date());
 		post.setTimestampEdited(new Date());
 		Post newPost = postRepository.save(post);
 		
 		notificationService.sendPostNotification(newPost, "New Post created", "New post has been created in your thread.");
 		
+		//send notification to admin user
+		sendNotificationToAdmin();
+		
+		sendNotificationToPost(post.getThread().getThreadID());
+		
 		return newPost.getId();
+	}
+	
+	public void sendNotificationToAdmin() {
+		Role role = roleRepository.findByName("ROLE_ADMIN");
+		if(Objects.nonNull(role)) {
+			List<User> users = userRepository.findByRoles(role);
+			for (User user : users) {
+				notificationService.sendPNotification(user, "New Post created", "New post has been added to thread", "POST");
+			}
+		}
+	}
+	public void sendNotificationToPost(long threadId) {
+		List<Post> posts = postRepository.findByThreadID(threadId);
+		for (Post post : posts) {
+			notificationService.sendPostNotification(post, "New Post created", "New post has been created in your thread.");
+		}
 	}
 	
 	public long updatePost(Post post)
 	{
-//<<<<<<< HEAD
-//		if(post.getCommentId() == 0) {
-//			return 0;
-//		}
-//		Post updatedPost = postRepository.save(post);
-//
-//		return updatedPost.getCommentId();
-//=======
-		// if(post.getId() == 0) {
-		// 	return 0;
-		// }
-		// post.setTimestampCreated(new Date());
-		// post.setTimestampEdited(new Date());
-		// Post updatedPost = postRepository.save(post);
 
-		// return updatedPost.getId();
-
-		// post.setId(id);
 
 		if(post.getId() == 0) {
 			return 0;
@@ -82,6 +97,26 @@ public class PostService {
 	{
 		
 		return postRepository.findById(postId);
+	}
+	
+	public List<Post> getAccount(long accountId)
+	{
+		
+		return postRepository.findByAccountID(accountId);
+	}
+	
+	public ResponseDto getPostByAccount(Long accountId){
+//		return postRepository.findByAccountID(accountId);
+		{	
+			ResponseDto responseDto = new ResponseDto();
+			responseDto.setCode(200);
+			responseDto.setStatus(Constants.STATUS_SUCCESS);
+			List<Post> posts = postRepository.findByAccountID(accountId);
+			posts.sort((Post p1, Post p2)-> Integer.compare(p1.getUpvotes().size(), p2.getUpvotes().size()));
+			responseDto.setData(posts);
+			return responseDto;
+			
+		}
 	}
 	
 	public ResponseDto getPostByThread(Long threadId)

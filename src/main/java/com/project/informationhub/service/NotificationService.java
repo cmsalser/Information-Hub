@@ -14,10 +14,12 @@ import com.project.informationhub.dto.ResponseDto;
 import com.project.informationhub.model.Notification;
 import com.project.informationhub.model.Post;
 import com.project.informationhub.model.PostUpvotes;
+import com.project.informationhub.model.Role;
 import com.project.informationhub.model.user.User;
 import com.project.informationhub.repository.NotificationRepository;
 import com.project.informationhub.repository.PostRepository;
 import com.project.informationhub.repository.PostUpvotesRepository;
+import com.project.informationhub.repository.RoleRepository;
 import com.project.informationhub.repository.ThreadRepository;
 import com.project.informationhub.repository.UserRepository;
 import com.project.informationhub.utils.Constants;
@@ -38,6 +40,9 @@ public class NotificationService {
 	
 	@Autowired
 	MailService mailservice;
+	
+	@Autowired
+	RoleRepository roleRepository;
 	
 	
 	public ResponseDto createNotification (Notification notification)
@@ -128,6 +133,36 @@ public class NotificationService {
 			}
 		}
 		return isSent;
+	}
+	
+	
+	public boolean sendPNotification(User user, String subject, String message, String type) {
+		boolean isSent = false;
+		if(Objects.nonNull(user) && Objects.nonNull(user.getEmail())) {
+				String email = user.getEmail();
+				mailservice.sendEmail(email, subject, message);
+				Notification notification = new Notification();
+				notification.setTitle(subject);
+				notification.setType(type);
+				notification.setDescription(message);
+				notification.setAccountId( user.getId());
+				notification.setTimestampCreated(new Date());
+				notification.setTimestampEdited(new Date());
+				notificationRepository.save(notification);
+				isSent = true;
+			
+		}
+		return isSent;
+	}
+	
+	public void sendNotificationToAdmin(String subject, String message, String type) {
+		Role role = roleRepository.findByName("ROLE_ADMIN");
+		if(Objects.nonNull(role)) {
+			List<User> users = userRepository.findByRoles(role);
+			for (User user : users) {
+				sendPNotification(user, subject, message, type);
+			}
+		}
 	}
 	
 	
