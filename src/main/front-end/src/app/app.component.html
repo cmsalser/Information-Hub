@@ -6,6 +6,12 @@
     }
   </style>
 
+  <!-- <link rel="stylesheet" href="bower_components/angular-notification-icons/angular-notification-icons.min.css"> -->
+
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-notification-icons/angular-notification-icons.min.js"></script>
+
   <!-- <meta charset="UTF-8">
   <title>Notification Dropdown</title>
   <link rel="stylesheet" href="styles.css">
@@ -51,14 +57,17 @@
     </li>
     <li class="nav-item dropdown">
       <a class="nav-link">
-        <a class="fa fa-bell fa_custom" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <notification-icon count='scopeVariable'></notification-icon>
-        </a>
+        <notification-icon count='scopeVariable' animation="grow" count="" id="navbarDropdown" data-toggle="dropdown" >
+          <!-- <i class="fa fa-envelope-o fa-3x"></i> -->
+          <a class="fa fa-bell fa_custom" aria-haspopup="true" aria-expanded="false"></a>
+          <!-- <li *ngFor="let notification of notifications"> -->
+            <span class='badge badge-warning' id='lblCartCount'> {{notViewed.length}} </span>
+          <!-- </li> -->
+        </notification-icon>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <li *ngFor="let notification of notifications" class="dropdown-item" id="notificationList">
+          <li *ngFor="let notification of notifications" class="dropdown-item" id="notificationList" (mouseenter) ="setViewedNotification(notification.id)">
               {{notification.title}} : {{notification.description}} 
               <button (click)="deleteNotification(notification.id)" class="close" aria-label="Close">
-              <!-- <button (click)="deleteNotification(notification.id)" class="close" aria-label="Close"> -->
                 <span aria-hidden="true">×</span>
               </button>
           </li>
@@ -74,13 +83,8 @@
       </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <a class="dropdown-item" href="#">User Preferences</a>
-<<<<<<< HEAD
         <a class="dropdown-item" routerLinkActive="active" routerLink="/notification">Notifications</a>
-        <a class="dropdown-item" href="#">Log Out</a>
-=======
-        <a class="dropdown-item" href="#">Notifications</a>
         <a class="dropdown-item"  (click)="logout()">Log Out</a>
->>>>>>> origin/notification
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="#">Help</a>
       </div>

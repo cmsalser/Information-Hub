@@ -20,6 +20,10 @@ import { Observable } from "rxjs";
     public get(id: string): Observable<Object> {
       return this.http.get(this.notificationURL + '/' + id);
     }
+
+    public setViewed(id: string) {
+      return this.http.get(this.notificationURL + '/' + id + '/viewed');
+    }
   
     // public save(faq: Faq) {
     //   return this.http.post<Faq>(this.notificationURL, faq)
@@ -31,5 +35,9 @@ import { Observable } from "rxjs";
   
     public delete(id: string) {
       return this.http.delete(this.notificationURL + '/0/' + id);
+    }
+
+    public getNotViewCount() {
+      return this.http.get(this.notificationURL + '/viewcount');
     }
   }

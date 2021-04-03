@@ -1,5 +1,6 @@
 package com.project.informationhub.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -107,6 +108,20 @@ public class NotificationService {
 		}
 		return response;
 	}
+
+	public List<Notification> getNotViewedCount() {
+		// int count = 0;
+		List<Notification> toReturn = new ArrayList<Notification>();
+
+		List<Notification> notifications= notificationRepository.findAll();
+		for (int i = 0; i < notifications.size(); i++) {
+			if (!notifications.get(i).isViewed()) {
+				toReturn.add(notifications.get(i));
+			}
+		}
+
+		return toReturn;
+	}
 	
 	public ResponseDto deleteNotification(long notificationId,long accountId) {
 		ResponseDto response = new ResponseDto();
@@ -174,10 +189,11 @@ public class NotificationService {
 			}
 		}
 	}
-	
-	
-	
-	
-	
 
+	public void setViewed(long notificationId) {
+		Notification noti = notificationRepository.findById(notificationId).get();
+		noti.setViewed();
+		notificationRepository.save(noti);
+	}
+	
 }

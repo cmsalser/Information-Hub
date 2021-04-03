@@ -114,12 +114,16 @@ public class Notification {
 		this.priority = priority;
 	}
 
-	public Boolean  isViewed() {
+	public Boolean isViewed() {
 		return viewed;
 	}
 
-	public void setViewed(Boolean  viewed) {
-		this.viewed = viewed;
+	// public void setViewed(Boolean  viewed) {
+	// 	this.viewed = viewed;
+	// }
+
+	public void setViewed() {
+		this.viewed = true;
 	}
 
 	public String getType() {

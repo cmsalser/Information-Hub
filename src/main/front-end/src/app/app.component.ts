@@ -13,14 +13,16 @@ import { interval, Observable } from 'rxjs';
 export class AppComponent {
   title = 'front-end';
   notifications: Notification[] = [];
+  notViewed: Notification[] = [];
   isAuthenticated = false;
-
 
   constructor(private AuthService: AuthService, private router: Router, private NotificationService: NotificationService) {
   }
 
   ngOnInit(): void {
-    interval(1000).subscribe((val) => { this.getNotification(); });
+    interval(1000).subscribe((val) => { this.getNotification();
+                                        this.getNotViewCount();
+                                      });
   }
 
   logout(){
@@ -42,11 +44,14 @@ export class AppComponent {
    return this.isAuthenticated;
   }
 
+  getNotViewCount() {
+    this.NotificationService.getNotViewCount().subscribe( (notViewed: any[]) => {
+      this.notViewed = notViewed;
+    });
+  }
+
   getNotification() {
     this.NotificationService.findAll().subscribe( (notifications: any[]) => {
-      // this.notifications = Object.values(notifications);
-      // console.log(this.notifications.length);
-      // console.log(this.notifications);
       this.notifications = notifications;
       // console.log(this.notifications.length);
       // console.log(this.notifications);
@@ -57,9 +62,7 @@ export class AppComponent {
     this.NotificationService.delete(id).subscribe();
   }
 
-  // div1:boolean=true;
-
-  // div1Function(){
-  //     this.div1= !this.div1;
-  // }
+  setViewedNotification(id: string) {
+    this.NotificationService.setViewed(id).subscribe();
+  }
 }
