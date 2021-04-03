@@ -51,8 +51,6 @@ public class NotificationService {
 		ResponseDto response = new ResponseDto();
 		notification.setTimestampCreated(new Date());
 		notification.setTimestampEdited(new Date());
-
-		System.out.println(notification.getAccountId());
 		
 		Optional<User> optionalUser= userRepository.findById(notification.getAccountId());
 		if(optionalUser.isPresent()) {
@@ -117,11 +115,11 @@ public class NotificationService {
 		return response;
 	}
 
-	public List<Notification> getNotViewedCount() {
+	public List<Notification> getNotViewedCount(long userId) {
 		// int count = 0;
 		List<Notification> toReturn = new ArrayList<Notification>();
 
-		List<Notification> notifications= notificationRepository.findAll();
+		List<Notification> notifications= getNotifications(userId);
 		for (int i = 0; i < notifications.size(); i++) {
 			if (!notifications.get(i).isViewed()) {
 				toReturn.add(notifications.get(i));

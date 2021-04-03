@@ -22,7 +22,7 @@ export class AppComponent {
 
   ngOnInit(): void {
     interval(1000).subscribe((val) => { this.getNotification(JSON.parse(localStorage.getItem('user'))['data'].id);
-                                        this.getNotViewCount();
+                                        this.getNotViewCount(JSON.parse(localStorage.getItem('user'))['data'].id);
                                       });
   }
 
@@ -44,8 +44,8 @@ export class AppComponent {
    return this.isAuthenticated;
   }
 
-  getNotViewCount() {
-    this.NotificationService.getNotViewCount().subscribe( (notViewed: any[]) => {
+  getNotViewCount(id: string) {
+    this.NotificationService.getNotViewCount(id).subscribe( (notViewed: any[]) => {
       this.notViewed = notViewed;
     });
   }

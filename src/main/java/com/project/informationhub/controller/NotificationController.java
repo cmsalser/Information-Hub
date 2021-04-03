@@ -32,7 +32,6 @@ public class NotificationController {
 	@PostMapping
 	public ResponseDto createNotification(@RequestBody Notification notification)
 	{
-		System.out.println(notification.getAccountId());
 		return notificationService.createNotification(notification);
 	}
 	
@@ -56,7 +55,12 @@ public class NotificationController {
 
 	@GetMapping("/viewcount")
 	public List<Notification> getNotViewedCount() {
-		return notificationService.getNotViewedCount();
+		return notificationService.getAllNotifications();
+	}
+
+	@GetMapping("/viewcount/{userId}")
+	public List<Notification> getNotViewedCount(@PathVariable long userId) {
+		return notificationService.getNotViewedCount(userId);
 	}
 	
 	@GetMapping("")

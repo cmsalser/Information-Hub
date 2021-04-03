@@ -33,7 +33,7 @@ import { Observable } from "rxjs";
       return this.http.delete(this.notificationURL + '/0/' + id);
     }
 
-    public getNotViewCount() {
-      return this.http.get(this.notificationURL + '/viewcount');
+    public getNotViewCount(id: string) {
+      return this.http.get(this.notificationURL + '/viewcount/' + id);
     }
   }
