@@ -7,10 +7,13 @@ import { Router } from "@angular/router";
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
+  account = {};
 
   constructor( private router: Router) { }
 
   ngOnInit(): void {
+    this.account = JSON.parse(localStorage.getItem('user'))['data'];
+    console.log(this.account);
   }
 
 }
