@@ -51,6 +51,8 @@ public class NotificationService {
 		ResponseDto response = new ResponseDto();
 		notification.setTimestampCreated(new Date());
 		notification.setTimestampEdited(new Date());
+
+		System.out.println(notification.getAccountId());
 		
 		Optional<User> optionalUser= userRepository.findById(notification.getAccountId());
 		if(optionalUser.isPresent()) {

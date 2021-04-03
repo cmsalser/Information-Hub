@@ -21,9 +21,8 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
-    interval(1000).subscribe((val) => { this.getNotification(JSON.parse(localStorage.getItem("user")['data']));
+    interval(1000).subscribe((val) => { this.getNotification(JSON.parse(localStorage.getItem('user'))['data'].id);
                                         this.getNotViewCount();
-                                        console.log(this.AuthService.user.id);
                                       });
   }
 

@@ -32,6 +32,7 @@ public class NotificationController {
 	@PostMapping
 	public ResponseDto createNotification(@RequestBody Notification notification)
 	{
+		System.out.println(notification.getAccountId());
 		return notificationService.createNotification(notification);
 	}
 	
