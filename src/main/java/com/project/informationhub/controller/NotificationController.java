@@ -40,9 +40,20 @@ public class NotificationController {
 	{
 		return notificationService.getNotifications(userId);
 	}
+
+	// @GetMapping("")
+	// public ResponseDto getAllNotification()
+	// {
+	// 	return notificationService.getAllNotifications();
+	// }
+
+	@GetMapping("/viewcount")
+	public List<Notification> getNotViewedCount() {
+		return notificationService.getNotViewedCount();
+	}
 	
 	@GetMapping("")
-	public ResponseDto getAllNotification()
+	public List<Notification> getAllNotification()
 	{
 		return notificationService.getAllNotifications();
 	}
@@ -51,6 +62,11 @@ public class NotificationController {
 	public ResponseDto get(@PathVariable long notificationId)
 	{
 		return notificationService.get(notificationId);
+	}
+
+	@GetMapping("/{notificationId}/viewed")
+	public void setView(@PathVariable long notificationId) {
+		notificationService.setViewed(notificationId);
 	}
 	
 	@DeleteMapping("/{userId}/{notificationId}")

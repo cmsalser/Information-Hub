@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -18,6 +18,7 @@ import { ThreadAddComponent } from './forum/thread-add/thread-add.component';
 import {UserService} from "./user/user.service";
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { PostAddComponent } from './forum/post-add/post-add.component';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { PostAddComponent } from './forum/post-add/post-add.component';
     PostEditComponent,
     ThreadAddComponent,
     ContactUsComponent,
-    PostAddComponent
+    PostAddComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +45,9 @@ import { PostAddComponent } from './forum/post-add/post-add.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
   ],
  // exports: [
   //  SignUpComponent
