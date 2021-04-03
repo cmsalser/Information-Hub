@@ -15,6 +15,7 @@ export class AppComponent {
   notifications: Notification[] = [];
   notViewed: Notification[] = [];
   isAuthenticated = false;
+  lol = false;
 
   constructor(private AuthService: AuthService, private router: Router, private NotificationService: NotificationService) {
   }
@@ -34,7 +35,6 @@ export class AppComponent {
   }
 
   authenticated() {
-    //return this.AuthService.authenticated;
     let user = localStorage.getItem("user");
     if(user == undefined || user == null) {
       this.isAuthenticated = false;
@@ -53,8 +53,6 @@ export class AppComponent {
   getNotification() {
     this.NotificationService.findAll().subscribe( (notifications: any[]) => {
       this.notifications = notifications;
-      // console.log(this.notifications.length);
-      // console.log(this.notifications);
     });
   }
 

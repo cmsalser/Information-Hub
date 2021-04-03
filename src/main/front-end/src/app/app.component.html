@@ -1,29 +1,5 @@
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-  <style type="text/css">
-    .fa_custom {
-      color: #ffffff
-    }
-  </style>
-
-  <!-- <link rel="stylesheet" href="bower_components/angular-notification-icons/angular-notification-icons.min.css"> -->
-
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-animate/angular-animate.js"></script>
-  <script src="bower_components/angular-notification-icons/angular-notification-icons.min.js"></script>
-
-  <!-- <meta charset="UTF-8">
-  <title>Notification Dropdown</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script>
-    $(document).ready(function(){
-      $(".notification_icon .fa-bell").click(function(){
-        $(".dropdown").toggleClass("active");
-      })
-    });
-  </script> -->
 </head>
 
 
@@ -58,18 +34,26 @@
     <li class="nav-item dropdown">
       <a class="nav-link">
         <notification-icon count='scopeVariable' animation="grow" count="" id="navbarDropdown" data-toggle="dropdown" >
-          <!-- <i class="fa fa-envelope-o fa-3x"></i> -->
           <a class="fa fa-bell fa_custom" aria-haspopup="true" aria-expanded="false"></a>
-          <!-- <li *ngFor="let notification of notifications"> -->
             <span class='badge badge-warning' id='lblCartCount'> {{notViewed.length}} </span>
-          <!-- </li> -->
         </notification-icon>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <li *ngFor="let notification of notifications" class="dropdown-item" id="notificationList" (mouseenter) ="setViewedNotification(notification.id)">
-              {{notification.title}} : {{notification.description}} 
+            <div *ngIf="notification.viewed === false; then thenBlock else elseBlock"></div>
+            <ng-template #thenBlock>
+              <div class="not_viewed">
+                {{notification.title}} : {{notification.description}}
+                <button (click)="deleteNotification(notification.id)" class="close" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+            </ng-template>
+            <ng-template #elseBlock>
+              {{notification.title}} : {{notification.description}}
               <button (click)="deleteNotification(notification.id)" class="close" aria-label="Close">
                 <span aria-hidden="true">×</span>
               </button>
+            </ng-template>
           </li>
         </div>
       </a>

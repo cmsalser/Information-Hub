@@ -18,12 +18,7 @@ export class NotificationComponent implements OnInit {
 
   getNotification() {
     this.NotificationService.findAll().subscribe( (notifications: any[]) => {
-      // this.notifications = Object.values(notifications);
-      // console.log(this.notifications.length);
-      // console.log(this.notifications);
       this.notifications = notifications;
-      // console.log(this.notifications.length);
-      // console.log(this.notifications);
     });
   }
 
