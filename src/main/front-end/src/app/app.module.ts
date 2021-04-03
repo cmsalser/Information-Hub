@@ -47,9 +47,8 @@ import { EventEditComponent } from './events-schedule/event-edit/event-edit.comp
     FormsModule,
     HttpClientModule
   ],
- // exports: [
-  //  SignUpComponent
-//  ],
+
+  
   providers: [],
   bootstrap: [AppComponent]
 })
