@@ -7,7 +7,14 @@ import { Router } from "@angular/router";
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  account = {};
+  account = {
+    username: "",
+    firstname: "",
+    lastname: "",
+    phoneNumber: "",
+    email: "",
+    threads: {}
+  };
 
   constructor( private router: Router) { }
 
