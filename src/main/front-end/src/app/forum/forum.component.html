@@ -26,6 +26,13 @@
                 </header>
                 <div class="filter-content">
                     <div class="card-body">
+                        <div class="form-check" *ngFor="let topic of topics">
+                            <input class="form-check-input" type="radio"  id="flexRadioDefault1" name="flexRadioDefault" (change)="topicSelection(topic.forumID)">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                {{ topic.title }}
+                            </label>
+                          </div>
+                        <!--
                         <form>
                             <label class="form-check" *ngFor="let topic of topics">
                                 <input class="form-check-input" type="checkbox" (change)="eventCheck($event.target, topic.forumID)">
@@ -34,6 +41,7 @@
                                 </span>
                             </label>
                         </form>
+                        -->
                     </div>
                 </div>
             </article>

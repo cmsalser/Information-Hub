@@ -31,16 +31,41 @@ export class ForumComponent implements OnInit {
         .subscribe(
           (topics: any[]) => {
             this.topics = topics;
+            let defaultTopic = new TopicForum(-1, "All");
+            this.topics.push(defaultTopic);
           });
     }
   }
 
-  eventCheck(event, id) {
-    console.log(event.checked);
-    console.log(id);
+  topicSelection(id) {
+    if (id == -1) {
+      this.ForumService.getThreads()
+        .subscribe(
+          (threads: any[]) => {
+            this.threads = threads;
+          });
+    } else {
+      this.ForumService.getThreadsByForum(id)
+      .subscribe(
+        (threadsByForum: any[]) => {
+          this.threads = threadsByForum;
+        });
+    }
   }
 
   searchByWord(event) {
-    console.log(event.value);
+    if (event.value == "") {
+      this.ForumService.getThreads()
+        .subscribe(
+          (threads: any[]) => {
+            this.threads = threads;
+          });
+    } else {
+      this.ForumService.searchThreads(event.value)
+        .subscribe(
+          (searchResult: any[]) => {
+            this.threads = searchResult;
+          });
+    }
   }
 }

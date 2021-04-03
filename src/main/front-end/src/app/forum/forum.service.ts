@@ -36,6 +36,14 @@ export class ForumService {
     return this.Http.post(this.threadURL, body, this.header);
   }
 
+  searchThreads(word) {
+    return this.Http.get(this.threadURL + 'searchByWord/' + word);
+  }
+
+  getThreadsByForum(forumID) {
+    return this.Http.get(this.threadURL + 'forum/' + forumID);
+  }
+
   getPostsByThread(threadID) {
     return this.Http.get(this.postsURL + 'bythread/' + threadID);
   }
