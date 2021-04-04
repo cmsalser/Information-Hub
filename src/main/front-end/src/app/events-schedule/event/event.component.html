@@ -1,7 +1,7 @@
 <div class="container">
     <div class="jumbotron">
         <h1>{{ event.title }}</h1>
-        <p> starts at: {{ event.startDate }}</p>
+        <p> Starts at: {{ event.startDate }}</p>
         <a class="btn btn-sm btn-outline-secondary" [routerLink]="['/event/edit/', event.eventId]">Edit</a>
     </div>
     <li *ngFor="let event of event" class="list-group-item clearfix">
@@ -10,10 +10,10 @@
         </div>
         <div class="row">
             <div class="col">
-                <p style="font-size: smaller"> ends at : {{ event.endDate }}</p>
+                <p style="font-size: smaller"> Ends at : {{ event.endDate }}</p>
             </div>
             <div class="col text-right">
-                <a class="btn btn-sm btn-outline-secondary" [routerLink]="['/event/edit/', event.eventId]">Edit</a>
+                <a class="btn btn-sm btn-outline-secondary" [routerLink]="['/event/edit/', event.eventId]">Edit event</a>
             </div>
         </div>
     </li>

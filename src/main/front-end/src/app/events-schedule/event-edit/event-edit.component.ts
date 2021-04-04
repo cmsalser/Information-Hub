@@ -36,13 +36,12 @@ export class EventEditComponent implements OnInit {
           console.log(data);
         });
 
-    this.Router.navigateByUrl('/event-schedule/' + this.editedEvent.eventId);
+    this.Router.navigateByUrl('/event/' + this.editedEvent.eventId);
   }
 
   deleteEvent() {
-    this.EventsScheduleService.deleteEvent(this.editedEvent.eventId);
-    console.log("Event id: " + this.editedEvent.eventId + " deleted");
-    this.Router.navigateByUrl('/event-schedule'); //check url
+    this.EventsScheduleService.deleteEvent(this.editedEvent.eventId).subscribe();
+    this.Router.navigateByUrl('/schedule');
   }
 
 }
