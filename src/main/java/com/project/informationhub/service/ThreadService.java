@@ -1,5 +1,6 @@
 package com.project.informationhub.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -30,44 +31,68 @@ public class ThreadService {
 	@Autowired
 	NotificationService notificationService;
 	
-    public com.project.informationhub.model.Thread createThread(ThreadDTO newThread) {
-		User user = userRepository.findById(newThread.getAccountID()).get();
+    public ThreadDTO createThread(ThreadDTO newThread) {
+    	User user = userRepository.findById(newThread.getAccountID()).get();
 		TopicForum forum = topicForumRepository.findById(newThread.getForumID()).get();
 		com.project.informationhub.model.Thread thread = new com.project.informationhub.model.Thread(user,newThread.getTitle(),
 				newThread.getDescription(),newThread.isAnonymous(),newThread.isStickied(),forum);    	
-        Thread savedThread=  threadRepository.save(thread);
+		thread = threadRepository.save(thread);
         notificationService.sendNotificationToAdmin("New Thread created", "New thread has been created in the forum", "THREAD");
-        return savedThread;
+        return new ThreadDTO(thread.getUser().getId(), thread.getThreadID(), thread.getTitle(), 
+				thread.getDescription(), thread.isAnonymous(), thread.getStickied(),thread.getTopicForum().getForumID(),
+				thread.getTopicForum().getTitle());
     }
 	
-	public com.project.informationhub.model.Thread findById(Long threadId){
-		return threadRepository.findById(threadId).orElseThrow(() -> new ThreadNotFoundException(threadId));
+    public ThreadDTO findById(Long threadId){
+		return threadRepository.findById(threadId).map(thread ->
+		new ThreadDTO(thread.getUser().getId(), thread.getThreadID(), thread.getTitle(), 
+				thread.getDescription(), thread.isAnonymous(), thread.getStickied(),thread.getTopicForum().getForumID(),
+				thread.getTopicForum().getTitle())).orElseThrow(() -> new ThreadNotFoundException(threadId));
 	}	
 
-	public List<com.project.informationhub.model.Thread> findByAccountId(Long accountId){
-		return threadRepository.findByAccountID(accountId);	
+	public List<ThreadDTO> findByAccountId(Long accountId){
+		List<ThreadDTO> response = new ArrayList<>();
+		
+		threadRepository.findByAccountID(accountId).forEach(thread -> {
+			response.add(new ThreadDTO(thread.getUser().getId(), thread.getThreadID(), thread.getTitle(), 
+					thread.getDescription(), thread.isAnonymous(), thread.getStickied(),thread.getTopicForum().getForumID(),
+					thread.getTopicForum().getTitle()));
+		});
+		return response;
 	}
 	
-	public List<com.project.informationhub.model.Thread> findAll(){
-		return threadRepository.findAll();
+	public List<ThreadDTO> findAll(){
+		List<ThreadDTO> response = new ArrayList<>();
+		threadRepository.findAll().forEach(thread -> {
+			response.add(new ThreadDTO(thread.getUser().getId(), thread.getThreadID(), thread.getTitle(), 
+					thread.getDescription(), thread.isAnonymous(), thread.getStickied(),thread.getTopicForum().getForumID(),
+					thread.getTopicForum().getTitle()));
+		});
+		return response;
 	}
 	
-    public com.project.informationhub.model.Thread updateThread(Long threadId,ThreadDTO newThread) {
+    public ThreadDTO updateThread(Long threadId,ThreadDTO newThread) {
         return threadRepository.findById(threadId)
-                    .map(dbThread -> {
-                    	dbThread.setTitle(newThread.getTitle());
-                    	dbThread.setDescription(newThread.getDescription());
-                    	dbThread.setStickied(newThread.isStickied());
-                    	dbThread.setAnonymous(newThread.isAnonymous());
-                    	dbThread.setTimestampEdited(new Date());
-                        return threadRepository.save(dbThread);
+                    .map(thread -> {
+                    	thread.setTitle(newThread.getTitle());
+                    	thread.setDescription(newThread.getDescription());
+                    	thread.setStickied(newThread.isStickied());
+                    	thread.setAnonymous(newThread.isAnonymous());
+                    	thread.setTimestampEdited(new Date());
+                    	thread = threadRepository.save(thread);
+                		return new ThreadDTO(thread.getUser().getId(), thread.getThreadID(), thread.getTitle(), 
+                				thread.getDescription(), thread.isAnonymous(), thread.getStickied(),thread.getTopicForum().getForumID(),
+                				thread.getTopicForum().getTitle());
                     })
                     .orElseGet(() -> { 
                     	User user = userRepository.findById(newThread.getAccountID()).get();
                     	TopicForum forum = topicForumRepository.findById(newThread.getForumID()).get();
                     	com.project.informationhub.model.Thread thread = new com.project.informationhub.model.Thread(user,newThread.getTitle(),
                 				newThread.getDescription(),newThread.isAnonymous(),newThread.isStickied(),forum);  
-                        return threadRepository.save(thread);
+                    	thread = threadRepository.save(thread);
+                		return new ThreadDTO(thread.getUser().getId(), thread.getThreadID(), thread.getTitle(), 
+                				thread.getDescription(), thread.isAnonymous(), thread.getStickied(),thread.getTopicForum().getForumID(),
+                				thread.getTopicForum().getTitle());
                     });
     }
 	
@@ -77,30 +102,48 @@ public class ThreadService {
 		threadRepository.deleteById(threadId);
     }
 
-	public com.project.informationhub.model.Thread setStickied(Long threadId) {
+	public ThreadDTO setStickied(Long threadId) {
 		return threadRepository.findById(threadId)
                 .map(dbThread -> {
                 	dbThread.setStickied(true);
                 	dbThread.setTimestampEdited(new Date());
-                    return threadRepository.save(dbThread);
+                    Thread thread =  threadRepository.save(dbThread);
+                    return new ThreadDTO(thread.getUser().getId(), thread.getThreadID(), thread.getTitle(), 
+        					thread.getDescription(), thread.isAnonymous(), thread.getStickied(),thread.getTopicForum().getForumID(),
+        					thread.getTopicForum().getTitle());
                 }).orElseThrow(() -> new ThreadNotFoundException(threadId));
 }
 	
-	public List<com.project.informationhub.model.Thread> searchThreadsByWord(String word){
-		return threadRepository.findByTitleContainingOrDescriptionContaining(word, word);
+	public List<ThreadDTO> searchThreadsByWord(String word){
+		List<ThreadDTO> response = new ArrayList<>();
+		threadRepository.findByTitleContainingOrDescriptionContaining(word, word).forEach(thread -> {
+			response.add(new ThreadDTO(thread.getUser().getId(), thread.getThreadID(), thread.getTitle(), 
+					thread.getDescription(), thread.isAnonymous(), thread.getStickied(),thread.getTopicForum().getForumID(),
+					thread.getTopicForum().getTitle()));
+		});
+		return response;
 	}
 
-	public com.project.informationhub.model.Thread changeAnonymous(Long threadId, boolean anonymous) {
+	public ThreadDTO changeAnonymous(Long threadId, boolean anonymous) {
 		return threadRepository.findById(threadId)
                 .map(dbThread -> {
                 	dbThread.setAnonymous(anonymous);
                 	dbThread.setTimestampEdited(new Date());
-                    return threadRepository.save(dbThread);
+                	Thread thread =  threadRepository.save(dbThread);
+                    return new ThreadDTO(thread.getUser().getId(), thread.getThreadID(), thread.getTitle(), 
+        					thread.getDescription(), thread.isAnonymous(), thread.getStickied(),thread.getTopicForum().getForumID(),
+        					thread.getTopicForum().getTitle());
                 }).orElseThrow(() -> new ThreadNotFoundException(threadId));
 	}
 
-	public List<Thread> findByForumID(Long forumID) {
-		return threadRepository.findByForumID(forumID);
+	public List<ThreadDTO> findByForumID(Long forumID) {
+		List<ThreadDTO> response = new ArrayList<>();
+		threadRepository.findByForumID(forumID).forEach(thread -> {
+			response.add(new ThreadDTO(thread.getUser().getId(), thread.getThreadID(), thread.getTitle(), 
+					thread.getDescription(), thread.isAnonymous(), thread.getStickied(),thread.getTopicForum().getForumID(),
+					thread.getTopicForum().getTitle()));
+		});
+		return response;
 	}
 	
 }
