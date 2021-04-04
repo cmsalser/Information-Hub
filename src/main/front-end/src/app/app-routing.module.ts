@@ -15,7 +15,8 @@ import { PostEditComponent } from './forum/post-edit/post-edit.component';
 import { ThreadAddComponent } from './forum/thread-add/thread-add.component';
 import { PostAddComponent } from './forum/post-add/post-add.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
-import { AuthGuard } from './auth/auth-guard.service';
+import { AuthGuard } from './guards/auth-guard.service';
+import { AdminGuard } from './guards/admin-guard.service';
 import { TopicAddComponent } from './forum/topic-add/topic-add.component';
 
 const routes: Routes = [
@@ -27,12 +28,12 @@ const routes: Routes = [
   { path: 'post/edit/:id', component: PostEditComponent, canActivate: [AuthGuard] },
   { path: 'post-add/:id', component: PostAddComponent, canActivate: [AuthGuard] },
   { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
-  { path: 'add-topic', component: TopicAddComponent },
+  { path: 'add-topic', component: TopicAddComponent, canActivate: [AdminGuard] },
   { path: 'home', component: HomeComponent},
   { path: 'auth', component: AuthComponent},
   { path: 'faq', component: FaqComponent, canActivate: [AuthGuard] },
-  { path: 'faq-edit', component: FaqEditComponent, canActivate: [AuthGuard]},
-  { path: 'faq-edit/:id', component: FaqEditComponent, canActivate: [AuthGuard] },
+  { path: 'faq-edit', component: FaqEditComponent, canActivate: [AdminGuard]},
+  { path: 'faq-edit/:id', component: FaqEditComponent, canActivate: [AdminGuard] },
   { path: 'sign-up', component: SignUpComponent},
   { path: 'contact-us', component: ContactUsComponent },
   { path: 'notification', component: NotificationComponent}
