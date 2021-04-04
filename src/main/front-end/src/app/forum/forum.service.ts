@@ -63,4 +63,8 @@ export class ForumService {
   addPost(body) {
     return this.Http.post(this.postsURL, body, this.header);
   }
+
+  upvotePost(userID, id) {
+    return this.Http.put(this.postsURL + 'upvote/' + userID + '/' + id, {});
+  }
 }
