@@ -48,16 +48,19 @@ class InformationhubApplicationTests {
 		User user = new User();
 		user.setFirstname("Edis");
 		user.setLastname("Emin");
+		user.setEmail("edisemin@hotmail.co.uk");
 		user = userRepository.save(user);
 		
 		TopicForum forum = new TopicForum("Object Oriented Programming");
 		forum =  topicForumRepository.save(forum);
 		
 		Thread thread = new Thread(user, "My Thread", "My description", false, false, forum);
+		thread = threadRepository.save(thread);
 		
 		PostDTO postDTO = new PostDTO();
 		postDTO.setDescription("My post");
 		postDTO.setTitle("My post title");
+		postDTO.setAccountID(user.getId());
 		postDTO.setThreadID(thread.getThreadID());
 		long postId = postservice.createPost(postDTO);
 		System.out.println("post created with > " + postId);
@@ -79,16 +82,19 @@ class InformationhubApplicationTests {
 		User user = new User();
 		user.setFirstname("Edis");
 		user.setLastname("Emin");
+		user.setEmail("edisemin@hotmail1.co.uk");
 		user = userRepository.save(user);
 		
 		TopicForum forum = new TopicForum("Object Oriented Programming");
 		forum =  topicForumRepository.save(forum);
 		
 		Thread thread = new Thread(user, "My Thread", "My description", false, false, forum);
+		thread = threadRepository.save(thread);
 		
 		PostDTO postDTO = new PostDTO();
 		postDTO.setDescription("My post");
 		postDTO.setTitle("My post title");
+		postDTO.setAccountID(user.getId());
 		postDTO.setThreadID(thread.getThreadID());
 		long postId = postservice.createPost(postDTO);
 		ResponseDto response =postservice.upvotePost(postId, 2l);
@@ -110,16 +116,19 @@ class InformationhubApplicationTests {
 		User user = new User();
 		user.setFirstname("Edis");
 		user.setLastname("Emin");
+		user.setEmail("edisemin@hotmail2.co.uk");
 		user = userRepository.save(user);
 		
 		TopicForum forum = new TopicForum("Object Oriented Programming");
 		forum =  topicForumRepository.save(forum);
 		
 		Thread thread = new Thread(user, "My Thread", "My description", false, false, forum);
+		thread = threadRepository.save(thread);
 		
 		PostDTO postDTO = new PostDTO();
 		postDTO.setDescription("My post");
 		postDTO.setTitle("My post title");
+		postDTO.setAccountID(user.getId());
 		postDTO.setThreadID(thread.getThreadID());
 		long postId = postservice.createPost(postDTO);
 		ResponseDto response1 =postservice.delete(postId);
