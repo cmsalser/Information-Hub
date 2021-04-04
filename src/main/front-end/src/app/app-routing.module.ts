@@ -15,6 +15,7 @@ import { ThreadAddComponent } from './forum/thread-add/thread-add.component';
 import { PostAddComponent } from './forum/post-add/post-add.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AuthGuard } from './auth/auth-guard.service';
+import { TopicAddComponent } from './forum/topic-add/topic-add.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home'},
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'post/edit/:id', component: PostEditComponent, canActivate: [AuthGuard] },
   { path: 'post-add/:id', component: PostAddComponent, canActivate: [AuthGuard] },
   { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
+  { path: 'add-topic', component: TopicAddComponent },
   { path: 'home', component: HomeComponent},
   { path: 'auth', component: AuthComponent},
   { path: 'faq', component: FaqComponent, canActivate: [AuthGuard] },
