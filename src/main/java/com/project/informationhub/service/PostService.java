@@ -50,7 +50,7 @@ public class PostService {
 	{
 		User user = userRepository.findById(postDTO.getAccountID()).get();
 		Thread thread = threadRepository.findById(postDTO.getThreadID()).get();
-		Post post = new Post(user, thread, postDTO.getTitle(), postDTO.getDescription());
+		Post post = new Post(user, thread, postDTO.getTitle(), postDTO.getDescription(), postDTO.isAnonymous(), postDTO.isStickied());
 		post.setTimestampCreated(new Date());
 		post.setTimestampEdited(new Date());
 		Post newPost = postRepository.save(post);
