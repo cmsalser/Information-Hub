@@ -1,5 +1,6 @@
 package com.project.informationhub.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -64,25 +65,41 @@ public class NotificationService {
 		return response;
 	}
 	
-	public ResponseDto getNotifications (long userId)
-	{
-		ResponseDto response = new ResponseDto();
+	// public ResponseDto getNotifications (long userId)
+	// {
+	// 	ResponseDto response = new ResponseDto();
 		
+	// 	List<Notification> notifications= notificationRepository.findByAccountId(userId);
+	// 	//send email for notification
+	// 	response.setData(notifications);
+	// 	response.setCode(200);
+	// 	return response;
+	// }
+
+	public List<Notification> getNotifications (long userId)
+	{
 		List<Notification> notifications= notificationRepository.findByAccountId(userId);
-		//send email for notification
-		response.setData(notifications);
-		response.setCode(200);
-		return response;
+		return notifications;
 	}
 	
-	public ResponseDto getAllNotifications ()
+	// public ResponseDto getAllNotifications ()
+	// {
+	// 	ResponseDto response = new ResponseDto();
+		
+	// 	List<Notification> notifications= notificationRepository.findAll();
+	// 	response.setData(notifications);
+	// 	response.setCode(200);
+	// 	return response;
+	// }
+	
+	public List<Notification> getAllNotifications ()
 	{
 		ResponseDto response = new ResponseDto();
 		
 		List<Notification> notifications= notificationRepository.findAll();
 		response.setData(notifications);
 		response.setCode(200);
-		return response;
+		return notifications;
 	}
 	
 	public ResponseDto get(long notificationId)
@@ -96,6 +113,20 @@ public class NotificationService {
 			response.setCode(404);
 		}
 		return response;
+	}
+
+	public List<Notification> getNotViewedCount(long userId) {
+		// int count = 0;
+		List<Notification> toReturn = new ArrayList<Notification>();
+
+		List<Notification> notifications= getNotifications(userId);
+		for (int i = 0; i < notifications.size(); i++) {
+			if (!notifications.get(i).isViewed() || notifications.get(i).isViewed() == null) {
+				toReturn.add(notifications.get(i));
+			}
+		}
+
+		return toReturn;
 	}
 	
 	public ResponseDto deleteNotification(long notificationId,long accountId) {
@@ -164,10 +195,11 @@ public class NotificationService {
 			}
 		}
 	}
-	
-	
-	
-	
-	
 
+	public void setViewed(long notificationId) {
+		Notification noti = notificationRepository.findById(notificationId).get();
+		noti.setViewed();
+		notificationRepository.save(noti);
+	}
+	
 }
