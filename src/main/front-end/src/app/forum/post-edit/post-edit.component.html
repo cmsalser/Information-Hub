@@ -2,13 +2,23 @@
     <h1>Edit Post</h1>
     <form role="form" (submit)="sendEdit()">
         <div class="form-group">
-            <label for="title">Name:</label> <input type="text" class="form-control" id="name" name="name"
-                [(ngModel)]="editedPost.name" />
+            <label for="title">Title:</label> <input type="text" class="form-control" id="title" name="title"
+                [(ngModel)]="editedPost.title" />
         </div>
         <div class="form-group">
-            <label for="body">Body:</label>
-            <textarea type="text" class="form-control" id="body" name="body" style="height: 250px"
-                [(ngModel)]="editedPost.body"></textarea>
+            <label for="description">Description:</label>
+            <textarea type="text" class="form-control" id="body" name="description" style="height: 250px"
+                [(ngModel)]="editedPost.description"></textarea>
+        </div>
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="anonymous" name="anonymous"
+            [(ngModel)]="editedPost.anonymous">
+            <label class="form-check-label" for="anonymous">Post Anonymously</label>
+        </div>
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="stickied" name="stickied"
+                [(ngModel)]="editedPost.stickied">
+            <label class="form-check-label" for="stickied">Sticky Post</label>
         </div>
         <div class="row">
             <div class="col">

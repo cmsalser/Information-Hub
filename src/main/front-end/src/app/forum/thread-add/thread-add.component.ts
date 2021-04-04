@@ -9,16 +9,28 @@ import { ForumService } from '../forum.service';
   styleUrls: ['./thread-add.component.css']
 })
 export class ThreadAddComponent implements OnInit {
-  newThread = {} as Thread;
+  newThread = {
+    accountID: "",
+    title: "",
+    description: "",
+    anonymous: false,
+    stickied: false,
+    forumID: "",
+  };
 
   constructor(private ForumService: ForumService, private Router: Router) { }
 
   ngOnInit(): void {
+    this.newThread.accountID = JSON.parse(localStorage.getItem('user'))['data'].id;
   }
 
   createThread() {
     const body = JSON.stringify(this.newThread);
-    this.ForumService.addThread(body, this.newThread.id);
-    this.Router.navigateByUrl('/thread/' + this.newThread.id);
+    this.ForumService.addThread(body)
+      .subscribe(
+        (data: Thread) => {
+          console.log(data);
+          this.Router.navigateByUrl('/thread/' + data.threadID);
+        })
   }
 }

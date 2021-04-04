@@ -5,7 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import com.project.informationhub.model.TopicForum;
 
+
 @Repository
-public interface TopicForumRepository extends JpaRepository<TopicForum, Integer> {
+public interface TopicForumRepository extends JpaRepository<TopicForum, Long>{
 	
+
 }

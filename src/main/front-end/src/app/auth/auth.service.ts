@@ -16,16 +16,26 @@ export class AuthService {
 
   authenticate(credentials, callback) {
 
-    this.http.get('https://jsonplaceholder.typicode.com/users?username=' + credentials.username).subscribe((response: User) => {
-        this.user = response;
-        this.authenticated = true;
-        console.log(this.user);
-      return callback && callback();
+    this.http.post('http://localhost:8080/user/signin', credentials).subscribe((response: User) => {
+
+      this.user = response;
+      this.authenticated = true;
+      if (this.user.code == 200) {
+        return callback && callback(this.user);
+      } else {
+        return callback && callback(null);
+      }
+
     });
 
+  }
+
+  isAuthenticated() {
+    let user = localStorage.getItem("user");
+    return user !== undefined && user !== null;
   }
 
   logout() {
     this.authenticated = false;
   }
-  }
+}

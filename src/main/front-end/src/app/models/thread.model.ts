@@ -1,13 +1,23 @@
-export class Thread {
-    userId: number;
-    id: number;
-    title: string;
-    body: string;
+import { TopicForum } from './topicForum.model';
 
-    constructor(userId: number, id: number, title: string, body: string) {
-        this.userId = userId;
-        this.id = id;
+export class Thread {
+    threadID: number;
+    title: string;
+    description: string;
+    anonymous: boolean;
+    timestampCreated: Date;
+    timestampEdited: Date;
+    stickied: boolean;
+    topicForum: TopicForum;
+
+    constructor(threadID: number, title: string, description: string, anonymous: boolean, timestampCreated: Date, timestampEdited: Date, stickied: boolean, topicForum: TopicForum) {
+        this.threadID = threadID;
         this.title = title;
-        this.body = body;
+        this.description = description;
+        this.anonymous = anonymous;
+        this.timestampCreated = timestampCreated;
+        this.timestampEdited = timestampEdited;
+        this.stickied = stickied;
+        this.topicForum = topicForum;
     }
 }

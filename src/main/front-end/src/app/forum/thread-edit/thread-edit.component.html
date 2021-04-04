@@ -6,8 +6,18 @@
                 [(ngModel)]="editedThread.title" />
         </div>
         <div class="form-group">
-            <label for="body">Body:</label> <textarea type="text" class="form-control" id="body" name="body"
-                style="height: 500px;" [(ngModel)]="editedThread.body"></textarea>
+            <label for="description">Description:</label> <textarea type="text" class="form-control" id="description"
+                name="description" style="height: 500px;" [(ngModel)]="editedThread.description"></textarea>
+        </div>
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="anonymous" name="anonymous"
+            [(ngModel)]="editedThread.anonymous">
+            <label class="form-check-label" for="anonymous">Post Anonymously</label>
+        </div>
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="stickied" name="stickied"
+                [(ngModel)]="editedThread.stickied">
+            <label class="form-check-label" for="stickied">Sticky Post</label>
         </div>
         <div class="row">
             <div class="col">

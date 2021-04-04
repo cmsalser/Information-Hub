@@ -5,10 +5,17 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.project.informationhub.model.user.User;
 
 /**
  *
@@ -22,10 +29,15 @@ public class Post {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	//@Column(name = "COMMENT_ID")
 	private Long id;
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "account_id", referencedColumnName = "id")
+	private User user;
 
-	//@Column(name = "THREAD_ID")
-	//@PrimaryKeyJoinColumn
-	private int threadID;
+	@ManyToOne
+	@JoinColumn(name = "thread_id", referencedColumnName = "thread_id")
+	private Thread thread;
 
 	//@Column(name = "TITLE")
 	private String title;
@@ -46,8 +58,22 @@ public class Post {
 	//@ManyToOne(cascade = CascadeType.ALL)
 	//private Post post;
 
-	@OneToMany(mappedBy = "post")
+	@JsonManagedReference
+	@OneToMany(mappedBy = "post", fetch = FetchType.EAGER)
 	private Set<PostUpvotes> upvotes= new HashSet<>();
+	
+	private boolean anonymous;
+
+	public Post() {}
+
+	public Post(User user, Thread thread, String title, String description, boolean anonymous, boolean stickied) {
+		this.user = user;
+		this.thread = thread;
+		this.title = title;
+		this.description = description;
+		this.anonymous = anonymous;
+		this.stickied = stickied;
+	}
 
 	public Long getId() {
 		return id;
@@ -56,13 +82,27 @@ public class Post {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	public int getThreadID() {
-		return threadID;
+	
+	public User getUser() {
+		return user;
 	}
 
-	public void setThreadID(int threadID) {
-		this.threadID = threadID;
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	/**
+	 * @return the thread
+	 */
+	public Thread getThread() {
+		return thread;
+	}
+
+	/**
+	 * @param thread the thread to set
+	 */
+	public void setThread(Thread thread) {
+		this.thread = thread;
 	}
 
 	public String getTitle() {
@@ -104,6 +144,7 @@ public class Post {
 	public void setStickied(boolean stickied) {
 		this.stickied = stickied;
 	}
+	
 
 //	public Post getPost() {
 //		return post;
@@ -112,6 +153,14 @@ public class Post {
 //	public void setPost(Post post) {
 //		this.post = post;
 //	}
+
+	public boolean isAnonymous() {
+		return anonymous;
+	}
+
+	public void setAnonymous(boolean anonymous) {
+		this.anonymous = anonymous;
+	}
 
 	public Set<PostUpvotes> getUpvotes() {
 		return upvotes;

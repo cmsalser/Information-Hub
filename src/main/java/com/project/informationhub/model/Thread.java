@@ -1,57 +1,73 @@
 package com.project.informationhub.model;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.project.informationhub.model.user.User;
 /**
  * 
  * @author Class for storing information about threads
  *
  */
 @Entity
-//@Table(name = "Thread")
-public class Thread {
+@Table(name = "thread")
+public class Thread implements Serializable{
 	
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	private long threadID;
-	private long accountID;
+	@Column(name = "thread_id")
+	private Long threadID;
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "account_id", referencedColumnName = "id")
+	private User user;
 	private String title;
 	private String description;
-	private String newDesc;
 	private boolean anonymous;
+	@Column(name = "create_date")
 	private Date timestampCreated;
+	@Column(name = "update_date")
 	private Date timestampEdited;
 	private boolean stickied;
+	@JsonIgnore
+	@OneToMany(mappedBy = "thread",cascade = CascadeType.ALL)
+	private Set<Post> posts= new HashSet<>();
+	
+	@ManyToOne
+	@JoinColumn(name = "forum_id", referencedColumnName = "forum_id")
+	private TopicForum topicForum;
 	
 	public Thread() {
 		
 	}
 	
-	public Thread(int accountID, String title, String description, String newDesc, boolean anonymous,
-			boolean stickied) {
+	
+	public Thread(User user, String title, String description, boolean anonymous,
+			boolean stickied,TopicForum topicForum) {
 		super();
-		this.accountID = accountID;
+		this.user = user;
 		this.title = title;
 		this.description = description;
-		this.newDesc = newDesc;
 		this.anonymous = anonymous;
 		this.stickied = stickied;
 		this.timestampCreated = new Date();
 		this.timestampEdited = new Date();
-	}
-
-	public boolean createThread(int threadID, int accountID, String title, String description) {
-		return true;
-	}
-	
-	public boolean createPost(String title, String description) {
-		return true;
+		this.topicForum = topicForum;
 	}
 	
 	public void setTitle(String title) {
@@ -70,14 +86,6 @@ public class Thread {
 		return description;
 	}
 	
-	public void updatePost(String newDesc, String description) {
-		
-	}
-	
-	public void deletePost(int threadID) {
-		
-	}
-
 	public boolean getStickied() {
 		return stickied;
 	}
@@ -102,15 +110,44 @@ public class Thread {
 		this.timestampEdited = timestampEdited;
 	}
 
-	public long getAccountID() {
-		return accountID;
+	public Set<Post> getPosts() {
+		return posts;
+	}
+	
+	public void setPosts(Set<Post> posts) {
+		this.posts = posts;
 	}
 
-	public void setAccountID(int accountID) {
-		this.accountID = accountID;
+	public User getUser() {
+		return user;
 	}
 
-	public long getThreadID() {
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public boolean isAnonymous() {
+		return anonymous;
+	}
+
+	public void setAnonymous(boolean anonymous) {
+		this.anonymous = anonymous;
+	}
+
+	public Long getThreadID() {
 		return threadID;
 	}
+
+	public void setThreadID(Long threadID) {
+		this.threadID = threadID;
+	}
+
+	public TopicForum getTopicForum() {
+		return topicForum;
+	}
+
+	public void setTopicForum(TopicForum topicForum) {
+		this.topicForum = topicForum;
+	}	
+	
 }

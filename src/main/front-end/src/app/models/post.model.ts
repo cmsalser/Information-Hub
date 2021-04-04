@@ -1,15 +1,25 @@
-export class Post {
-    postId: number;
-    id: number;
-    name: string;
-    email: string;
-    body: string;
+import { Thread } from './thread.model';
 
-    constructor(postId: number, id: number, name: string, email: string, body: string) {
-        this.postId = postId;
+export class Post {
+    id: number;
+    thread: Thread;
+    title: string;
+    description: string;
+    timestampCreated: Date;
+    timestampEdited: Date;
+    stickied: boolean;
+    upvotes: [];
+    anonymous: boolean;
+
+    constructor(id: number, thread: Thread, title: string, description: string, timestampCreated: Date, timestampEdited: Date, stickied: boolean, upvotes: [], anonymous: boolean){
         this.id = id;
-        this.name = name;
-        this.email = email;
-        this.body = body;
+        this.thread = thread;
+        this.title = title;
+        this.description = description;
+        this.timestampCreated = timestampCreated;
+        this.timestampEdited = timestampEdited;
+        this.stickied = stickied;
+        this.upvotes = upvotes;
+        this.anonymous = anonymous;
     }
 }
