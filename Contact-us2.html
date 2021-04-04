@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+      
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script>
+      function appear1(){
+        if(document.getElementById("div1").style.display == "block")
+        document.getElementById("div1").style.display = "none";
+        else  document.getElementById("div1").style.display = "block";
+      }
+      
+      function appear2(){
+        if(document.getElementById("div2").style.display == "block")
+        document.getElementById("div2").style.display = "none";
+        else  document.getElementById("div2").style.display = "block";
+      }
+
+      function appear3(){
+        if(document.getElementById("div3").style.display == "block")
+        document.getElementById("div3").style.display = "none";
+        else  document.getElementById("div3").style.display = "block";
+      }
+
+      function disappear1(){
+        document.getElementById("div1").style.display = "none";
+      }
+      function disappear2(){
+        document.getElementById("div2").style.display = "none";
+      }
+      function disappear3(){
+        document.getElementById("div3").style.display = "none";
+      }
+      
+
+    </script>
+  </body>
+  <div class="container w-100">
+      <div class="row">
+          <div class="col-lg-4 text-secondary" style="height:200px"></div>
+          <div class="col-lg-8 text-right"></div>
+      </div>
+  </div>
+   <div class="container-fluid bg-white" style="border-radius: 1%;">
+       <div class="row">
+       <div class="col-2"></div>
+    <div class="col-md-2 p-3">
+      <label style="color: rgb(85, 85, 85); font-family: Verdana, Geneva, Tahoma, sans-serif;">Name:</label>
+      <br>
+      <input type="text" placeholder="Enter name" style="padding-left: 15px; font-size: small; border-color:transparent; border-radius: 1%; font-family:Verdana, Geneva, Tahoma, sans-serif; height: 40px; margin-left: 2%; width: 100%; background-color: rgb(228, 222, 222); color: gray;" required>
+    </div>
+    <div class="col-md-2 p-3">
+      <label style="color: rgb(85, 85, 85); font-family: Verdana, Geneva, Tahoma, sans-serif;">Subject:</label>
+      <br>
+      <input type="text" placeholder="Enter subject" style="padding-left: 15px; font-size: small; border-color:transparent; border-radius: 1%; font-family:Verdana, Geneva, Tahoma, sans-serif; height: 40px; margin-left: 2%; width: 100%; background-color: rgb(228, 222, 222); color: gray;" required>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2">
+     
+    </div></div>
+<div class="row">
+  <div class="col-2"></div>
+  <div class="col-md-4" style="top: -10px;"> 
+    <label style="color: rgb(85, 85, 85); font-family: Verdana, Geneva, Tahoma, sans-serif;">Email:</label>
+    <br>
+    <input type="email" placeholder="Enter email" style="padding-left: 15px; font-size: small; border-color:transparent; border-radius: 1%; font-family:Verdana, Geneva, Tahoma, sans-serif; height: 40px; margin-left: 1%; width: 100%; background-color: rgb(228, 222, 222); color: gray;" required>
+  </div>
+  <div class="col-md-2"></div>
+    <div class="col-md-2">
+      
+    </div></div>
+<div class="row">
+  <div class="col-2"></div>
+  <div class="col-md-4"> 
+    <label style="color: rgb(85, 85, 85); font-family: Verdana, Geneva, Tahoma, sans-serif;">Message:</label>
+    <br>
+    <textarea placeholder="Write your message" style="padding-left: 15px; font-size: small; resize: none; border-color:transparent; border-radius: 1%; font-family:Verdana, Geneva, Tahoma, sans-serif; height: 200px; margin-left: 1%; width: 100%; background-color: rgb(228, 222, 222); color: gray; " rows="10" cols="50" required ></textarea>
+    <br>
+    <input type="submit" value="SUBMIT" style="margin-left: 1%; text-align: center; width: 30%; background-color: green; color: white; border: none; height: 40px;">
+
+ </div>
+</div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-md-4"></div>
+    <div class="col-md-2"></div>
+    <div class="col-xl-4" style=" bottom: 430px;">
+        <h1 style="font-size: x-large;">CONTACT US</h1>
+        <br>
+        <label style="color: green; font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: large; padding-left: 20px;"><strong>Email Address:</strong></label>
+        <button class="btn btn-light btn-outline-dark" style="font-size: xx-small; border: none;" onclick="appear1()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+          </svg></button>
+          <br>
+          <div ng-app="" ng-init="Email='Nationalhealthservice@nhs.com'">
+            <div style="display: none; " id="div1">
+            <textarea ng-model="Email" rows="2" cols="30" style="margin-left: 30px;"></textarea><button class="btn btn-light btn-outline-dark" style="border: none; margin-bottom: 26px;" onclick="disappear1()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-check" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M10.854 6.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 8.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+              <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+              <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+            </svg></button></div>
+            <p style="font-family: Verdana, Geneva, Tahoma, sans-serif; padding-left: 20px;">{{ Email }}</p>
+            
+
+            
+        
+        
+      
+      <label style="color: green; font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: medium; padding-left: 20px;"><br><strong>Address:</strong></label>
+      <button class="btn btn-light btn-outline-dark" style="font-size: xx-small; border: none;" onclick="appear2()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+      </svg></button>
+      <br>
+      
+      <div ng-app="" ng-init="Address='9797 Station Road 
+            NORTHAMPTON'">
+            <div style="display: none; " id="div2">
+            <textarea ng-model="Address" rows="3" cols="30" style="margin-left: 30px;"></textarea><button class="btn btn-light btn-outline-dark" style="border: none; margin-bottom: 26px;" onclick="disappear2()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-check" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M10.854 6.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 8.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+              <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+              <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+            </svg></button></div>
+          <p style="font-family: Verdana, Geneva, Tahoma, sans-serif; padding-left: 20px;">{{ Address }}</p>
+            
+      
+         
+ 
+            
+        <br> 
+      
+      <label style="color: green; font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: medium; padding-left: 20px;"><strong>Phone Number:</strong></label>
+      <button class="btn btn-light btn-outline-dark" style="font-size: xx-small; border: none;" onclick="appear3()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+      </svg></button>
+      <br>
+      <div ng-app="" ng-init="Number='+447961160373
+      +4479832451'">
+      <div style="display: none;" id="div3">
+      <textarea ng-model="Number" rows="3" cols="30" style="margin-left: 30px;"></textarea><button class="btn btn-light btn-outline-dark" style="border: none; margin-bottom: 26px;" onclick="disappear3()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-check" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M10.854 6.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 8.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+        <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+        <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+      </svg></button></div>
+    <p style="font-family: Verdana, Geneva, Tahoma, sans-serif; padding-left: 20px;">{{ Number }}</p>
+      </p>
+        <br>
+    </div>
+</div>
+
+
