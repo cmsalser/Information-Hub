@@ -115,7 +115,10 @@ public class Notification {
 	}
 
 	public Boolean isViewed() {
-		return viewed;
+		if (viewed == null || viewed == false) {
+			return false;
+		}
+		return true;
 	}
 
 	// public void setViewed(Boolean  viewed) {

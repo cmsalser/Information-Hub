@@ -121,7 +121,7 @@ public class NotificationService {
 
 		List<Notification> notifications= getNotifications(userId);
 		for (int i = 0; i < notifications.size(); i++) {
-			if (!notifications.get(i).isViewed()) {
+			if (!notifications.get(i).isViewed() || notifications.get(i).isViewed() == null) {
 				toReturn.add(notifications.get(i));
 			}
 		}
