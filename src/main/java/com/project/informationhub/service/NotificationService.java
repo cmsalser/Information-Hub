@@ -65,34 +65,34 @@ public class NotificationService {
 		return response;
 	}
 	
-	// public ResponseDto getNotifications (long userId)
-	// {
-	// 	ResponseDto response = new ResponseDto();
+	public ResponseDto getNotifications (long userId)
+	{
+		ResponseDto response = new ResponseDto();
 		
-	// 	List<Notification> notifications= notificationRepository.findByAccountId(userId);
-	// 	//send email for notification
-	// 	response.setData(notifications);
-	// 	response.setCode(200);
-	// 	return response;
-	// }
+		List<Notification> notifications= notificationRepository.findByAccountId(userId);
+		//send email for notification
+		response.setData(notifications);
+		response.setCode(200);
+		return response;
+	}
 
-	public List<Notification> getNotifications (long userId)
+	public List<Notification> getNotificationsList (long userId)
 	{
 		List<Notification> notifications= notificationRepository.findByAccountId(userId);
 		return notifications;
 	}
 	
-	// public ResponseDto getAllNotifications ()
-	// {
-	// 	ResponseDto response = new ResponseDto();
+	public ResponseDto getAllNotifications ()
+	{
+		ResponseDto response = new ResponseDto();
 		
-	// 	List<Notification> notifications= notificationRepository.findAll();
-	// 	response.setData(notifications);
-	// 	response.setCode(200);
-	// 	return response;
-	// }
+		List<Notification> notifications= notificationRepository.findAll();
+		response.setData(notifications);
+		response.setCode(200);
+		return response;
+	}
 	
-	public List<Notification> getAllNotifications ()
+	public List<Notification> getAllNotificationsList ()
 	{
 		ResponseDto response = new ResponseDto();
 		
@@ -119,7 +119,7 @@ public class NotificationService {
 		// int count = 0;
 		List<Notification> toReturn = new ArrayList<Notification>();
 
-		List<Notification> notifications= getNotifications(userId);
+		List<Notification> notifications= getNotificationsList(userId);
 		for (int i = 0; i < notifications.size(); i++) {
 			if (!notifications.get(i).isViewed() || notifications.get(i).isViewed() == null) {
 				toReturn.add(notifications.get(i));

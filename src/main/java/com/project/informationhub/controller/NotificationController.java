@@ -44,7 +44,7 @@ public class NotificationController {
 	@GetMapping("/user/{userId}")
 	public List<Notification> getAllNotificationByUser(@PathVariable long userId)
 	{
-		return notificationService.getNotifications(userId);
+		return notificationService.getNotificationsList(userId);
 	}
 
 	// @GetMapping("")
@@ -55,7 +55,7 @@ public class NotificationController {
 
 	@GetMapping("/viewcount")
 	public List<Notification> getNotViewedCount() {
-		return notificationService.getAllNotifications();
+		return notificationService.getAllNotificationsList();
 	}
 
 	@GetMapping("/viewcount/{userId}")
@@ -66,7 +66,7 @@ public class NotificationController {
 	@GetMapping("")
 	public List<Notification> getAllNotification()
 	{
-		return notificationService.getAllNotifications();
+		return notificationService.getAllNotificationsList();
 	}
 	
 	@GetMapping("/{notificationId}")
