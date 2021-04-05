@@ -1,4 +1,4 @@
-package com.project.informationhub;
+package com.project.informationhub.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -20,7 +20,7 @@ import com.project.informationhub.service.PostService;
 @SpringBootTest()
 @ActiveProfiles("test")
 @TestMethodOrder(MethodName.class)
-class NotificationTests {
+public class NotificationServiceTest {
 	
 	@Autowired
 	NotificationService notificationService;

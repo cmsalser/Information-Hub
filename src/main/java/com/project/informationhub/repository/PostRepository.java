@@ -19,6 +19,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 	@Query("from Post p inner join fetch p.thread where p.thread.threadID = :threadId")
 	List<Post> findByThreadID(@Param("threadId") Long threadId);
 	
-	@Query("from Post p inner join fetch p.thread where p.thread.threadID = :threadId and stickied =  :sticked")
-	List<Post> findByThreadIDAndStickied(@Param("threadId")Long threadId, @Param("sticked") boolean sticked);
+	@Query("from Post p inner join fetch p.thread where p.thread.threadID = :threadId and p.stickied =  :stickied")
+	List<Post> findByThreadIDAndStickied(@Param("threadId")Long threadId, @Param("stickied") boolean stickied);
 }
