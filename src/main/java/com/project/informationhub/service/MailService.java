@@ -30,8 +30,10 @@ public class MailService {
     public void sendEmail(List<String> to, String subject, String message) {
 
         SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setTo(StringUtils.join(to, ","));
-
+       // msg.setTo(StringUtils.join(to, ","));
+        String[] toArray = new String[to.size()];
+        toArray = to.toArray(toArray);
+        msg.setTo(toArray);
         msg.setSubject(subject);
         msg.setText(message);
 
