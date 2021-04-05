@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row">
+        <a class="nav-link" routerLinkActive="active" routerLink="/add-event">Add Event</a>
+    </div>
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Start Date</th>
+            <th scope="col">End Date</th>
+            <th scope="col">Title</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let event of events">
+          <tr>
+            <th scope="row"> 
+            </th>
+            <td> {{ event.startDate }}</td>
+            <td> {{ event.endDate }}</td>
+            <td> {{ event.description }}</td>
+          </tr>
+
+        </tbody>
+      </table>
+</div>
+
