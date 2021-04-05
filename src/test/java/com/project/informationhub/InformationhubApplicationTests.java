@@ -40,6 +40,7 @@ class InformationhubApplicationTests {
 	@Autowired
 	TopicForumRepository topicForumRepository;
 	
+	
 	Post post;
 
 	@Test
@@ -48,7 +49,7 @@ class InformationhubApplicationTests {
 		User user = new User();
 		user.setFirstname("Edis");
 		user.setLastname("Emin");
-		user.setEmail("edisemin@hotmail.co.uk");
+		user.setEmail("test@gmail.com");
 		user = userRepository.save(user);
 		
 		TopicForum forum = new TopicForum("Object Oriented Programming");
@@ -56,15 +57,19 @@ class InformationhubApplicationTests {
 		
 		Thread thread = new Thread(user, "My Thread", "My description", false, false, forum);
 		thread = threadRepository.save(thread);
-		
 		PostDTO postDTO = new PostDTO();
 		postDTO.setDescription("My post");
 		postDTO.setTitle("My post title");
 		postDTO.setAccountID(user.getId());
 		postDTO.setThreadID(thread.getThreadID());
+		postDTO.setAnonymous(Boolean.TRUE);
+		postDTO.setStickied(Boolean.TRUE);
+		postDTO.setAccountID(user.getId());
 		long postId = postservice.createPost(postDTO);
 		System.out.println("post created with > " + postId);
 		assertNotEquals(0, postId);
+		assertEquals(Boolean.TRUE, postDTO.isAnonymous());
+		assertEquals(Boolean.TRUE, postDTO.isStickied());
 	}
 	
 	@Test
@@ -82,7 +87,7 @@ class InformationhubApplicationTests {
 		User user = new User();
 		user.setFirstname("Edis");
 		user.setLastname("Emin");
-		user.setEmail("edisemin@hotmail1.co.uk");
+		user.setEmail("test+2@gmail.com");
 		user = userRepository.save(user);
 		
 		TopicForum forum = new TopicForum("Object Oriented Programming");
@@ -90,12 +95,12 @@ class InformationhubApplicationTests {
 		
 		Thread thread = new Thread(user, "My Thread", "My description", false, false, forum);
 		thread = threadRepository.save(thread);
-		
 		PostDTO postDTO = new PostDTO();
 		postDTO.setDescription("My post");
 		postDTO.setTitle("My post title");
 		postDTO.setAccountID(user.getId());
 		postDTO.setThreadID(thread.getThreadID());
+		postDTO.setAccountID(user.getId());
 		long postId = postservice.createPost(postDTO);
 		ResponseDto response =postservice.upvotePost(postId, 2l);
 		
@@ -116,7 +121,7 @@ class InformationhubApplicationTests {
 		User user = new User();
 		user.setFirstname("Edis");
 		user.setLastname("Emin");
-		user.setEmail("edisemin@hotmail2.co.uk");
+		user.setEmail("test+1@gmail.com");
 		user = userRepository.save(user);
 		
 		TopicForum forum = new TopicForum("Object Oriented Programming");
@@ -124,12 +129,12 @@ class InformationhubApplicationTests {
 		
 		Thread thread = new Thread(user, "My Thread", "My description", false, false, forum);
 		thread = threadRepository.save(thread);
-		
 		PostDTO postDTO = new PostDTO();
 		postDTO.setDescription("My post");
 		postDTO.setTitle("My post title");
 		postDTO.setAccountID(user.getId());
 		postDTO.setThreadID(thread.getThreadID());
+		postDTO.setAccountID(user.getId());
 		long postId = postservice.createPost(postDTO);
 		ResponseDto response1 =postservice.delete(postId);
 		System.out.println("delete correct response "+response1);

@@ -16,4 +16,8 @@ export class TopicForumService {
   getTopics() {
     return this.Http.get(this.topicURL);
   }
+
+  postTopic(body) {
+    return this.Http.post(this.topicURL, body, this.header);
+  }
 }
