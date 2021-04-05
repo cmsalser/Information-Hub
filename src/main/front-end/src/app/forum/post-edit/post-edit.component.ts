@@ -20,7 +20,6 @@ export class PostEditComponent implements OnInit {
           .subscribe(
             (data: Post) => {
               this.editedPost = data;
-              console.log(this.editedPost);
             })
       })
   }
@@ -28,18 +27,14 @@ export class PostEditComponent implements OnInit {
   sendEdit() {
     const body = JSON.stringify(this.editedPost);
 
-    this.ForumService.editPost(body, this.editedPost.id)
-      .subscribe(
-        (data) => {
-          console.log(data);
-        });
+    this.ForumService.editPost(body)
+      .subscribe();
 
-    this.Router.navigateByUrl('/thread/' + this.editedPost.postId);
+    this.Router.navigateByUrl('/thread/' + this.editedPost.thread.threadID);
   }
 
   deletePost() {
-    this.ForumService.deletePost(this.editedPost.id);
-    console.log("Post id: " + this.editedPost.id + " deleted");
-    this.Router.navigateByUrl('/thread/' + this.editedPost.postId);
+    this.ForumService.deletePost(this.editedPost.id).subscribe();
+    this.Router.navigateByUrl('/thread/' + this.editedPost.thread.threadID);
   }
 }

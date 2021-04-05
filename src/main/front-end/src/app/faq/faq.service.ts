@@ -25,7 +25,7 @@ export class FaqService {
   }
 
   public save(faq: Faq) {
-    return this.http.post<Faq>(this.faqURL, faq)
+    return this.http.post<Faq>(this.faqURL, faq);
   }
 
   // public update(id: string, faq: Faq) {
@@ -33,7 +33,7 @@ export class FaqService {
   // }
 
   public delete(id: string) {
-    return this.http.delete(this.faqURL + '/' + id)
+    return this.http.delete(this.faqURL + '/' + id);
   }
 
   // constructor(private http: HttpClient) { }
