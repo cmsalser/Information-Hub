@@ -41,12 +41,12 @@ const routes: Routes = [
   { path: 'faq-edit', component: FaqEditComponent, canActivate: [AdminGuard]},
   { path: 'faq-edit/:id', component: FaqEditComponent, canActivate: [AdminGuard] },
   { path: 'sign-up', component: SignUpComponent},
-  { path: 'schedule', component: EventsScheduleComponent},
-  { path: 'add-event', component: AddEventComponent},
-  { path: 'event', component: EventComponent},
-  { path: 'event-edit', component: EventEditComponent},
+  { path: 'schedule', component: EventsScheduleComponent, canActivate: [AuthGuard]},
+  { path: 'add-event', component: AddEventComponent, canActivate: [AdminGuard] },
+  { path: 'event', component: EventComponent, canActivate: [AuthGuard]},
+  { path: 'event-edit', component: EventEditComponent, canActivate: [AdminGuard] },
   { path: 'contact-us', component: ContactUsComponent },
-  { path: 'notification', component: NotificationComponent }
+  { path: 'notification', component: NotificationComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
