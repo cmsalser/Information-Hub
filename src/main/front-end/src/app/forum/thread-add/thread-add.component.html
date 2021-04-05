@@ -11,7 +11,7 @@
         </div>
         <div class="form-group form-check">
             <input type="checkbox" class="form-check-input" id="anonymous" name="anonymous"
-            [(ngModel)]="newThread.anonymous">
+                [(ngModel)]="newThread.anonymous">
             <label class="form-check-label" for="anonymous">Post Anonymously</label>
         </div>
         <div class="form-group form-check">
@@ -20,8 +20,14 @@
             <label class="form-check-label" for="stickied">Sticky Post</label>
         </div>
         <div class="form-group">
-            <label for="forumID">Forum ID:</label> <input type="number" class="form-control" id="forumID"
-                name="forumID" [(ngModel)]="newThread.forumID" />
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="forumID">Forum:</label>
+                </div>
+                <select name="forumID" id="forumID" class="form-control custom-select" [(ngModel)]="newThread.forumID">
+                    <option *ngFor="let topic of topics" [value]="topic.forumID">{{ topic.title }}</option>
+                </select>
+            </div>
         </div>
         <button type="submit" class="btn btn-primary">Submit Thread</button>
     </form>
