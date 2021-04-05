@@ -1,3 +1,7 @@
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
   <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
     <ul class="navbar-nav mr-auto">
@@ -21,6 +25,39 @@
   <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
     <ul class="navbar-nav ml-auto">
 
+      <!-- Notifications -->
+
+      <div *ngIf="authenticated(); then thenNotificationBlock"></div>
+      <ng-template #thenNotificationBlock>
+        <li class="nav-item dropdown">
+          <a class="nav-link">
+            <notification-icon count='scopeVariable' animation="grow" count="" id="navbarDropdown" data-toggle="dropdown" >
+              <a class="fa fa-bell fa_custom" aria-haspopup="true" aria-expanded="false"></a>
+                <span class='badge badge-warning' id='lblCartCount'> {{notViewed.length}} </span>
+            </notification-icon>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li *ngFor="let notification of notifications" class="dropdown-item" id="notificationList" (mouseenter) ="setViewedNotification(notification.id)">
+                <div *ngIf="notification.viewed === false; then thenBlock else elseBlock"></div>
+                <ng-template #thenBlock>
+                  <div class="not_viewed">
+                    {{notification.title}} : {{notification.description}}
+                    <button (click)="deleteNotification(notification.id)" class="close" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                  </div>
+                </ng-template>
+                <ng-template #elseBlock>
+                  {{notification.title}} : {{notification.description}}
+                  <button (click)="deleteNotification(notification.id)" class="close" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </ng-template>
+              </li>
+            </div>
+          </a>
+        </li>
+      </ng-template>
+
       <!-- User : drop down button in navigation bar-->
 
       <li class="nav-item dropdown">
@@ -29,6 +66,7 @@
           User
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/user">Account</a>
           <a class="dropdown-item" href="#">User Preferences</a>
           <a class="dropdown-item" href="#">Notifications</a>
           <a class="dropdown-item" href="#">Log Out</a>

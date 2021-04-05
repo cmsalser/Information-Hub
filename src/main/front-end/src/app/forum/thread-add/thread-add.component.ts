@@ -21,6 +21,7 @@ export class ThreadAddComponent implements OnInit {
   constructor(private ForumService: ForumService, private Router: Router) { }
 
   ngOnInit(): void {
+    this.newThread.accountID = JSON.parse(localStorage.getItem('user'))['data'].id;
   }
 
   createThread() {

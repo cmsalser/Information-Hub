@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -19,6 +19,8 @@ import {UserService} from "./user/user.service";
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { PostAddComponent } from './forum/post-add/post-add.component';
 import { YouthAppointmentComponent } from './youth-appointment/youth-appointment.component';
+import { TopicAddComponent } from './forum/topic-add/topic-add.component';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { YouthAppointmentComponent } from './youth-appointment/youth-appointment
     ContactUsComponent,
     PostAddComponent,
     YouthAppointmentComponent
+    TopicAddComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +49,9 @@ import { YouthAppointmentComponent } from './youth-appointment/youth-appointment
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
   ],
  // exports: [
   //  SignUpComponent

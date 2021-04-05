@@ -7,14 +7,20 @@ import { Router } from "@angular/router";
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
+  account = {
+    username: "",
+    firstname: "",
+    lastname: "",
+    phoneNumber: "",
+    email: "",
+    threads: {}
+  };
 
   constructor( private router: Router) { }
 
   ngOnInit(): void {
-    let user = localStorage.getItem("user");
-    if(user == undefined || user == null) {
-      this.router.navigateByUrl('/');
-    }
+    this.account = JSON.parse(localStorage.getItem('user'))['data'];
+    console.log(this.account);
   }
 
 }
