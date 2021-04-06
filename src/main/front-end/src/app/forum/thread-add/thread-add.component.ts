@@ -24,12 +24,12 @@ export class ThreadAddComponent implements OnInit {
   constructor(private ForumService: ForumService, private TopicForumService: TopicForumService, private Router: Router) { }
 
   ngOnInit(): void {
-    this.newThread.accountID = JSON.parse(localStorage.getItem('user'))['data'].id;
+    this.newThread.accountID = JSON.parse(localStorage.getItem('user')).id;
     this.TopicForumService.getTopics()
-    .subscribe(
-      (topics: any[]) => {
-        this.topics = topics;
-      });
+      .subscribe(
+        (topics: any[]) => {
+          this.topics = topics;
+        });
   }
 
   createThread() {

@@ -4,6 +4,7 @@ import { TopicForum } from '../models/topicForum.model';
 import { TopicForumService } from './topic-forum.service';
 import { ForumService } from './forum.service';
 import { Router } from "@angular/router";
+import { AuthService } from '../auth/auth.service';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class ForumComponent implements OnInit {
   threads: Thread[] = [];
   topics: TopicForum[] = [];
 
-  constructor(private ForumService: ForumService, private TopicForumService: TopicForumService, private router: Router) { }
+  constructor(private ForumService: ForumService, private TopicForumService: TopicForumService, private router: Router, private AuthService: AuthService) { }
 
   ngOnInit(): void {
     this.ForumService.getThreads()
@@ -62,5 +63,9 @@ export class ForumComponent implements OnInit {
             this.threads = searchResult;
           });
     }
+  }
+
+  isVisable() {
+    return this.AuthService.isAdmin();
   }
 }

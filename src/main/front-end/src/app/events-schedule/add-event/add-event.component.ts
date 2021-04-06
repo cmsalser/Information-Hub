@@ -16,7 +16,7 @@ export class AddEventComponent implements OnInit {
   constructor(private Router: Router, private EventsScheduleService: EventsScheduleService) { }
 
   ngOnInit(): void {
-    this.newEvent.userId = JSON.parse(localStorage.getItem('user'))['data'].id;
+    this.newEvent.userId = JSON.parse(localStorage.getItem('user')).id;
   }
   createEvent() {
     const body = JSON.stringify(this.newEvent);

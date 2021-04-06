@@ -32,7 +32,7 @@
                                 {{ topic.title }}
                             </label>
                           </div>
-                          <a class="btn btn-outline-secondary" routerLinkActive="active" routerLink="/add-topic">Add
+                          <a class="btn btn-outline-secondary" routerLinkActive="active" routerLink="/add-topic" *ngIf="isVisable()">Add
                             Topic</a>
                     </div>
                 </div>

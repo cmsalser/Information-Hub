@@ -3,6 +3,7 @@ import { Thread } from '../../models/thread.model';
 import { Post } from '../../models/post.model';
 import { ActivatedRoute, Params, Router} from "@angular/router";
 import { ForumService } from '../forum.service';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-thread',
@@ -13,7 +14,7 @@ export class ThreadComponent implements OnInit {
   thread = {} as Thread;
   posts: Post[] = [];
 
-  constructor(private ForumService: ForumService, private Route: ActivatedRoute, private Router: Router) { }
+  constructor(private ForumService: ForumService, private Route: ActivatedRoute, private Router: Router, private AuthService: AuthService) { }
 
   ngOnInit(): void {
     this.Route.params.subscribe(
@@ -32,9 +33,13 @@ export class ThreadComponent implements OnInit {
   }
 
   upvotePost(id) {
-    let user = JSON.parse(localStorage.getItem('user'))['data'].id;
+    let user = JSON.parse(localStorage.getItem('user')).id;
     this.ForumService.upvotePost(user, id).subscribe();
     window.location.reload();
     console.log(this.posts);
+  }
+
+  isVisable() {
+    return this.AuthService.isAdmin();
   }
 }
