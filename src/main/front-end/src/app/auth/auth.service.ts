@@ -35,6 +35,12 @@ export class AuthService {
     return user !== undefined && user !== null;
   }
 
+  isAdmin() {
+    //let roles = localStorage.getItem("roles");
+    //return (roles.indexOf('ROLE_ADMIN') > -1);
+    return true;
+  }
+
   logout() {
     this.authenticated = false;
   }

@@ -1,4 +1,4 @@
-package com.project.informationhub;
+package com.project.informationhub.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -21,7 +21,7 @@ import com.project.informationhub.service.UserService;
 @SpringBootTest()
 @ActiveProfiles("test")
 @TestMethodOrder(MethodName.class)
-class UserTest {
+public class UserServiceTest {
 	
 	@Autowired
 	UserService userService;

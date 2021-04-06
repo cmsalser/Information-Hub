@@ -15,6 +15,10 @@ import { ThreadComponent } from './forum/thread/thread.component';
 import { ThreadEditComponent } from './forum/thread-edit/thread-edit.component';
 import { PostEditComponent } from './forum/post-edit/post-edit.component';
 import { ThreadAddComponent } from './forum/thread-add/thread-add.component';
+import { EventsScheduleComponent } from './events-schedule/events-schedule.component';
+import { AddEventComponent } from './events-schedule/add-event/add-event.component';
+import { EventComponent } from './events-schedule/event/event.component';
+import { EventEditComponent } from './events-schedule/event-edit/event-edit.component';
 import {UserService} from "./user/user.service";
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { PostAddComponent } from './forum/post-add/post-add.component';
@@ -36,6 +40,10 @@ import { NotificationComponent } from './notification/notification.component';
     ThreadEditComponent,
     PostEditComponent,
     ThreadAddComponent,
+    EventsScheduleComponent,
+    AddEventComponent,
+    EventComponent,
+    EventEditComponent,
     ContactUsComponent,
     PostAddComponent,
     TopicAddComponent,

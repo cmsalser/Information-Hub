@@ -1,0 +1,21 @@
+<div class="container container-fluid col-sm-6">
+    <h1>Edit Event</h1>
+    <form role="form" (submit)="sendEdit()">
+        <div class="form-group">
+            <label for="title">Title:</label> <input type="text" class="form-control" id="title" name="title"
+                [(ngModel)]="editedEvent.title" />
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label> <textarea type="text" class="form-control" id="description"
+                name="description" style="height: 500px;" [(ngModel)]="editedEvent.description"></textarea>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button type="submit" class="btn btn-primary">Submit Edit</button>
+            </div>
+            <div class="col text-right">
+                <a class="btn btn-sm btn-outline-secondary" (click)="deleteEvent()">Delete event</a>
+            </div>
+        </div>
+    </form>
+</div>
