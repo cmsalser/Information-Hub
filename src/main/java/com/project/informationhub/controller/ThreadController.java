@@ -23,42 +23,42 @@ public class ThreadController {
 	ThreadService threadService;
 	
 	@PostMapping("")
-    	public com.project.informationhub.model.Thread createThread(@RequestBody ThreadDTO newThread) {
+    	public ThreadDTO createThread(@RequestBody ThreadDTO newThread) {
 		return threadService.createThread(newThread);
     	}
 	
 	@GetMapping("/{threadId}")
-	public com.project.informationhub.model.Thread findById(@PathVariable(value = "threadId") Long threadId){
+	public ThreadDTO findById(@PathVariable(value = "threadId") Long threadId){
 		return threadService.findById(threadId);
 	}
 	
 	@GetMapping("/account/{accountId}")
-	public List<com.project.informationhub.model.Thread> findByAccountId(@PathVariable(value = "accountId") Long accountId){
+	public List<ThreadDTO> findByAccountId(@PathVariable(value = "accountId") Long accountId){
 		return threadService.findByAccountId(accountId);	
 	}
 	
 	@GetMapping("/forum/{forumID}")
-	public List<com.project.informationhub.model.Thread> findByForumID(@PathVariable(value = "forumID") Long forumID){
+	public List<ThreadDTO> findByForumID(@PathVariable(value = "forumID") Long forumID){
 		return threadService.findByForumID(forumID);	
 	}
 	
 	@GetMapping("")
-	public List<com.project.informationhub.model.Thread> findAll(){
+	public List<ThreadDTO> findAll(){
 		return threadService.findAll();	
 	}
 	
 	@PutMapping(value="/{threadId}")
-    	public com.project.informationhub.model.Thread updateThread(@PathVariable Long threadId, @RequestBody ThreadDTO newThread) {
+    	public ThreadDTO updateThread(@PathVariable Long threadId, @RequestBody ThreadDTO newThread) {
         	return threadService.updateThread(threadId, newThread);
     	}
 	
 	@PutMapping(value ="/stickied/{threadId}")
-	public com.project.informationhub.model.Thread setStickied(@PathVariable Long threadId){
+	public ThreadDTO setStickied(@PathVariable Long threadId){
 		return threadService.setStickied(threadId);
 	}
 	
 	@PutMapping(value ="/anonymous/{threadId}/{anonymous}")
-	public com.project.informationhub.model.Thread changeAnonymous(@PathVariable Long threadId,@PathVariable boolean anonymous){
+	public ThreadDTO changeAnonymous(@PathVariable Long threadId,@PathVariable boolean anonymous){
 		return threadService.changeAnonymous(threadId,anonymous);
 	}	
 	
@@ -69,7 +69,7 @@ public class ThreadController {
     	}
 	
 	@GetMapping("/searchByWord/{word}")
-	public List<com.project.informationhub.model.Thread> getByWord(@PathVariable String word)
+	public List<ThreadDTO> getByWord(@PathVariable String word)
 	{
 		return threadService.searchThreadsByWord(word);
 	}

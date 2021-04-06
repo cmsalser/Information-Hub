@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -15,9 +15,15 @@ import { ThreadComponent } from './forum/thread/thread.component';
 import { ThreadEditComponent } from './forum/thread-edit/thread-edit.component';
 import { PostEditComponent } from './forum/post-edit/post-edit.component';
 import { ThreadAddComponent } from './forum/thread-add/thread-add.component';
+import { EventsScheduleComponent } from './events-schedule/events-schedule.component';
+import { AddEventComponent } from './events-schedule/add-event/add-event.component';
+import { EventComponent } from './events-schedule/event/event.component';
+import { EventEditComponent } from './events-schedule/event-edit/event-edit.component';
 import {UserService} from "./user/user.service";
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { PostAddComponent } from './forum/post-add/post-add.component';
+import { TopicAddComponent } from './forum/topic-add/topic-add.component';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -34,8 +40,14 @@ import { PostAddComponent } from './forum/post-add/post-add.component';
     ThreadEditComponent,
     PostEditComponent,
     ThreadAddComponent,
+    EventsScheduleComponent,
+    AddEventComponent,
+    EventComponent,
+    EventEditComponent,
     ContactUsComponent,
-    PostAddComponent
+    PostAddComponent,
+    TopicAddComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +55,9 @@ import { PostAddComponent } from './forum/post-add/post-add.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
   ],
  // exports: [
   //  SignUpComponent

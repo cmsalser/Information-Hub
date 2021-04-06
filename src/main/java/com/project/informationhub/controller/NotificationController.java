@@ -35,22 +35,49 @@ public class NotificationController {
 		return notificationService.createNotification(notification);
 	}
 	
-	@GetMapping("/{userId}")
-	public ResponseDto getAllNotificationByUser(@PathVariable long userId)
+	// @GetMapping("/{userId}")
+	// public ResponseDto getAllNotificationByUser(@PathVariable long userId)
+	// {
+	// 	return notificationService.getNotifications(userId);
+	// }
+
+	@GetMapping("/user/{userId}")
+	public List<Notification> getAllNotificationByUser(@PathVariable long userId)
 	{
-		return notificationService.getNotifications(userId);
+		return notificationService.getNotificationsList(userId);
+	}
+
+	// @GetMapping("")
+	// public ResponseDto getAllNotification()
+	// {
+	// 	return notificationService.getAllNotifications();
+	// }
+
+	@GetMapping("/viewcount")
+	public List<Notification> getNotViewedCount() {
+		return notificationService.getAllNotificationsList();
+	}
+
+	@GetMapping("/viewcount/{userId}")
+	public List<Notification> getNotViewedCount(@PathVariable long userId) {
+		return notificationService.getNotViewedCount(userId);
 	}
 	
 	@GetMapping("")
-	public ResponseDto getAllNotification()
+	public List<Notification> getAllNotification()
 	{
-		return notificationService.getAllNotifications();
+		return notificationService.getAllNotificationsList();
 	}
 	
 	@GetMapping("/{notificationId}")
 	public ResponseDto get(@PathVariable long notificationId)
 	{
 		return notificationService.get(notificationId);
+	}
+
+	@GetMapping("/{notificationId}/viewed")
+	public void setView(@PathVariable long notificationId) {
+		notificationService.setViewed(notificationId);
 	}
 	
 	@DeleteMapping("/{userId}/{notificationId}")

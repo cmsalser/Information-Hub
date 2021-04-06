@@ -66,11 +66,13 @@ public class Post {
 
 	public Post() {}
 
-	public Post(User user, Thread thread, String title, String description) {
+	public Post(User user, Thread thread, String title, String description, boolean anonymous, boolean stickied) {
 		this.user = user;
 		this.thread = thread;
 		this.title = title;
 		this.description = description;
+		this.anonymous = anonymous;
+		this.stickied = stickied;
 	}
 
 	public Long getId() {

@@ -12,6 +12,7 @@ import { ForumService } from '../forum.service';
 export class PostAddComponent implements OnInit {
   thread = {} as Thread;
   newPost = {
+    accountID: -1,
     threadID: -1,
     title: "",
     description: "",
@@ -30,10 +31,12 @@ export class PostAddComponent implements OnInit {
             this.thread = data;
           });
       });
+      this.newPost.accountID = JSON.parse(localStorage.getItem('user'))['data'].id;
   }
 
   createPost() {
     const body = JSON.stringify(this.newPost);
+    console.log(body);
     this.ForumService.addPost(body)
     .subscribe(
       (data) => {

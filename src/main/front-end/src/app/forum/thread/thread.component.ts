@@ -28,6 +28,13 @@ export class ThreadComponent implements OnInit {
             (resp) => {
               this.posts = resp['data'];
             });
-      })
+      });
+  }
+
+  upvotePost(id) {
+    let user = JSON.parse(localStorage.getItem('user'))['data'].id;
+    this.ForumService.upvotePost(user, id).subscribe();
+    window.location.reload();
+    console.log(this.posts);
   }
 }

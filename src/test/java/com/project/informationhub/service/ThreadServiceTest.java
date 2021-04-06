@@ -53,10 +53,10 @@ public class ThreadServiceTest {
 		thread.setAccountID(user.getId());
 		thread.setForumID(forum.getForumID());
 		
-		Thread thread2 = threadService.createThread(thread);
+		ThreadDTO thread2 = threadService.createThread(thread);
 		System.out.println(thread2.getTitle());
 		assertEquals("Title", thread2.getTitle());
-		assertEquals("Object Oriented Programming", thread2.getTopicForum().getTitle());
+		assertEquals("Object Oriented Programming", thread2.getForumTitle());
 	}
 
 	@Test
@@ -74,9 +74,9 @@ public class ThreadServiceTest {
 		thread.setTitle("Title");
 		thread.setAccountID(user.getId());
 		thread.setForumID(forum.getForumID());
-		Thread thread2 = threadService.createThread(thread);
+		ThreadDTO thread2 = threadService.createThread(thread);
 		System.out.println(thread2.getTitle());
-		Thread thread3 = threadService.findById(thread2.getThreadID());
+		ThreadDTO thread3 = threadService.findById(thread2.getThreadID());
 		assertEquals("Title", thread3.getTitle());
 	}
 
@@ -95,9 +95,8 @@ public class ThreadServiceTest {
 		thread.setTitle("Title");
 		thread.setAccountID(user.getId());
 		thread.setForumID(forum.getForumID());
-		Thread thread4 = threadService.createThread(thread);
-		System.out.println(thread4.getUser().getId());
-		List<Thread> threads = threadService.findByAccountId(user.getId());
+		ThreadDTO thread4 = threadService.createThread(thread);
+		List<ThreadDTO> threads = threadService.findByAccountId(user.getId());
 		assertEquals("Title", threads.get(0).getTitle());
 	}
 
@@ -116,9 +115,8 @@ public class ThreadServiceTest {
 		thread.setTitle("Title");
 		thread.setAccountID(user.getId());
 		thread.setForumID(forum.getForumID());
-		Thread thread4 = threadService.createThread(thread);
-		System.out.println(thread4.getUser().getId());
-		List<Thread> threadList = threadService.findAll();
+		ThreadDTO thread4 = threadService.createThread(thread);
+		List<ThreadDTO> threadList = threadService.findAll();
 		assertNotEquals(0, threadList.size());
 	}
 
@@ -138,7 +136,7 @@ public class ThreadServiceTest {
 		thread.setTitle("Title");
 		thread.setAccountID(user.getId());
 		thread.setForumID(forum.getForumID());
-		Thread thread4 = threadService.createThread(thread);
+		ThreadDTO thread4 = threadService.createThread(thread);
 		System.out.println(thread4.getThreadID());
 		threadService.deleteThread(thread4.getThreadID());
 		try{
@@ -164,13 +162,13 @@ public class ThreadServiceTest {
 		thread.setTitle("Title");
 		thread.setAccountID(user.getId());
 		thread.setForumID(forum.getForumID());
-		Thread thread4 = threadService.createThread(thread);
+		ThreadDTO thread4 = threadService.createThread(thread);
 		ThreadDTO thread2 = new ThreadDTO();
 		thread2.setDescription("New data");
 		thread2.setTitle("Title 2");
 		thread.setForumID(forum.getForumID());
 		System.out.println(thread4.getThreadID());
-		Thread updatedThread = threadService.updateThread(thread4.getThreadID(), thread2);
+		ThreadDTO updatedThread = threadService.updateThread(thread4.getThreadID(), thread2);
 		assertEquals("Title 2", updatedThread.getTitle());
 	}
 	
@@ -191,13 +189,13 @@ public class ThreadServiceTest {
 		thread.setAccountID(user.getId());
 		thread.setStickied(false);
 		thread.setForumID(forum.getForumID());
-		Thread thread4 = threadService.createThread(thread);
+		ThreadDTO thread4 = threadService.createThread(thread);
 		
-		assertFalse(thread4.getStickied());
+		assertFalse(thread4.isStickied());
 		
-		thread4 = threadService.setStickied(thread4.getThreadID());
+		ThreadDTO updatedThread = threadService.setStickied(thread4.getThreadID());
 		
-		assertTrue(thread4.getStickied());	
+		assertTrue(updatedThread.isStickied());	
 	}
 	
 	@Test
@@ -218,13 +216,13 @@ public class ThreadServiceTest {
 		thread.setAnonymous(true);
 		thread.setStickied(false);
 		thread.setForumID(forum.getForumID());
-		Thread thread4 = threadService.createThread(thread);
+		ThreadDTO thread4 = threadService.createThread(thread);
 		
 		assertTrue(thread4.isAnonymous());
 		
-		thread4 = threadService.changeAnonymous(thread4.getThreadID(),false);
+		ThreadDTO updatedThread = threadService.changeAnonymous(thread4.getThreadID(),false);
 		
-		assertFalse(thread4.getStickied());
+		assertFalse(updatedThread.isAnonymous());
 	}
 	
 	@Test
@@ -256,12 +254,12 @@ public class ThreadServiceTest {
 		thread2.setForumID(forum.getForumID());
 		threadService.createThread(thread2);
 		
-		List<com.project.informationhub.model.Thread> searchResults1 =
+		List<ThreadDTO> searchResults1 =
 				threadService.searchThreadsByWord("Java");
 		
 		assertTrue(searchResults1.size()==1);
 		
-		List<com.project.informationhub.model.Thread> searchResults2 =
+		List<ThreadDTO> searchResults2 =
 				threadService.searchThreadsByWord("Covid");
 		
 		assertTrue(searchResults2.size()==1);

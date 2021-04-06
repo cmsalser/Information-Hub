@@ -17,6 +17,7 @@ public class PostDTO {
 	private Date timestampEdited;
 
 	private boolean stickied;
+	private boolean anonymous;
 
 	public Long getThreadID() {
 		return threadID;
@@ -72,6 +73,14 @@ public class PostDTO {
 
 	public void setStickied(boolean stickied) {
 		this.stickied = stickied;
+	}
+
+	public boolean isAnonymous() {
+		return anonymous;
+	}
+
+	public void setAnonymous(boolean anonymous) {
+		this.anonymous = anonymous;
 	}
 	
 	
