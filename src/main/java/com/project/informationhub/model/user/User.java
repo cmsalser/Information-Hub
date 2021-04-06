@@ -176,4 +176,9 @@ public class User {
     {
         this.roles = newroles;
     }
+
+    public Collection<Role> getRoles()
+    {
+        return this.roles;
+    }
 }
