@@ -35,7 +35,7 @@ public class PostController {
 	}
 	
 	@PutMapping("")
-	public long updatePost(@RequestBody Post post) {
+	public long updatePost(@RequestBody PostDTO post) {
 		// post.setId(id);
 		return postService.updatePost(post);
 	}
