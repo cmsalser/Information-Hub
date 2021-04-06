@@ -25,6 +25,7 @@ import { PostAddComponent } from './forum/post-add/post-add.component';
 import { TopicAddComponent } from './forum/topic-add/topic-add.component';
 import { NotificationComponent } from './notification/notification.component';
 import { InformationPageComponent } from './information-page/information-page.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { InformationPageComponent } from './information-page/information-page.co
     PostAddComponent,
     TopicAddComponent,
     NotificationComponent,
-    InformationPageComponent
+    InformationPageComponent,
+    AboutUsComponent
   ],
   imports: [
     BrowserModule,
