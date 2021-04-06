@@ -2,9 +2,9 @@
     <div class="jumbotron">
         <h1>{{ thread.title }}</h1>
         <p>{{ thread.description }}</p>
-        <div *ngIf="isVisable()">
-            <a class="btn btn-sm btn-outline-secondary" [routerLink]="['/thread/edit/', thread.threadID]">Edit</a>
-        </div>
+        <a class="btn btn-sm btn-outline-secondary" [routerLink]="['/thread/edit/', thread.threadID]"
+            *ngIf="isVisable()">Edit</a>
+        <a class="btn btn-sm btn-outline-secondary" [routerLink]="['/post-add/', thread.threadID]">Add Post</a>
     </div>
     <li *ngFor="let post of posts" class="list-group-item clearfix">
         <div class="row">
@@ -13,7 +13,8 @@
         </div>
         <div class="row">
             <div class="col">
-                <a class="btn btn-sm btn-outline-secondary" [routerLink]="['/post/edit/', post.id]" *ngIf="isVisable()">Edit</a>
+                <a class="btn btn-sm btn-outline-secondary" [routerLink]="['/post/edit/', post.id]"
+                    *ngIf="isVisable()">Edit</a>
             </div>
             <div class="col col-lg-2">
                 <button type="button" class="btn btn-outline-secondary" (click)='upvotePost(post.id)'>
