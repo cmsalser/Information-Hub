@@ -22,6 +22,7 @@ import { AuthGuard } from './guards/auth-guard.service';
 import { AdminGuard } from './guards/admin-guard.service';
 import { TopicAddComponent } from './forum/topic-add/topic-add.component';
 import { InformationPageComponent } from './information-page/information-page.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home'},
@@ -45,7 +46,8 @@ const routes: Routes = [
   { path: 'event-edit', component: EventEditComponent, canActivate: [AdminGuard] },
   { path: 'contact-us', component: ContactUsComponent },
   { path: 'notification', component: NotificationComponent, canActivate: [AuthGuard] },
-  { path: 'information', component: InformationPageComponent }
+  { path: 'information', component: InformationPageComponent },
+  { path: 'about-us', component: AboutUsComponent }
 ];
 
 @NgModule({
