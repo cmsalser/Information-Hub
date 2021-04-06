@@ -81,13 +81,27 @@ public class PostService {
 		}
 	}
 	
-	public long updatePost(Post post)
+	public long updatePost(PostDTO postdto)
 	{
 
-
-		if(post.getId() == 0) {
+		if(postdto.getId() == 0) {
 			return 0;
 		}
+		Post post = new Post();
+		post.setId(postdto.getId());
+		if(Objects.nonNull(postdto.getTitle())) {
+			post.setTitle(postdto.getTitle());
+		}
+		if(Objects.nonNull(postdto.getDescription())) {
+			post.setDescription(postdto.getDescription());
+		}
+		if(Objects.nonNull(postdto.isAnonymous())) {
+			post.setAnonymous(postdto.isAnonymous());
+		}
+		if(Objects.nonNull(postdto.isStickied())) {
+			post.setStickied(postdto.isStickied());
+		}
+		
 		//post.setTimestampCreated(new Date());
 		post.setTimestampEdited(new Date());
 		return postRepository.save(post).getId();

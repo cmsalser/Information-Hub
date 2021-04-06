@@ -288,11 +288,13 @@ public class PostServiceTest {
 		long postId = postservice.createPost(postDTO);
 		
 		Post post = postservice.get(postId).get();
-		post.setTitle("My Java 11 title");
+		PostDTO postDto2 = new PostDTO();
+		postDto2.setId(postId);
+		postDto2.setTitle("My Java 11 title");
 		
-		post.setDescription("Java 11");
+		postDto2.setDescription("Java 11");
 		
-		long updatedPostId = postservice.updatePost(post);
+		long updatedPostId = postservice.updatePost(postDto2);
 		
 		assertEquals(postId, updatedPostId);		
 		
