@@ -7,7 +7,6 @@ import { UserComponent } from "./user/user.component";
 import { FaqEditComponent } from './faq/faq-edit/faq-edit.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { NotificationComponent } from './notification/notification.component';
-
 import { ForumComponent } from './forum/forum.component';
 import { ThreadComponent } from './forum/thread/thread.component';
 import { ThreadEditComponent } from './forum/thread-edit/thread-edit.component';
@@ -17,13 +16,12 @@ import { EventsScheduleComponent } from './events-schedule/events-schedule.compo
 import { AddEventComponent } from './events-schedule/add-event/add-event.component';
 import { EventComponent } from './events-schedule/event/event.component';
 import { EventEditComponent } from './events-schedule/event-edit/event-edit.component';
-
-
 import { PostAddComponent } from './forum/post-add/post-add.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AuthGuard } from './guards/auth-guard.service';
 import { AdminGuard } from './guards/admin-guard.service';
 import { TopicAddComponent } from './forum/topic-add/topic-add.component';
+import { InformationPageComponent } from './information-page/information-page.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home'},
@@ -46,7 +44,8 @@ const routes: Routes = [
   { path: 'event', component: EventComponent, canActivate: [AuthGuard]},
   { path: 'event-edit', component: EventEditComponent, canActivate: [AdminGuard] },
   { path: 'contact-us', component: ContactUsComponent },
-  { path: 'notification', component: NotificationComponent, canActivate: [AuthGuard] }
+  { path: 'notification', component: NotificationComponent, canActivate: [AuthGuard] },
+  { path: 'information', component: InformationPageComponent }
 ];
 
 @NgModule({
