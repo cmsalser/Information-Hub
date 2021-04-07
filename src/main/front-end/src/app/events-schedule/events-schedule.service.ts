@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import * as moment from "moment";
 
 
 
@@ -37,4 +38,7 @@ export class EventsScheduleService {
     return this.Http.patch(this.eventURL + eventId, description);
   }
 
+  parseJsonDate(jsonDateString) {
+    return moment(jsonDateString).format("YYYY-MM-DD HH:mm");
+  }
 }

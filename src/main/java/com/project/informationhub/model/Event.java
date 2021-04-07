@@ -27,6 +27,8 @@ public class Event {
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     private Set<User> attendees;
 
+    private String title;
+
     private Date startDate;
 
     private Date endDate;
@@ -35,7 +37,8 @@ public class Event {
 
     private String eventLink;
 
-    public Event(Set<User> creators, Set<User> attendees, Date startDate, Date endDate, String description, String eventLink) {
+    public Event(Set<User> creators, Set<User> attendees, String title, Date startDate, Date endDate, String description, String eventLink) {
+        this.title = title;
         this.creators = creators;
         this.attendees = attendees;
         this.startDate = startDate;
@@ -46,6 +49,10 @@ public class Event {
 
     public Event() {
 
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     public long getId() {
@@ -74,6 +81,10 @@ public class Event {
 
     public String getEventLink() {
         return eventLink;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setId(long id) {

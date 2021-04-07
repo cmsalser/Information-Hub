@@ -28,8 +28,4 @@ export class AddEventComponent implements OnInit {
       })
     this.Router.navigateByUrl('/schedule'); //check url
   }
-
-  parseJsonDate(jsonDateString) {
-    return moment(jsonDateString).format("YYYY-MM-DD HH:mm");
-  }
 }

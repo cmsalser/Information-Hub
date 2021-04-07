@@ -25,8 +25,8 @@
         <tbody *ngFor="let event of events">
           <tr>
             <th scope="row"> <a class="btn btn-lg" [routerLink]="['/event/', event.eventID]"> {{ event.title }}</a></th>
-            <td> {{ parseJsonDate(event.startDate) }}</td>
-            <td> {{ parseJsonDate(event.endDate) }}</td>
+            <td> {{ EventsScheduleService.parseJsonDate(event.startDate) }}</td>
+            <td> {{ EventsScheduleService.parseJsonDate(event.endDate) }}</td>
             <td> {{ event.description }}</td>
             <td *ngIf="isAdmin()"><a class="btn btn-sm btn-outline-secondary" (click)="deleteEvent(event.eventId)">Delete</a></td>
           </tr>

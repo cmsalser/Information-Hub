@@ -33,8 +33,4 @@ export class EventsScheduleComponent implements OnInit {
   deleteEvent(id) {
     return this.EventsScheduleService.deleteEvent(id).subscribe();
   }
-
-  parseJsonDate(jsonDateString) {
-    return moment(jsonDateString).format("YYYY-MM-DD HH:mm");
-  }
 }
