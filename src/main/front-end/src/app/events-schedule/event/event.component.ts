@@ -18,7 +18,7 @@ export class EventComponent implements OnInit {
   ngOnInit(): void {
     this.Route.params.subscribe(
       (params: Params) => {
-        this.EventsScheduleService.getEvent(+params['eventId']).subscribe(
+        this.EventsScheduleService.getEvent(+params['id']).subscribe( // this.EventsScheduleService.getEvent(+params['eventId']).subscribe(
           (data: Event) => {
             this.event = data;
           })

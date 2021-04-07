@@ -21,21 +21,30 @@ export class EventsScheduleService {
     return this.Http.post(this.eventURL, event, this.header);
   }
 
-  getEvent(eventId) {
-    return this.Http.get(this.eventURL + eventId);
+  getEvent(id) {
+    return this.Http.get(this.eventURL + id); 
   }
+//  getEvent(eventId) {
+  //return this.Http.get(this.eventURL + eventId); 
+//}
 
   getEvents() {
     return this.Http.get(this.eventURL);
   }
 
-  deleteEvent(eventId) {
-    return this.Http.delete(this.eventURL + eventId);
+  deleteEvent(id) {
+    return this.Http.delete(this.eventURL + id);
   }
+//  deleteEvent(eventId) {
+//   return this.Http.delete(this.eventURL + id);
+//  }
 
-  editEvent(description, eventId) {
-    return this.Http.patch(this.eventURL + eventId, description);
+  editEvent(description, id) {
+    return this.Http.patch(this.eventURL + id, description);
   }
+//  editEvent(description, eventId) {
+//    return this.Http.patch(this.eventURL + eventId, description);
+//  }
 
   parseJsonDate(jsonDateString) {
     return moment(jsonDateString).format("YYYY-MM-DD HH:mm");
