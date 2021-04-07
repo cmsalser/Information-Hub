@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { FileUploadService } from './file-upload.service';
+import * as fileSave from 'file-saver';
 
 const MAX_SIZE: number = 1048576;
 
@@ -23,7 +24,8 @@ export class InformationPageComponent implements OnInit {
     { title: "Puberty-and-contraception", src: "assets/pdfs/Puberty-and-contraception.pdf" }
   ];
   pdfSource: "";
-  uploadForm: FormGroup; 
+  uploadForm: FormGroup;
+  files: [];
 
 
   constructor(private formBuilder: FormBuilder, private FileUploadService: FileUploadService) { }
@@ -32,11 +34,25 @@ export class InformationPageComponent implements OnInit {
     this.uploadForm = this.formBuilder.group({
       profile: ['']
     });
+    this.getAllFiles();
   }
 
   openFile() {
     window.open(this.pdfSource);
   }
+
+  getAllFiles() {
+    this.FileUploadService.getAllFiles().subscribe(
+      (res) => {
+        let response:any =res;
+        if(response.data) {
+          this.files = response.data;
+        }
+      },
+      (err) => console.log(err)
+    );
+  }
+
 
   onFileSelect(event) {
     if (event.target.files.length > 0) {
@@ -51,7 +67,7 @@ export class InformationPageComponent implements OnInit {
     formData.append('text', "test");
 
     this.FileUploadService.uploadFile(formData).subscribe(
-      (res) => console.log(res),
+      (res) => this.getAllFiles(),
       (err) => console.log(err)
     );
   }

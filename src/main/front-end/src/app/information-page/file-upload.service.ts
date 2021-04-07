@@ -18,4 +18,11 @@ export class FileUploadService {
   uploadFile(file) {
     return this.Http.post(API_URL, file);
   }
+
+  getAllFiles() {
+    return this.Http.get(API_URL);
+  }
+  getFile(fileName) {
+    return this.Http.get(API_URL + fileName, {responseType: 'blob'});
+  }
 }

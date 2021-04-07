@@ -14,7 +14,7 @@
     </form>
 </div>
 <div>
-    <form [formGroup] = "uploadForm" (ngSubmit)="onSubmit()">      
+    <form [formGroup] = "uploadForm" (ngSubmit)="onSubmit()">
       <div>
         <input type="file" name="profile" (change)="onFileSelect($event)" />
       </div>
@@ -23,3 +23,9 @@
       </div>
     </form>
   </div>
+  <div>
+    <div *ngFor="let file Of files">
+      <li ><a href="{{'http://localhost:8080/information/'+file.fileName}}" target="_blank"> {{file.fileName}}</a></li>
+    </div>
+  </div>
+
