@@ -58,7 +58,8 @@ public class EventController {
             toUpdate.get().setCreator(event.getCreator());
             toUpdate.get().setEventLink(event.getEventLink());
             toUpdate.get().setDescription(event.getDescription());
-            toUpdate.get().setDate(event.getDate());
+            toUpdate.get().setStartDate(event.getStartDate());
+            toUpdate.get().setEndDate(event.getEndDate());
             sendEventUpdateNotification(toUpdate.get());
             return toUpdate.get();
         } else {
@@ -81,7 +82,7 @@ public class EventController {
         	}
         	if(isEvent.isPresent() ) {
         		if(status) {
-        			notificationService.sendPNotification(isuser.get(), "Event Request accpeted", "Event request has been accepted", "EVENT");
+        			notificationService.sendPNotification(isuser.get(), "Event Request accepted", "Event request has been accepted", "EVENT");
         		} else {
         			notificationService.sendPNotification(isuser.get(), "Event Request rejected", "Event request has been rejected", "EVENT");
         		}

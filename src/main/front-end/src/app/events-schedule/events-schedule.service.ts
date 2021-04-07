@@ -12,7 +12,7 @@ export class EventsScheduleService {
   private eventURL: string;
   private header;
 
-  constructor(private Http: HttpClient) { 
+  constructor(private Http: HttpClient) {
    this.eventURL = 'http://localhost:8080/events/'; //backend?
    this.header = { headers: new HttpHeaders().set('Content-Type', 'application/json')};
   }
