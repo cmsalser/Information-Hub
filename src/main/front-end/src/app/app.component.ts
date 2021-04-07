@@ -36,13 +36,7 @@ export class AppComponent {
   }
 
   authenticated() {
-    let user = localStorage.getItem("user");
-    if(user == undefined || user == null) {
-      this.isAuthenticated = false;
-    } else {
-      this.isAuthenticated = true;
-    }
-   return this.isAuthenticated;
+    return this.AuthService.isAuthenticated();
   }
 
   getNotViewCount(id: string) {

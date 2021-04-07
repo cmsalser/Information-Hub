@@ -182,8 +182,8 @@ public class PostIntegrationTest {
 		thread = threadRepository.save(thread);
 		String sampleRequest = "{\"accountID\" : "+ user.getId()+",\r\n" + 
 				"  \"threadID\" :  "+ thread.getThreadID()+",\r\n" + 
-				"  \"title\" : \"Java 8 New Features\",\r\n" + 
-				"  \"description\" : \"talks about new features launched in Java 8\"\r\n" +"}";
+				"  \"title\" : \"Angular 8 New Features\",\r\n" + 
+				"  \"description\" : \"talks about new features launched in Angular 8\"\r\n" +"}";
 		
 		MvcResult mvcResult = mvc.perform(post("/post").contentType(MediaType.APPLICATION_JSON).content(sampleRequest)).andExpect(
 						status().isOk()).andReturn();
@@ -192,7 +192,7 @@ public class PostIntegrationTest {
 		
 		
 		
-		mvc.perform(get("/post/searchByWord/Java?mostUpvoted=0").contentType(MediaType.APPLICATION_JSON))
+		mvc.perform(get("/post/searchByWord/Angular?mostUpvoted=0").contentType(MediaType.APPLICATION_JSON))
 		.andExpect(jsonPath("$[0].id").value(postID));
 		
 		
