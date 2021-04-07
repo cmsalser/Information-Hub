@@ -29,4 +29,8 @@ export class EventsScheduleComponent implements OnInit {
   isAdmin() {
     return this.AuthService.isAdmin();
   }
+
+  deleteEvent(id) {
+    return this.EventsScheduleService.deleteEvent(id).subscribe();
+  }
 }

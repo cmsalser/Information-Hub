@@ -27,6 +27,7 @@
             <td> {{ event.startDate }}</td>
             <td> {{ event.endDate }}</td>
             <td> {{ event.description }}</td>
+            <td *ngIf="isAdmin()"><a class="btn btn-sm btn-outline-secondary" (click)="deleteEvent(event.id)">Delete</a></td>
           </tr>
 
         </tbody>
