@@ -12,6 +12,7 @@ import { EventsScheduleService } from '../events-schedule.service';
 export class EventComponent implements OnInit {
 
   event = {} as Event;
+  events : Event[];
 
   constructor( private EventsScheduleService: EventsScheduleService, private Route: ActivatedRoute) { }
 
@@ -22,6 +23,6 @@ export class EventComponent implements OnInit {
           (data: Event) => {
             this.event = data;
           })
-      })  
+      })
   }
 }
