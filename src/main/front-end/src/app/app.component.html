@@ -65,7 +65,7 @@
 
   <!-- User : drop down button in navigation bar-->
 
-  <li class="nav-item dropdown">
+  <li class="nav-item dropdown" *ngIf="authenticated()">
     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
       aria-haspopup="true" aria-expanded="false">
       User
