@@ -29,7 +29,7 @@
   <ul class="list-group">
     <div *ngFor="let file Of files">
       <li *ngIf="file.fileName != ''" class="list-group-item"><a href="{{'http://localhost:8080/information/'+file.fileName}}" target="_blank">
-          {{file.fileName}}</a> <span class="delete-file" (click)="deleteFile(file.id)"> &times;</span></li>
+          {{file.fileName}}</a> <span class="delete-file" (click)="deleteFile(file.id)" *ngIf="isVisable()"> &times;</span></li>
     </div>
   </ul>
 </div>

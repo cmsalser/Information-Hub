@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Event } from '../../models/event.model';
 import { Router } from "@angular/router";
 import { EventsScheduleService } from '../events-schedule.service';
+import * as moment from 'moment';
 
 
 @Component({
@@ -20,7 +21,15 @@ export class AddEventComponent implements OnInit {
   }
   createEvent() {
     const body = JSON.stringify(this.newEvent);
-    this.EventsScheduleService.addEvent(body, this.newEvent.eventId);
-    this.Router.navigateByUrl('/event/' + this.newEvent.eventId); //check url
+    console.log(body)
+    this.EventsScheduleService.addEvent(body).subscribe(
+      (e: any) => {
+        console.log(e)
+      })
+    this.Router.navigateByUrl('/schedule'); //check url
+  }
+
+  parseJsonDate(jsonDateString) {
+    return moment(jsonDateString).format("YYYY-MM-DD HH:mm");
   }
 }

@@ -8,7 +8,7 @@
 </div>
 
 <div class="container">
-    <div class="row">
+    <div class="row" *ngIf="isAdmin()">
         <a class="nav-link" routerLinkActive="active" routerLink="/add-event">Add Event</a>
     </div>
     <table class="table table-hover">
@@ -18,17 +18,19 @@
             <th scope="col">Date</th>
             <th scope="col">End Date</th>
             <th scope="col">Title</th>
+            <th scope="col">Description</th>
             <th scope="col"></th>
           </tr>
         </thead>
         <tbody *ngFor="let event of events">
           <tr>
-            <th scope="row"> 
+            <th scope="row">
             </th>
-            <td> {{ event.startDate }}</td>
-            <td> {{ event.endDate }}</td> 
+            <td> {{ parseJsonDate(event.startDate) }}</td>
+            <td> {{ parseJsonDate(event.endDate) }}</td>
             <td> {{ event.title }}</td>
             <td> {{ event.description }}</td>
+            <td *ngIf="isAdmin()"><a class="btn btn-sm btn-outline-secondary" (click)="deleteEvent(event.eventId)">Delete</a></td>
           </tr>
 
         </tbody>

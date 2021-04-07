@@ -3,7 +3,7 @@ package com.project.informationhub.model;
 import com.project.informationhub.model.user.User;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -27,16 +27,19 @@ public class Event {
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     private Set<User> attendees;
 
-    private Date date;
+    private Date startDate;
+
+    private Date endDate;
 
     private String description;
 
     private String eventLink;
 
-    public Event(Set<User> creators, Set<User> attendees, Date date, String description, String eventLink) {
+    public Event(Set<User> creators, Set<User> attendees, Date startDate, Date endDate, String description, String eventLink) {
         this.creators = creators;
         this.attendees = attendees;
-        this.date = date;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.description = description;
         this.eventLink = eventLink;
     }
@@ -57,8 +60,12 @@ public class Event {
         return attendees;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
     }
 
     public String getDescription() {
@@ -81,8 +88,12 @@ public class Event {
         this.attendees = attendees;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
     public void setDescription(String description) {

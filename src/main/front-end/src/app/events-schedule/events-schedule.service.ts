@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
 
 
 @Injectable({
@@ -9,13 +10,15 @@ import { Observable } from 'rxjs';
 export class EventsScheduleService {
 
   private eventURL: string;
+  private header;
 
-  constructor(private Http: HttpClient) { 
-   this.eventURL = 'http://localhost:8080/event/'; //backend?
+  constructor(private Http: HttpClient) {
+   this.eventURL = 'http://localhost:8080/events/'; //backend?
+   this.header = { headers: new HttpHeaders().set('Content-Type', 'application/json')};
   }
 
-  addEvent(description, eventId) {
-    console.log(description + " " + eventId)
+  addEvent(event) {
+    return this.Http.post(this.eventURL, event, this.header);
   }
 
   getEvent(eventId) {
