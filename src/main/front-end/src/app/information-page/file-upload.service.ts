@@ -19,6 +19,10 @@ export class FileUploadService {
     return this.Http.post(API_URL, file);
   }
 
+  deleteFile(id) {
+    return this.Http.delete(API_URL + id);
+  }
+
   getAllFiles() {
     return this.Http.get(API_URL);
   }

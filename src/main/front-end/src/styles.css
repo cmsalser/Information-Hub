@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+.file-list {
+  padding: 5px;
+}
+.file-list:hover {
+  background-color: #8080804a;
+}
+.file-list span {
+  float: right;
+  cursor: pointer;
+  padding: 5px;
+  margin-top: -5px;
+}

@@ -61,6 +61,14 @@ export class InformationPageComponent implements OnInit {
     }
   }
 
+  deleteFile(id) {
+    this.FileUploadService.deleteFile(id).subscribe(
+      (res) => this.getAllFiles(),
+      (err) => console.log(err)
+    );
+  }
+
+
   onSubmit() {
     const formData = new FormData();
     formData.append('file', this.uploadForm.get('profile').value);

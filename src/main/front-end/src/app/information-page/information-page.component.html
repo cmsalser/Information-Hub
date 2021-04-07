@@ -34,8 +34,8 @@
     </form>
   </div>
   <div>
-    <div *ngFor="let file Of files">
-      <li ><a href="{{'http://localhost:8080/information/'+file.fileName}}" target="_blank"> {{file.fileName}}</a></li>
+    <div *ngFor="let file Of files" >
+      <li *ngIf="file.fileName != ''" class="file-list"><a href="{{'http://localhost:8080/information/'+file.fileName}}" target="_blank"> {{file.fileName}}</a> <span (click)="deleteFile(file.id)">&times;</span></li>
     </div>
   </div>
 
