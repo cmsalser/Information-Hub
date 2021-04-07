@@ -8,28 +8,40 @@
 <br>
 <br>
 <div class="container container-fluid col-sm-6">
-    <form role="form" (submit)="openFile()">
-        <div class="form-group">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <label class="input-group-text" for="pdfSource">PDF:</label>
-                </div>
-                <select name="pdfSource" id="pdfSource" class="form-control custom-select" [(ngModel)]="pdfSource">
-                    <option *ngFor="let pdf of pdfs" [value]="pdf.src">{{ pdf.title }}</option>
-                </select>
-            </div>
+  <form role="form" (submit)="openFile()">
+    <div class="form-group">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="pdfSource">General Information:</label>
         </div>
-        <button type="submit" class="btn btn-primary">Open PDF</button>
-    </form>
+        <select name="pdfSource" id="pdfSource" class="form-control custom-select" [(ngModel)]="pdfSource">
+          <option *ngFor="let pdf of pdfs" [value]="pdf.src">{{ pdf.title }}</option>
+        </select>
+      </div>
+
+    </div>
+    <button type="submit" class="btn btn-primary">Open PDF</button>
+  </form>
 </div>
-<div>
-    <form [formGroup] = "uploadForm" (ngSubmit)="onSubmit()">      
-      <div>
-        <input type="file" name="profile" (change)="onFileSelect($event)" />
-      </div>
-      <br>
-      <div>
-        <button type="submit">Upload</button>
-      </div>
-    </form>
-  </div>
+<br>
+<div class="container container-fluid col-sm-6">
+  <h2 class="title">Further Information</h2>
+  <ul class="list-group">
+    <div *ngFor="let file Of files">
+      <li *ngIf="file.fileName != ''" class="list-group-item"><a href="{{'http://localhost:8080/information/'+file.fileName}}" target="_blank">
+          {{file.fileName}}</a> <span class="delete-file" (click)="deleteFile(file.id)"> &times;</span></li>
+    </div>
+  </ul>
+</div>
+<br>
+<div class="container container-fluid col-sm-6" *ngIf="isVisable()">
+  <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+    <div>
+      <input type="file" name="profile" (change)="onFileSelect($event)" />
+    </div>
+    <br>
+    <div>
+      <button type="submit">Upload</button>
+    </div>
+  </form>
+</div>

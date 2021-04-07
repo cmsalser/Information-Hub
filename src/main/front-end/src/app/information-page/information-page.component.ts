@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { FileUploadService } from './file-upload.service';
+import { AuthService } from '../auth/auth.service';
+import * as fileSave from 'file-saver';
 
 const MAX_SIZE: number = 1048576;
 
@@ -23,20 +25,35 @@ export class InformationPageComponent implements OnInit {
     { title: "Puberty-and-contraception", src: "assets/pdfs/Puberty-and-contraception.pdf" }
   ];
   pdfSource: "";
-  uploadForm: FormGroup; 
+  uploadForm: FormGroup;
+  files: [];
 
 
-  constructor(private formBuilder: FormBuilder, private FileUploadService: FileUploadService) { }
+  constructor(private formBuilder: FormBuilder, private FileUploadService: FileUploadService, private AuthService: AuthService) { }
 
   ngOnInit(): void {
     this.uploadForm = this.formBuilder.group({
       profile: ['']
     });
+    this.getAllFiles();
   }
 
   openFile() {
     window.open(this.pdfSource);
   }
+
+  getAllFiles() {
+    this.FileUploadService.getAllFiles().subscribe(
+      (res) => {
+        let response:any =res;
+        if(response.data) {
+          this.files = response.data;
+        }
+      },
+      (err) => console.log(err)
+    );
+  }
+
 
   onFileSelect(event) {
     if (event.target.files.length > 0) {
@@ -45,14 +62,26 @@ export class InformationPageComponent implements OnInit {
     }
   }
 
+  deleteFile(id) {
+    this.FileUploadService.deleteFile(id).subscribe(
+      (res) => this.getAllFiles(),
+      (err) => console.log(err)
+    );
+  }
+
+
   onSubmit() {
     const formData = new FormData();
     formData.append('file', this.uploadForm.get('profile').value);
     formData.append('text', "test");
 
     this.FileUploadService.uploadFile(formData).subscribe(
-      (res) => console.log(res),
+      (res) => this.getAllFiles(),
       (err) => console.log(err)
     );
+  }
+
+  isVisable() {
+    return this.AuthService.isAdmin();
   }
 }
