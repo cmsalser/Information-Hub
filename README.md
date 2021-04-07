@@ -2,7 +2,7 @@
 Information Hub is a content management and delivery system developed for Dr Marianne Samyn, King's Paediatric Liver Centre (at King's College Hospital). 
 ## Developer Team
 * Charles Salser - k1924604
-* (Insert your name here)
+* (Edis Emin - k1921655)
 * Sean McGrory - k1922054
 * (Insert your name here)
 * (Insert your name here)
