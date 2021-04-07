@@ -5,7 +5,7 @@
         <h1>{{ event.title }}</h1>
         <hr>
         <br>
-        <p> Starts at: {{ event.startDate }}</p>
+        <p> Starts at: {{ EventsScheduleService.parseJsonDate(event.startDate) }}</p>
     </div>
     <li class="list-group-item clearfix">
         <div class="row">
@@ -13,7 +13,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <p> Ends at : {{ event.endDate }}</p>
+                <p> Ends at : {{ EventsScheduleService.parseJsonDate(event.endDate) }}</p>
             </div>
             <div class="col text-right">
                 <br>
