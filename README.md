@@ -4,7 +4,7 @@ Information Hub is a content management and delivery system developed for Dr Mar
 * Charles Salser - k1924604
 * (Edis Emin - k1921655)
 * Sean McGrory - k1922054
-* (Insert your name here)
+* Yasemin Delen Mokhtari - K19012504
 * (Insert your name here)
 * (Insert your name here)
 * (Insert your name here)
