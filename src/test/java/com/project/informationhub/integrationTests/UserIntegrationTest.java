@@ -43,28 +43,5 @@ public class UserIntegrationTest {
 						status().isOk()).andExpect(jsonPath("$.email").value("edis.emin@hotmail.co.uk")) .andReturn();
 		
 	}
-	
-	@Test
-	public void showTest() throws Exception {
-		
-		sampleRequest = "{\"username\" : \"edis.emin\""+ ",\r\n" + 
-				"	\"firstname\" : \"edis\""+ ",\r\n" + 
-				"	\"lastname\" : \"emin\""+ ",\r\n" + 
-				"	\"password\" : \"Secret@123\""+ ",\r\n" + 
-				"	\"email\" : \"edis.emin@hotmail.co.uk\""+ ",\r\n" + 
-				"  \"phoneNumber\" : \"708544274020\",\r\n" + 
-				"  \"birthday\" : \"1991-04-08\"\r\n" + "}";
-		
-		MvcResult mvcResult = mvc.perform(post("/user/signup").contentType(MediaType.APPLICATION_JSON).content(sampleRequest)).andExpect(
-						status().isOk()).andExpect(jsonPath("$.email").value("edis.emin@hotmail.co.uk")) .andReturn();
-		
-		JSONObject userResponse = new JSONObject(mvcResult.getResponse().getContentAsString());
-		
-		Long id = userResponse.getLong("id");		
-		
-		
-		//mvc.perform(get("/user/"+ id).contentType(MediaType.APPLICATION_JSON));
-		
-	}
 
 }
