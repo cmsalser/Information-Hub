@@ -42,7 +42,7 @@ const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent},
   { path: 'schedule', component: EventsScheduleComponent, canActivate: [AuthGuard]},
   { path: 'add-event', component: AddEventComponent, canActivate: [AdminGuard] },
-  { path: 'event', component: EventComponent, canActivate: [AuthGuard]},
+  { path: 'event/:id', component: EventComponent, canActivate: [AuthGuard]},
   { path: 'event-edit', component: EventEditComponent, canActivate: [AdminGuard] },
   { path: 'contact-us', component: ContactUsComponent },
   { path: 'notification', component: NotificationComponent, canActivate: [AuthGuard] },
