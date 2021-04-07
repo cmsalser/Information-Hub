@@ -1,10 +1,18 @@
 <div class="container container-fluid col-sm-6">
+    <br>
     <h1>Create Topic</h1>
+    <br>
+    <hr>
+    <p> Create a topic (e.g. Alcohol, Mental Health,...) to be added to the forum.</p>
+    <br>
     <form role="form" (submit)="createTopic()">
         <div class="form-group">
             <label for="title">Topic:</label> <input type="text" class="form-control" id="title" name="title"
                 [(ngModel)]="newTopic.title" />
         </div>
+        <br>
         <button type="submit" class="btn btn-primary">Submit Topic</button>
     </form>
+    <br>
+    <br>
 </div>
