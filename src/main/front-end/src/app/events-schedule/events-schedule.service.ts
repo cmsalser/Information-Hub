@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -13,7 +12,7 @@ export class EventsScheduleService {
   private header;
 
   constructor(private Http: HttpClient) {
-   this.eventURL = 'http://localhost:8080/events/'; //backend?
+   this.eventURL = 'http://localhost:8080/events/'; 
    this.header = { headers: new HttpHeaders().set('Content-Type', 'application/json')};
   }
 
