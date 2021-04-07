@@ -1,5 +1,7 @@
 package com.project.informationhub.integrationTests;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -16,6 +18,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.web.util.NestedServletException;
 
 @SpringBootTest
 @Transactional
@@ -71,6 +74,29 @@ public class FAQIntegrationTest {
 		
 		mvc.perform(get("/FAQ/").contentType(MediaType.APPLICATION_JSON))
 				.andExpect(jsonPath("$[0].answer").value("2022"));
+	}
+	
+	@Test
+	public void deleteFAQTest() throws Exception {
+		sampleRequest = "{\"question\" : \"When will Covid Pandemic end\""+ ",\r\n" + 
+				"  \"answer\" : \"2022\"\r\n" + "}";
+		
+		MvcResult mvcResult = mvc.perform(post("/FAQ").contentType(MediaType.APPLICATION_JSON).content(sampleRequest)).andExpect(
+				status().isOk()).andExpect(jsonPath("$.answer").value("2022")) .andReturn();
+		
+		JSONObject faqResponse = new JSONObject(mvcResult.getResponse().getContentAsString());
+		
+		Long id = faqResponse.getLong("id");		
+		
+		
+		mvc.perform(delete("/FAQ/"+id).contentType(MediaType.APPLICATION_JSON)).andExpect(
+				status().isOk());
+		
+		try {
+			mvc.perform(get("/FAQ/"+ id).contentType(MediaType.APPLICATION_JSON));
+		}catch(Exception ex) {
+			assertTrue(ex instanceof NestedServletException);
+		}
 	}
 
 }
