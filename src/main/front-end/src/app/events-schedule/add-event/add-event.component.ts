@@ -20,7 +20,7 @@ export class AddEventComponent implements OnInit {
   }
   createEvent() {
     const body = JSON.stringify(this.newEvent);
-    this.EventsScheduleService.addEvent(body, this.newEvent.eventId);
-    this.Router.navigateByUrl('/event/' + this.newEvent.eventId); //check url
+    this.EventsScheduleService.addEvent(body).subscribe();
+    this.Router.navigateByUrl('schedule'); //check url
   }
 }

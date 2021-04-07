@@ -7,7 +7,6 @@ import { User } from "../models/user.model";
 })
 export class AuthService {
   authenticated = false;
-  adminStatus = true;
   user;
 
   constructor(private http: HttpClient) {

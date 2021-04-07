@@ -6,6 +6,9 @@
   <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
+        <a class="nav-link" href="/home">Home</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="/forum">Forum</a>
       </li>
       <li class="nav-item">
@@ -31,57 +34,58 @@
       <ng-template #thenNotificationBlock>
         <li class="nav-item dropdown">
           <a class="nav-link">
-            <notification-icon count='scopeVariable' animation="grow" count="" id="navbarDropdown" data-toggle="dropdown" >
+            <notification-icon count='scopeVariable' animation="grow" count="" id="navbarDropdown"
+              data-toggle="dropdown">
               <a class="fa fa-bell fa_custom" aria-haspopup="true" aria-expanded="false"></a>
-                <span class='badge badge-warning' id='lblCartCount'> {{notViewed.length}} </span>
+              <span class='badge badge-warning' id='lblCartCount'> {{notViewed.length}} </span>
             </notification-icon>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li *ngFor="let notification of notifications" class="dropdown-item" id="notificationList" (mouseenter) ="setViewedNotification(notification.id)">
-                <div *ngIf="notification.viewed === false; then thenBlock else elseBlock"></div>
-                <ng-template #thenBlock>
-                  <div class="not_viewed">
-                    {{notification.title}} : {{notification.description}}
-                    <button (click)="deleteNotification(notification.id)" class="close" aria-label="Close">
-                      <span aria-hidden="true">×</span>
-                    </button>
-                  </div>
-                </ng-template>
-                <ng-template #elseBlock>
-                  {{notification.title}} : {{notification.description}}
-                  <button (click)="deleteNotification(notification.id)" class="close" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                  </button>
-                </ng-template>
-              </li>
+        <li *ngFor="let notification of notifications" class="dropdown-item" id="notificationList"
+          (mouseenter)="setViewedNotification(notification.id)">
+          <div *ngIf="notification.viewed === false; then thenBlock else elseBlock"></div>
+          <ng-template #thenBlock>
+            <div class="not_viewed">
+              {{notification.title}} : {{notification.description}}
+              <button (click)="deleteNotification(notification.id)" class="close" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
             </div>
-          </a>
+          </ng-template>
+          <ng-template #elseBlock>
+            {{notification.title}} : {{notification.description}}
+            <button (click)="deleteNotification(notification.id)" class="close" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </ng-template>
         </li>
-      </ng-template>
+  </div>
+  </a>
+  </li>
+  </ng-template>
 
-      <!-- User : drop down button in navigation bar-->
+  <!-- User : drop down button in navigation bar-->
 
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          User
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/user">Account</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Help</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="btn btn-outline-secondary" routerLinkActive="active" routerLink="/sign-up">Sign Up</a>
-      </li>
-      <li class="nav-item">
-        <div *ngIf="authenticated(); then thenBlock else elseBlock"></div>
-        <ng-template #thenBlock><a class="btn btn-outline-secondary" (click)="logout()">Logout</a></ng-template>
-        <ng-template #elseBlock><a class="btn btn-outline-secondary" routerLinkActive="active"
-            routerLink="/auth">Login</a>
-        </ng-template>
-      </li>
-    </ul>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false">
+      User
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <a class="dropdown-item" href="/user">Account</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="#">Help</a>
+    </div>
+  </li>
+  <li class="nav-item">
+    <a class="btn btn-outline-secondary" routerLinkActive="active" routerLink="/sign-up" *ngIf="!authenticated()">Sign Up</a>
+  </li>
+  <li class="nav-item">
+    <div *ngIf="authenticated(); then thenBlock else elseBlock"></div>
+    <ng-template #thenBlock><a class="btn btn-outline-secondary" (click)="logout()">Logout</a></ng-template>
+    <ng-template #elseBlock><a class="btn btn-outline-secondary" routerLinkActive="active" routerLink="/auth">Login</a>
+    </ng-template>
+  </li>
+  </ul>
   </div>
 </nav>
 
@@ -92,5 +96,16 @@
 
 <!--Footer-->
 <footer style="background-color: rgba(77, 62, 62, 0.2);">
-      <a class="btn bg-transparent btn-lg btn-block" href="/contact-us" role="button">Contact Us</a> 
+  <div class="row">
+    <div class="col col-sm-4">
+      <p>2021 Information Hub</p>
+      <p> <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    </div>
+    <div class="col col-sm-4">
+      <a class="btn bg-transparent btn-lg btn-block" href="/contact-us" role="button">Contact Us</a>
+    </div>
+    <div class="col col-sm-4">
+      <p class="float-right"><a href="#">Back to top</a></p>
+    </div>
+  </div>
 </footer>
