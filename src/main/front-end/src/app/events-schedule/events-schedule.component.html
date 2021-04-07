@@ -24,11 +24,11 @@
 
         <tbody *ngFor="let event of events">
           <tr>
-            <th scope="row"> <a class="btn btn-lg" [routerLink]="['/event/', event.eventID]"> {{ event.title }}</a></th>
+            <th scope="row"> <a class="btn btn-lg" [routerLink]="['/event/', event.id]"> {{ event.title }}</a></th>
             <td> {{ EventsScheduleService.parseJsonDate(event.startDate) }}</td>
             <td> {{ EventsScheduleService.parseJsonDate(event.endDate) }}</td>
             <td> {{ event.description }}</td>
-            <td *ngIf="isAdmin()"><a class="btn btn-sm btn-outline-secondary" (click)="deleteEvent(event.eventId)">Delete</a></td>
+            <td *ngIf="isAdmin()"><a class="btn btn-sm btn-outline-secondary" (click)="deleteEvent(event.id)">Delete</a></td>
           </tr>
 
         </tbody>

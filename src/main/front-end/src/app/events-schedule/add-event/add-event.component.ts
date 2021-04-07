@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Event } from '../../models/event.model';
 import { Router } from "@angular/router";
 import { EventsScheduleService } from '../events-schedule.service';
-import * as moment from 'moment';
 
 
 @Component({
