@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { FileUploadService } from './file-upload.service';
+import { AuthService } from '../auth/auth.service';
 import * as fileSave from 'file-saver';
 
 const MAX_SIZE: number = 1048576;
@@ -28,7 +29,7 @@ export class InformationPageComponent implements OnInit {
   files: [];
 
 
-  constructor(private formBuilder: FormBuilder, private FileUploadService: FileUploadService) { }
+  constructor(private formBuilder: FormBuilder, private FileUploadService: FileUploadService, private AuthService: AuthService) { }
 
   ngOnInit(): void {
     this.uploadForm = this.formBuilder.group({
@@ -70,5 +71,9 @@ export class InformationPageComponent implements OnInit {
       (res) => this.getAllFiles(),
       (err) => console.log(err)
     );
+  }
+
+  isVisable() {
+    return this.AuthService.isAdmin();
   }
 }
