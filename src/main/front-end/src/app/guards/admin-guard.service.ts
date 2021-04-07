@@ -11,7 +11,7 @@ export class AdminGuard {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot){
     if (!this.AuthService.isAdmin()) {
-      this.router.navigateByUrl('/home');
+      return false;
     }else{
       return true;
     }

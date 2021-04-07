@@ -30,7 +30,7 @@ const routes: Routes = [
   { path: 'thread/:id', component: ThreadComponent, canActivate: [AuthGuard] },
   { path: 'thread/edit/:id', component: ThreadEditComponent, canActivate: [AuthGuard] },
   { path: 'thread-add', component: ThreadAddComponent, canActivate: [AuthGuard] },
-  { path: 'post/edit/:id', component: PostEditComponent, canActivate: [AuthGuard] },
+  { path: 'post/edit/:id', component: PostEditComponent, canActivate: [AdminGuard] },
   { path: 'post-add/:id', component: PostAddComponent, canActivate: [AuthGuard] },
   { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
   { path: 'add-topic', component: TopicAddComponent, canActivate: [AdminGuard] },

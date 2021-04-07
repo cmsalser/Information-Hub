@@ -22,7 +22,7 @@ export class AuthComponent implements OnInit {
       if(user == null) {
         alert("Invalid credential")
       } else {
-        localStorage.setItem("user",JSON.stringify(user));
+        localStorage.setItem("user",JSON.stringify(user.data));
         this.router.navigateByUrl('/');
       }
     });

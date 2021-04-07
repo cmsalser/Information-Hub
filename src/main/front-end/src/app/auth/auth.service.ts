@@ -36,9 +36,9 @@ export class AuthService {
   }
 
   isAdmin() {
-    //let roles = localStorage.getItem("roles");
-    //return (roles.indexOf('ROLE_ADMIN') > -1);
-    return true;
+    let roles = JSON.parse(localStorage.getItem("user")).roles;
+    let adminRole = roles.find(element => element.name == "ROLE_ADMIN");
+    return adminRole !== undefined && adminRole !== null;
   }
 
   logout() {

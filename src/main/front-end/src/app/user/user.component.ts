@@ -19,7 +19,7 @@ export class UserComponent implements OnInit {
   constructor( private router: Router) { }
 
   ngOnInit(): void {
-    this.account = JSON.parse(localStorage.getItem('user'))['data'];
+    this.account = JSON.parse(localStorage.getItem('user'));
     console.log(this.account);
   }
 
