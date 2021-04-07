@@ -8,7 +8,7 @@
 </div>
 
 <div class="container">
-    <div class="row">
+    <div class="row" *ngIf="isAdmin()">
         <a class="nav-link" routerLinkActive="active" routerLink="/add-event">Add Event</a>
     </div>
     <table class="table table-hover">

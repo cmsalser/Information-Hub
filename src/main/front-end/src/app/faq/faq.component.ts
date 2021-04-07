@@ -21,7 +21,7 @@ export class FaqComponent implements OnInit {
   }
 
   isAdmin() {
-    return this.AuthService.adminStatus;
+    return this.AuthService.isAdmin();
   }
 
   deleteFaq(id) {

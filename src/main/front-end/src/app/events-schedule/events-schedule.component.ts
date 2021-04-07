@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Event } from '../models/event.model'; // edit from  '../../models/event.model'; wasnt working
 import { EventsScheduleService } from './events-schedule.service'; // '../events-schedule.service'; error
+import { AuthService } from '../auth/auth.service';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class EventsScheduleComponent implements OnInit {
   events: Event[] = [];
 
 
-  constructor(private EventsScheduleService: EventsScheduleService) {
+  constructor(private EventsScheduleService: EventsScheduleService, private AuthService: AuthService) {
 
    }
 
@@ -25,4 +26,7 @@ export class EventsScheduleComponent implements OnInit {
       })
   }
 
+  isAdmin() {
+    return this.AuthService.isAdmin();
+  }
 }
