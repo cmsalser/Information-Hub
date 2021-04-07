@@ -3,7 +3,7 @@ Information Hub is a content management and delivery system developed for Dr Mar
 ## Developer Team
 * Charles Salser - k1924604
 * (Insert your name here)
-* (Insert your name here)
+* Sean McGrory - k1922054
 * (Insert your name here)
 * (Insert your name here)
 * (Insert your name here)
