@@ -1,5 +1,11 @@
 <div class="container container-fluid col-sm-6">
+    <br>
+    <br>
     <h1>Edit Event</h1>
+    <hr>
+    <br>
+    <p> Edit description and title of event. If event is cancelled, ended or rescheduled, delete event (and add new event if required).</p>
+    <br>
     <form role="form" (submit)="sendEdit()">
         <div class="form-group">
             <label for="title">Title:</label> <input type="text" class="form-control" id="title" name="title"
@@ -9,13 +15,16 @@
             <label for="description">Description:</label> <textarea type="text" class="form-control" id="description"
                 name="description" style="height: 500px;" [(ngModel)]="editedEvent.description"></textarea>
         </div>
+        <br>
         <div class="row">
             <div class="col">
-                <button type="submit" class="btn btn-primary">Submit Edit</button>
+                <button type="submit" class="btn btn-primary">Submit edit</button>
             </div>
             <div class="col text-right">
                 <a class="btn btn-sm btn-outline-secondary" (click)="deleteEvent()">Delete event</a>
             </div>
         </div>
     </form>
+    <br>
+    <br>
 </div>

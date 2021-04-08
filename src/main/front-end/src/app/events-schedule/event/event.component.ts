@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Event } from '../../models/event.model';
 import { ActivatedRoute, Params } from "@angular/router";
 import { EventsScheduleService } from '../events-schedule.service';
+import * as moment from "moment";
 
 
 @Component({
@@ -24,5 +25,9 @@ export class EventComponent implements OnInit {
             this.event = data;
           })
       })
+  }
+
+  parseJsonDate(jsonDateString) {
+    return moment(jsonDateString).format("YYYY-MM-DD HH:mm");
   }
 }

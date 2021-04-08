@@ -3,6 +3,7 @@ import { Event } from '../models/event.model';
 import { EventsScheduleService } from './events-schedule.service';
 import { AuthService } from '../auth/auth.service';
 import { Router } from "@angular/router";
+import * as moment from "moment";
 
 @Component({
   selector: 'app-events-schedule',
@@ -40,5 +41,8 @@ export class EventsScheduleComponent implements OnInit {
         );
       }
     );
+  }
+  parseJsonDate(jsonDateString) {
+    return moment(jsonDateString).format("YYYY-MM-DD HH:mm");
   }
 }
