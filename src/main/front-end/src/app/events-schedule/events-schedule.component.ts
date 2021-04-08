@@ -41,4 +41,22 @@ export class EventsScheduleComponent implements OnInit {
       }
     );
   }
+
+  searchByKeyword(keyword) {
+    if (keyword.value == "") {
+      this.EventsScheduleService.getEvents()
+        .subscribe(
+          (events: any[]) => {
+            this.events = events;
+          });
+    } else {
+      this.EventsScheduleService.searchEvents(keyword.value)
+        .subscribe(
+          (searchEventsResult: any[]) => {
+            this.events = searchEventsResult;
+          });
+    }
+  }
+
+
 }

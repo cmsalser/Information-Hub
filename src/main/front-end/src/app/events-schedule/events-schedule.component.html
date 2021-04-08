@@ -7,6 +7,18 @@
   <p> View upcoming events, webinars, talks and peer support sessions with this schedule. Click on an event to view details and view link to virtual event.</p>
 </div>
 
+<div>
+  <div class="card-body">
+    <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+            (change)="searchByKeyword($keyword.target)">
+    </form>
+</div>
+</div>
+<br>
+<br>
+<hr>
+
 <div class="container">
     <div class="row" *ngIf="isAdmin()">
         <a class="nav-link" routerLinkActive="active" routerLink="/add-event">Add Event</a>
@@ -14,8 +26,8 @@
     <table class="table table-hover">
         <thead>
           <tr>
-            <th scope="col">Event Title</th>
-            <th scope="col">Start Date</th>
+            <th scope="col" >Event Title</th>
+            <th scope="col" >Start Date</th>
             <th scope="col">End Date</th>
             <th scope="col">Description</th>
             <th scope="col"></th>
@@ -28,7 +40,7 @@
             <td> {{ EventsScheduleService.parseJsonDate(event.startDate) }}</td>
             <td> {{ EventsScheduleService.parseJsonDate(event.endDate) }}</td>
             <td> {{ event.description }}</td>
-            <td *ngIf="isAdmin()"><a class="btn btn-sm btn-outline-secondary" (click)="deleteEvent(event.id)">Delete</a></td>
+            <td *ngIf="isAdmin()"><a class="btn btn-sm btn-outline-secondary" (click)="deleteEvent(event.id)">Delete Event</a></td>
           </tr>
 
         </tbody>

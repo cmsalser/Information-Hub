@@ -39,6 +39,9 @@ export class EventsScheduleService {
     return this.Http.patch(this.eventURL + id, description);
   }
 
+  searchEvents(input) {
+    return this.Http.get(this.eventURL + 'searchByKeyword/' + input); 
+  }
 
   parseJsonDate(jsonDateString) {
     return moment(jsonDateString).format("YYYY-MM-DD HH:mm");
