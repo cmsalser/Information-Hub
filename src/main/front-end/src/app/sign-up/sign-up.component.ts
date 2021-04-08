@@ -11,10 +11,7 @@ import {Router} from "@angular/router";
 })
 
 export class SignUpComponent implements OnInit {
-  //add option to input gender when "not listed" selected
-  // gender: string[] = ['Female','Male', 'Transgender', 'Non-binary','Intersex', 'Not Listed: please provide details', 'Prefer not to say',''];
 
-  // user: User = new User("firstname", "lastname", "email", "username", "pass", new Date(1998, 1, 1))
 
   constructor(private fb: FormBuilder, public userService: UserService, public customValidator: CustomValidationService, private router: Router) { }
 
@@ -28,22 +25,16 @@ export class SignUpComponent implements OnInit {
       username: ['', [Validators.required, Validators.minLength(3)], this.customValidator.validateUsernameNotTaken.bind(this.customValidator)],
       password: ['', [Validators.required, Validators.minLength(8)]],
       confirmPassword: ['', [Validators.required]],
-      // selectGender: '',
       email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
                    Validators.minLength(1)], this.customValidator.validateEmailNotTaken.bind(this.customValidator)],
       birthday: ['', [Validators.required], this.customValidator.validateDateOfBirth.bind(this.customValidator)]
-      // conditions: this.fb.group({
-      //   privacyPolicy: false,
-      //   termsAndConditions: false
-      // })
+
     }, {
       validator: this.customValidator.passwordMatchValidator("password", "confirmPassword")
     })
   }
 
-  // onSubmit(): void {
-  //   this.userService.register(this.userService.signUpForm.value).subscribe()
-  // }
+
 
   onSubmit(): void {
     this.userService.register(this.userService.signUpForm.value)
@@ -51,10 +42,5 @@ export class SignUpComponent implements OnInit {
         res ? this.router.navigateByUrl('/') : this.router.navigateByUrl('/sign-up');
       });
   };
-// need to fix this drop down selection
-//   selectGender(event): void {
-//       this.signUpForm.patchValue({
-//         selectGender: event.target.value
-//       });
-//   }
+
 }
