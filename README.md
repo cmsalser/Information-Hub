@@ -8,7 +8,7 @@ Information Hub is a content management and delivery system developed for Dr Mar
 * Dogukan Kartal - K1921573
 * Rabbul Uddowllah - K1924561
 * Parsa Raziei - k19026482
-* (Insert your name here)
+* Luke Waddington - k19013563
 ## Built With
 * [AngularJS](https://angular.io/) - The Web Framework
 * [Maven](https://maven.apache.org/) - Dependency Management
