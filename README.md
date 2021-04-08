@@ -7,7 +7,7 @@ Information Hub is a content management and delivery system developed for Dr Mar
 * Yasemin Delen Mokhtari - K19012504
 * Dogukan Kartal - K1921573
 * Rabbul Uddowllah - K1924561
-* (Insert your name here)
+* Parsa Raziei - k19026482
 * (Insert your name here)
 ## Built With
 * [AngularJS](https://angular.io/) - The Web Framework
