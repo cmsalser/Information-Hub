@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Event } from '../../models/event.model';
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { EventsScheduleService } from '../events-schedule.service';
+import * as moment from "moment";
 
 
 @Component({
@@ -42,6 +43,10 @@ export class EventEditComponent implements OnInit {
   deleteEvent() {
     this.EventsScheduleService.deleteEvent(this.editedEvent.id).subscribe(); 
     this.Router.navigateByUrl('/schedule');
+  }
+
+  parseJsonDate(jsonDateString) {
+    return moment(jsonDateString).format("YYYY-MM-DD HH:mm");
   }
 
 }
