@@ -18,7 +18,7 @@ export class EventEditComponent implements OnInit {
   ngOnInit(): void {
     this.Route.params.subscribe(
       (params: Params) => {
-        this.EventsScheduleService.getEvent(+params['id']) // this.EventsScheduleService.getEvent(+params['eventId'])
+        this.EventsScheduleService.getEvent(+params['id']) 
           .subscribe(
             (data: Event) => {
               this.editedEvent = data;
@@ -30,17 +30,17 @@ export class EventEditComponent implements OnInit {
     console.log(this.editedEvent);
     const body = JSON.stringify(this.editedEvent);
 
-    this.EventsScheduleService.editEvent(body, this.editedEvent.id) //from this.editedEvent.event.id
+    this.EventsScheduleService.editEvent(body, this.editedEvent.id) 
       .subscribe(
         (data) => {
           console.log(data);
         });
 
-    this.Router.navigateByUrl('/event/' + this.editedEvent.id); //this.editedEvent.eventId);
+    this.Router.navigateByUrl('/event/' + this.editedEvent.id); 
   }
 
   deleteEvent() {
-    this.EventsScheduleService.deleteEvent(this.editedEvent.id).subscribe(); //this.editedEvent.eventId).subscribe();
+    this.EventsScheduleService.deleteEvent(this.editedEvent.id).subscribe(); 
     this.Router.navigateByUrl('/schedule');
   }
 
