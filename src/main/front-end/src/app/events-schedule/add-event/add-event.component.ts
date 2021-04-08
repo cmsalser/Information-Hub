@@ -22,9 +22,8 @@ export class AddEventComponent implements OnInit {
     const body = JSON.stringify(this.newEvent);
     console.log(body)
     this.EventsScheduleService.addEvent(body).subscribe(
-      (e: any) => {
-        console.log(e)
+      () => {
+        this.Router.navigateByUrl('/schedule');
       })
-    this.Router.navigateByUrl('/schedule'); //check url
   }
 }
