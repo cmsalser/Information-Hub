@@ -26,18 +26,3 @@ ng serve
 ```
 ## Resources Used
 * [forum-Spring](https://github.com/daimao1/forum-Spring) - Referenced by Charles to understand the architecture and structure of a Angular forum, as well as develop an understanding of how to structure and handle API calls  
-## Deployment
-The project is available to view at
-```
-https://informationhub.io
-```
-Test Admin Login Credentials
-```
-Username: admin
-Password: adminuser
-```
-Test User Login Credentials
-```
-Username: user
-Password: useruser
-```
